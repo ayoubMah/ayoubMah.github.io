@@ -1,0 +1,9 @@
+$white: #ffffff;
+$black: #000000;
+$darkGray: #2e2e2e;
+$darkerGray: #1c1c1c;
+$gray: #7d7d7d;
+$lightGray: #f0f0f0;
+$blue: #0099cc;
+$helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$helveticaNeue: 'Helvetica Neue', Helvetica, Arial, sans-serif;

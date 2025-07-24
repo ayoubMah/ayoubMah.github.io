@@ -1,3 +1,4 @@
+// filepath: c:\Users\KpiWeb_STG\OneDrive - KPIWEB\Bureau\ayoubMah.github.io\style.scss
 ---
 ---
 
@@ -18,9 +19,9 @@ html {
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
-  color: $darkGray;
+  background: $darkBackground; // Dark background color
+  font: 18px/1.4 $fontFamily; // Use a defined font family
+  color: $lightText; // Light text color for contrast
 }
 
 .container {
@@ -31,8 +32,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
-  color: $darkerGray;
+  font-family: $headerFont; // Use a defined header font
+  color: $lightText; // Light text color for headers
   font-weight: bold;
 
   line-height: 1.7;
@@ -61,7 +62,7 @@ h3 {
 
 h4 {
   font-size: 18px;
-  color: $gray;
+  color: $mediumText; // Medium text color for subheadings
 }
 
 p {
@@ -69,11 +70,11 @@ p {
 }
 
 a {
-  color: $blue;
+  color: $linkColor; // Define link color
   text-decoration: none;
-	cursor: pointer;
+  cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    color: $hoverLinkColor; // Define hover link color
   }
 }
 
@@ -117,21 +118,20 @@ img {
 
 .date {
   font-style: italic;
-  color: $gray;
+  color: $mediumText; // Medium text color for dates
 }
 
 // Specify the color of the selection
 ::-moz-selection {
-  color: $black;
-  background: $lightGray;
+  color: $selectionText; // Define selection text color
+  background: $selectionBackground; // Define selection background color
 }
 ::selection {
-  color: $black;
-  background: $lightGray;
+  color: $selectionText;
+  background: $selectionBackground;
 }
 
 // Nicolas Gallagher's micro clearfix hack
-// http://nicolasgallagher.com/micro-clearfix-hack/
 .clearfix:before,
 .clearfix:after {
     content: " ";
@@ -156,7 +156,7 @@ img {
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid $mediumBackground; // Medium background color for border
 
   @include mobile {
     text-align: center;
@@ -192,9 +192,9 @@ img {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: $lightText; // Light text color for site name
   cursor: pointer;
-  font-family: $helveticaNeue;
+  font-family: $headerFont;
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -202,7 +202,7 @@ img {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: $mediumText; // Medium text color for description
   font-size: 16px;
 
   @include mobile {
@@ -213,7 +213,7 @@ img {
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
+  font-family: $headerFont;
   font-size: 18px;
 
   @include mobile {
@@ -225,14 +225,14 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    color: $lightText; // Light text color for nav links
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: $linkColor; // Define link color for mobile
     }
   }
 }
@@ -243,7 +243,7 @@ nav {
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid $mediumBackground; // Medium background color for border
 }
 
 .posts > .post:last-child {
@@ -254,9 +254,9 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 2px solid $mediumText; // Medium text color for blockquote border
     padding: 0.1em 1em;
-    color: $gray;
+    color: $mediumText; // Medium text color for blockquote text
     font-size: 22px;
     font-style: italic;
   }
@@ -273,9 +273,9 @@ nav {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  border-top: 1px solid $mediumBackground; // Medium background color for footer border
+  border-bottom: 1px solid $mediumBackground;
+  background-color: $darkBackground; // Dark background color for footer
 }
 
 footer {
@@ -284,6 +284,5 @@ footer {
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
-// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";
