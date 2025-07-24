@@ -38,7 +38,7 @@ kramdown:
     css_class: 'highlight'
 
 sass:
-  style: :expanded
+  style: expanded
 
 gems:
   - jekyll-sitemap

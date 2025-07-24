@@ -1,4 +1,4 @@
-// filepath: c:\Users\KpiWeb_STG\OneDrive - KPIWEB\Bureau\ayoubMah.github.io\style.scss
+// filepath: c:\Users\KpiWeb\OneDrive - KPIWEB\Bureau\ayoubMah.github.io\style.scss
 ---
 ---
 
@@ -9,6 +9,8 @@
 @import "reset";
 @import "variables";
 // Syntax highlighting @import is at the bottom of this file
+
+<link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 
 /**************/
 /* BASE RULES */
@@ -295,3 +297,6 @@ footer {
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 @import "highlights";
 @import "svg-icons";
+
+sass:
+  style: :expanded
