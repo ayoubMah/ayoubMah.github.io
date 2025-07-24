@@ -175,7 +175,13 @@ img {
   }
 
   img {
-    border-radius: 5px;
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 16px 0 rgba($archBlue, 0.10);
+    border: 2px solid $archBlue;
+    transition: box-shadow 0.3s;
   }
 }
 
