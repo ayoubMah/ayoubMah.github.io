@@ -1,9 +1,37 @@
-$white: #ffffff;
-$black: #000000;
-$darkGray: #2e2e2e;
-$darkerGray: #1c1c1c;
-$gray: #7d7d7d;
-$lightGray: #f0f0f0;
-$blue: #0099cc;
-$helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$helveticaNeue: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$white: #f8f8f2;
+$black: #181926;
+$archBlue: #1793d1;
+$archCyan: #7dcfff;
+$archPurple: #bb9af7;
+$archGreen: #a6e3a1;
+$archYellow: #eed49f;
+$archRed: #f7768e;
+$archOrange: #ffb86c;
+$archGray: #444b6a;
+$archDarkGray: #24273a;
+$archDarker: #1a1b26;
+
+// Backgrounds & text
+$darkBackground: $archDarkGray;
+$mediumBackground: $archGray;
+$lightBackground: #24273a;
+
+$lightText: $white;
+$mediumText: #a5adcb;
+$mutedText: #6e738d;
+
+// Links
+$linkColor: $archBlue;
+$hoverLinkColor: $archCyan;
+
+// Selection
+$selectionText: $archDarkGray;
+$selectionBackground: $archBlue;
+
+// Fonts
+$fontFamily: 'JetBrains Mono', 'Fira Code', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$headerFont: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Misc
+$borderRadius: 8px;
+$shadow: 0 2px 16px 0 rgba(23, 147, 209, 0.08);

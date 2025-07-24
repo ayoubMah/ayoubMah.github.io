@@ -19,62 +19,54 @@ html {
 }
 
 body {
-  background: $darkBackground; // Dark background color
-  font: 18px/1.4 $fontFamily; // Use a defined font family
-  color: $lightText; // Light text color for contrast
+  background: linear-gradient(135deg, $archDarker 0%, $darkBackground 100%);
+  font: 18px/1.5 $fontFamily;
+  color: $lightText;
+  min-height: 100vh;
+  transition: background 0.4s;
 }
 
 .container {
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 0 10px;
-  width: 100%;
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 32px;
+  background: rgba($archDarkGray, 0.85);
+  border-radius: $borderRadius;
+  box-shadow: $shadow;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba($archBlue, 0.12);
+}
+
+.card {
+  background: rgba($archGray, 0.7);
+  border-radius: $borderRadius;
+  box-shadow: 0 4px 24px 0 rgba($archBlue, 0.10);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.3s, background 0.3s;
+  border: 1px solid rgba($archBlue, 0.10);
+
+  &:hover {
+    box-shadow: 0 8px 32px 0 rgba($archBlue, 0.18);
+    background: rgba($archGray, 0.85);
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $headerFont; // Use a defined header font
-  color: $lightText; // Light text color for headers
-  font-weight: bold;
-
-  line-height: 1.7;
-  margin: 1em 0 15px;
-  padding: 0;
-
-  @include mobile {
-    line-height: 1.4;
-  }
-}
-
-h1 {
-  font-size: 30px;
-  a {
-    color: inherit;
-  }
-}
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
-h4 {
-  font-size: 18px;
-  color: $mediumText; // Medium text color for subheadings
-}
-
-p {
-  margin: 15px 0;
+  color: $archCyan;
+  font-family: $headerFont;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba($archBlue, 0.08);
 }
 
 a {
-  color: $linkColor; // Define link color
-  text-decoration: none;
-  cursor: pointer;
-  &:hover, &:active {
-    color: $hoverLinkColor; // Define hover link color
+  color: $linkColor;
+  text-decoration: underline;
+  transition: color 0.2s;
+  &:hover, &:focus {
+    color: $hoverLinkColor;
+    text-shadow: 0 0 8px $archCyan;
   }
 }
 
@@ -109,6 +101,13 @@ strong, b {
 
 img {
   max-width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 2px 16px 0 rgba($archBlue, 0.10);
+  border: 2px solid $archBlue;
+  transition: box-shadow 0.3s;
+  &:hover {
+    box-shadow: 0 4px 32px 0 rgba($archCyan, 0.18);
+  }
 }
 
 // Fixes images in popup boxes from Google Translate
@@ -281,6 +280,10 @@ nav {
 footer {
   padding: 20px 0;
   text-align: center;
+  margin-top: 48px;
+  color: $mutedText;
+  font-size: 15px;
+  opacity: 0.8;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
