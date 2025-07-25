@@ -4,10 +4,21 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+I'm Ayoub, a software engineering student. I love crafting things and discovering how they work under the hood.
+I believe the basics are super important!
+
+**My interests and skills:**
+
+- [x] Operating Systems (OS)
+- [x] Data Structures & Algorithms (DSA) — I love it with Java
+- [x] How programming languages work (compilers)
+- [x] Basics of security
+- [x] Database internals
+- [x] Networking
+- [-] React hhhhhh
 
 ### More Information
 
-- vim user btw
-- arch user btw
-- i love building stuff as much as loving cats
+- Vim user, btw
+- Arch user, btw
+- I love building stuff as much as loving cats

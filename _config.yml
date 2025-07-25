@@ -1,7 +1,7 @@
 # Site settings
-name: Your Blog Name
-description: A modern blog about technology and development
-url: "https://yourusername.github.io"
+name: ayoubMah
+description: My opinions are my own
+url: "https://ayoubMah.github.io"
 baseurl: ""
 
 # Build settings
@@ -48,10 +48,10 @@ navigation:
 
 # Social links (optional)
 social:
-  github: yourusername
-  twitter: yourusername
-  linkedin: yourusername
-  email: your.email@example.com
+  github: ayoubMah
+  twitter: MahjoubyA51471
+  linkedin: ayoub-el-mahjouby
+  email: ayoubmahjouby@gmail.com
 
 # Google Analytics (optional)
 # google_analytics: UA-XXXXXXXXX-X
