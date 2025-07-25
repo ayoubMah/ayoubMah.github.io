@@ -33,6 +33,8 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(88, 166, 255, 0.12);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .card {
@@ -317,6 +319,10 @@ pre {
   line-height: 1.45;
   overflow: auto;
   padding: 16px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 100%;
 }
 
 code {
@@ -324,12 +330,49 @@ code {
   border-radius: 3px;
   font-size: 85%;
   padding: 0.2em 0.4em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 pre code {
   background-color: transparent;
   border-radius: 0;
   padding: 0;
+}
+
+// Text content styling
+p, div, span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+// Long words breaking
+.post-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+// Task lists styling
+ul li {
+  position: relative;
+}
+
+// Checkbox styling for task lists
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+// Style for task list items
+li:has(input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -20px;
+}
+
+// Better task list styling fallback
+ul li:first-child:before {
+  content: "";
 }
 
 // Responsive design
@@ -342,4 +385,143 @@ pre code {
   body {
     font-size: 16px;
   }
+}
+
+
+
+// Add this to your style.scss file at the end
+
+/* Content overflow fixes */
+* {
+  box-sizing: border-box;
+}
+
+/* Main content area */
+.post, .container, .card {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Paragraph and text content */
+p, div, span, li {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* Long words and URLs */
+a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+/* Code blocks - prevent horizontal overflow */
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Inline code */
+code {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+/* Tables - make them responsive */
+table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  white-space: nowrap;
+}
+
+/* Task lists - fix checkbox styling */
+.post-content ul {
+  list-style-position: inside;
+}
+
+.post-content li {
+  margin-bottom: 0.5em;
+  overflow-wrap: break-word;
+}
+
+/* Specific fix for your checkbox lists */
+.post-content li:contains("X]"),
+.post-content li:contains("-]") {
+  list-style: none;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.post-content li:contains("X]"):before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #7dd3fc;
+  font-weight: bold;
+}
+
+.post-content li:contains("-]"):before {
+  content: "○";
+  position: absolute;
+  left: 0;
+  color: #8b949e;
+}
+
+/* Better mobile responsiveness */
+@media screen and (max-width: 640px) {
+  .container {
+    margin: 10px;
+    padding: 20px;
+  }
+
+  pre {
+    font-size: 12px;
+    padding: 12px;
+  }
+
+  p, div, span {
+    word-break: break-word;
+  }
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+/* Fix for very long strings */
+.long-text {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* Blockquotes */
+blockquote {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 4px solid #58a6ff;
+  background: rgba(48, 54, 61, 0.3);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Headers should wrap too */
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
