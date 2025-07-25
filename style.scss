@@ -18,7 +18,8 @@ html {
 
 body {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d1117 100%);
-  font: 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font: 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
   color: #c9d1d9;
   min-height: 100vh;
   transition: background 0.4s;
@@ -40,11 +41,11 @@ body {
 .card {
   background: rgba(48, 54, 61, 0.7);
   border-radius: 8px;
-  box-shadow: 0 4px 24px 0 rgba(88, 166, 255, 0.10);
+  box-shadow: 0 4px 24px 0 rgba(88, 166, 255, 0.1);
   padding: 24px;
   margin-bottom: 24px;
   transition: box-shadow 0.3s, background 0.3s;
-  border: 1px solid rgba(88, 166, 255, 0.10);
+  border: 1px solid rgba(88, 166, 255, 0.1);
 
   &:hover {
     box-shadow: 0 8px 32px 0 rgba(88, 166, 255, 0.18);
@@ -52,34 +53,54 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #7dd3fc;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
   text-shadow: 0 2px 8px rgba(88, 166, 255, 0.08);
   margin: 20px 0 10px 0;
 }
 
-h1 { font-size: 2.2em; }
-h2 { font-size: 1.8em; }
-h3 { font-size: 1.5em; }
-h4 { font-size: 1.3em; }
-h5 { font-size: 1.1em; }
-h6 { font-size: 1em; }
+h1 {
+  font-size: 2.2em;
+}
+h2 {
+  font-size: 1.8em;
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.3em;
+}
+h5 {
+  font-size: 1.1em;
+}
+h6 {
+  font-size: 1em;
+}
 
 a {
   color: #58a6ff;
   text-decoration: underline;
   transition: color 0.2s;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #7dd3fc;
     text-shadow: 0 0 8px #7dd3fc;
   }
 }
 
-ul, ol {
+ul,
+ol {
   margin: 15px 0;
   padding-left: 30px;
 }
@@ -92,38 +113,38 @@ ol {
   list-style-type: decimal;
 }
 
-ol ul, ul ol, ul ul, ol ol {
+ol ul,
+ul ol,
+ul ul,
+ol ol {
   margin: 0;
 }
 
-ul ul, ol ul {
+ul ul,
+ol ul {
   list-style-type: circle;
 }
 
-em, i {
+em,
+i {
   font-style: italic;
 }
 
-strong, b {
+strong,
+b {
   font-weight: bold;
 }
 
 img {
   max-width: 100%;
   border-radius: 8px;
-  box-shadow: 0 2px 16px 0 rgba(88, 166, 255, 0.10);
+  box-shadow: 0 2px 16px 0 rgba(88, 166, 255, 0.1);
   border: 2px solid #58a6ff;
   transition: box-shadow 0.3s;
 
   &:hover {
     box-shadow: 0 4px 32px 0 rgba(125, 211, 252, 0.18);
   }
-}
-
-// Profile images should be circular
-.site-avatar img,
-.profile-img {
-  border-radius: 50% !important;
 }
 
 // Fixes images in popup boxes from Google Translate
@@ -149,12 +170,12 @@ img {
 // Nicolas Gallagher's micro clearfix hack
 .clearfix:before,
 .clearfix:after {
-    content: " ";
-    display: table;
+  content: " ";
+  display: table;
 }
 
 .clearfix:after {
-    clear: both;
+  clear: both;
 }
 
 /*********************/
@@ -178,29 +199,6 @@ img {
   }
 }
 
-.site-avatar {
-  float: left;
-  width: 70px;
-  height: 70px;
-  margin-right: 15px;
-
-  @media screen and (max-width: 640px) {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-
-  img {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 2px 16px 0 rgba(88, 166, 255, 0.10);
-    border: 2px solid #58a6ff;
-    transition: box-shadow 0.3s;
-  }
-}
-
 .site-info {
   float: left;
 
@@ -215,7 +213,8 @@ img {
   margin: 0;
   color: #c9d1d9;
   cursor: pointer;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -234,7 +233,8 @@ img {
 nav {
   float: right;
   margin-top: 23px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
   font-size: 18px;
 
   @media screen and (max-width: 640px) {
@@ -275,7 +275,7 @@ nav {
 
 .post {
   blockquote {
-    margin: 1.8em .8em;
+    margin: 1.8em 0.8em;
     border-left: 2px solid #8b949e;
     padding: 0.1em 1em;
     color: #8b949e;
@@ -341,7 +341,9 @@ pre code {
 }
 
 // Text content styling
-p, div, span {
+p,
+div,
+span {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
@@ -387,8 +389,6 @@ ul li:first-child:before {
   }
 }
 
-
-
 // Add this to your style.scss file at the end
 
 /* Content overflow fixes */
@@ -397,7 +397,9 @@ ul li:first-child:before {
 }
 
 /* Main content area */
-.post, .container, .card {
+.post,
+.container,
+.card {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -405,7 +407,10 @@ ul li:first-child:before {
 }
 
 /* Paragraph and text content */
-p, div, span, li {
+p,
+div,
+span,
+li {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -489,7 +494,9 @@ table {
     padding: 12px;
   }
 
-  p, div, span {
+  p,
+  div,
+  span {
     word-break: break-word;
   }
 }
@@ -520,7 +527,12 @@ blockquote {
 }
 
 /* Headers should wrap too */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
