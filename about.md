@@ -15,7 +15,7 @@ I believe the basics are super important!
 - [x] Basics of security
 - [x] Database internals
 - [x] Networking
-- [-] React hhhhhh
+- [_] React hhhhhh
 
 ### More Information
 
