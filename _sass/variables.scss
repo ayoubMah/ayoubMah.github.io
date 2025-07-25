@@ -1,0 +1,49 @@
+// Variables for the blog theme
+
+// Colors
+$archDarker: #1a1a1a;
+$darkBackground: #0d1117;
+$archDarkGray: #21262d;
+$archGray: #30363d;
+$archBlue: #58a6ff;
+$archCyan: #7dd3fc;
+$lightText: #c9d1d9;
+$mediumText: #8b949e;
+$mutedText: #6e7681;
+$mediumBackground: #30363d;
+$linkColor: #58a6ff;
+$hoverLinkColor: #7dd3fc;
+$selectionText: #c9d1d9;
+$selectionBackground: #58a6ff;
+
+// Typography
+$fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$headerFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+// Layout
+$borderRadius: 8px;
+$shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+// Breakpoints
+$mobile: "screen and (max-width: 640px)";
+$tablet: "screen and (max-width: 768px)";
+$desktop: "screen and (min-width: 769px)";
+
+// Mixins
+@mixin mobile {
+  @media #{$mobile} {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media #{$tablet} {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media #{$desktop} {
+    @content;
+  }
+}

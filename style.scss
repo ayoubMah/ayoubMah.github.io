@@ -1,4 +1,3 @@
-// filepath: c:\Users\KpiWeb\OneDrive - KPIWEB\Bureau\ayoubMah.github.io\style.scss
 ---
 ---
 
@@ -8,9 +7,6 @@
 
 @import "reset";
 @import "variables";
-// Syntax highlighting @import is at the bottom of this file
-
-<link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 
 /**************/
 /* BASE RULES */
@@ -21,9 +17,9 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, $archDarker 0%, $darkBackground 100%);
-  font: 18px/1.5 $fontFamily;
-  color: $lightText;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d1117 100%);
+  font: 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #c9d1d9;
   min-height: 100vh;
   transition: background 0.4s;
 }
@@ -32,43 +28,52 @@ body {
   margin: 40px auto;
   max-width: 800px;
   padding: 32px;
-  background: rgba($archDarkGray, 0.85);
-  border-radius: $borderRadius;
-  box-shadow: $shadow;
+  background: rgba(33, 38, 45, 0.85);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba($archBlue, 0.12);
+  border: 1px solid rgba(88, 166, 255, 0.12);
 }
 
 .card {
-  background: rgba($archGray, 0.7);
-  border-radius: $borderRadius;
-  box-shadow: 0 4px 24px 0 rgba($archBlue, 0.10);
+  background: rgba(48, 54, 61, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px 0 rgba(88, 166, 255, 0.10);
   padding: 24px;
   margin-bottom: 24px;
   transition: box-shadow 0.3s, background 0.3s;
-  border: 1px solid rgba($archBlue, 0.10);
+  border: 1px solid rgba(88, 166, 255, 0.10);
 
   &:hover {
-    box-shadow: 0 8px 32px 0 rgba($archBlue, 0.18);
-    background: rgba($archGray, 0.85);
+    box-shadow: 0 8px 32px 0 rgba(88, 166, 255, 0.18);
+    background: rgba(48, 54, 61, 0.85);
   }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $archCyan;
-  font-family: $headerFont;
+  color: #7dd3fc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
-  text-shadow: 0 2px 8px rgba($archBlue, 0.08);
+  text-shadow: 0 2px 8px rgba(88, 166, 255, 0.08);
+  margin: 20px 0 10px 0;
 }
 
+h1 { font-size: 2.2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.3em; }
+h5 { font-size: 1.1em; }
+h6 { font-size: 1em; }
+
 a {
-  color: $linkColor;
+  color: #58a6ff;
   text-decoration: underline;
   transition: color 0.2s;
+
   &:hover, &:focus {
-    color: $hoverLinkColor;
-    text-shadow: 0 0 8px $archCyan;
+    color: #7dd3fc;
+    text-shadow: 0 0 8px #7dd3fc;
   }
 }
 
@@ -103,13 +108,20 @@ strong, b {
 
 img {
   max-width: 100%;
-  border-radius: 50%;
-  box-shadow: 0 2px 16px 0 rgba($archBlue, 0.10);
-  border: 2px solid $archBlue;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 rgba(88, 166, 255, 0.10);
+  border: 2px solid #58a6ff;
   transition: box-shadow 0.3s;
+
   &:hover {
-    box-shadow: 0 4px 32px 0 rgba($archCyan, 0.18);
+    box-shadow: 0 4px 32px 0 rgba(125, 211, 252, 0.18);
   }
+}
+
+// Profile images should be circular
+.site-avatar img,
+.profile-img {
+  border-radius: 50% !important;
 }
 
 // Fixes images in popup boxes from Google Translate
@@ -119,17 +131,17 @@ img {
 
 .date {
   font-style: italic;
-  color: $mediumText; // Medium text color for dates
+  color: #8b949e;
 }
 
-// Specify the color of the selection
+// Selection colors
 ::-moz-selection {
-  color: $selectionText; // Define selection text color
-  background: $selectionBackground; // Define selection background color
+  color: #c9d1d9;
+  background: #58a6ff;
 }
 ::selection {
-  color: $selectionText;
-  background: $selectionBackground;
+  color: #c9d1d9;
+  background: #58a6ff;
 }
 
 // Nicolas Gallagher's micro clearfix hack
@@ -157,9 +169,9 @@ img {
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $mediumBackground; // Medium background color for border
+  border-bottom: 1px solid #30363d;
 
-  @include mobile {
+  @media screen and (max-width: 640px) {
     text-align: center;
   }
 }
@@ -170,7 +182,7 @@ img {
   height: 70px;
   margin-right: 15px;
 
-  @include mobile {
+  @media screen and (max-width: 640px) {
     float: none;
     display: block;
     margin: 0 auto;
@@ -181,8 +193,8 @@ img {
     height: 64px;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 2px 16px 0 rgba($archBlue, 0.10);
-    border: 2px solid $archBlue;
+    box-shadow: 0 2px 16px 0 rgba(88, 166, 255, 0.10);
+    border: 2px solid #58a6ff;
     transition: box-shadow 0.3s;
   }
 }
@@ -190,7 +202,7 @@ img {
 .site-info {
   float: left;
 
-  @include mobile {
+  @media screen and (max-width: 640px) {
     float: none;
     display: block;
     margin: 0 auto;
@@ -199,9 +211,9 @@ img {
 
 .site-name {
   margin: 0;
-  color: $lightText; // Light text color for site name
+  color: #c9d1d9;
   cursor: pointer;
-  font-family: $headerFont;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -209,21 +221,21 @@ img {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $mediumText; // Medium text color for description
+  color: #8b949e;
   font-size: 16px;
 
-  @include mobile {
+  @media screen and (max-width: 640px) {
     margin: 3px 0;
   }
 }
 
 nav {
   float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $headerFont;
+  margin-top: 23px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 18px;
 
-  @include mobile {
+  @media screen and (max-width: 640px) {
     float: none;
     margin-top: 9px;
     display: block;
@@ -232,14 +244,15 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $lightText; // Light text color for nav links
+    color: #c9d1d9;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
+    text-decoration: none;
 
-    @include mobile {
+    @media screen and (max-width: 640px) {
       margin: 0 10px;
-      color: $linkColor; // Define link color for mobile
+      color: #58a6ff;
     }
   }
 }
@@ -250,7 +263,7 @@ nav {
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $mediumBackground; // Medium background color for border
+  border-bottom: 1px solid #30363d;
 }
 
 .posts > .post:last-child {
@@ -261,9 +274,9 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $mediumText; // Medium text color for blockquote border
+    border-left: 2px solid #8b949e;
     padding: 0.1em 1em;
-    color: $mediumText; // Medium text color for blockquote text
+    color: #8b949e;
     font-size: 22px;
     font-style: italic;
   }
@@ -280,23 +293,53 @@ nav {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid $mediumBackground; // Medium background color for footer border
-  border-bottom: 1px solid $mediumBackground;
-  background-color: $darkBackground; // Dark background color for footer
+  border-top: 1px solid #30363d;
+  border-bottom: 1px solid #30363d;
+  background-color: #0d1117;
 }
 
 footer {
   padding: 20px 0;
   text-align: center;
   margin-top: 48px;
-  color: $mutedText;
+  color: #6e7681;
   font-size: 15px;
   opacity: 0.8;
 }
 
-// Settled on moving the import of syntax highlighting to the bottom of the CSS
-@import "highlights";
-@import "svg-icons";
+// Code highlighting
+pre {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-size: 14px;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+}
 
-sass:
-  style: :expanded
+code {
+  background-color: rgba(110, 118, 129, 0.4);
+  border-radius: 3px;
+  font-size: 85%;
+  padding: 0.2em 0.4em;
+}
+
+pre code {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+// Responsive design
+@media screen and (max-width: 640px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+}

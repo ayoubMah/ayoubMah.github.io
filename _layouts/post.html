@@ -3,15 +3,134 @@ layout: default
 ---
 
 <article class="post">
-  <h1>{{ page.title }}</h1>
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <span class="date">{{ page.date | date: "%B %d, %Y" }}</span>
+      {% if page.author %}
+        • <span class="author">{{ page.author }}</span>
+      {% endif %}
+      {% if page.categories.size > 0 %}
+        •
+        {% for category in page.categories %}
+          <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      {% endif %}
+    </p>
+  </header>
 
-  <div class="entry">
+  <div class="post-content">
     {{ content }}
   </div>
 
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
+  {% if page.tags.size > 0 %}
+  <div class="post-tags">
+    <p><strong>Tags:</strong>
+    {% for tag in page.tags %}
+      <span class="tag">#{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+    </p>
   </div>
+  {% endif %}
 
-  {% include disqus.html %}
+  <div class="post-navigation">
+    {% if page.previous.url %}
+      <a class="prev-post" href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title }}</a>
+    {% endif %}
+    {% if page.next.url %}
+      <a class="next-post" href="{{ page.next.url | relative_url }}">{{ page.next.title }} &raquo;</a>
+    {% endif %}
+  </div>
 </article>
+
+<style>
+.post-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.post-title {
+  margin-bottom: 0.5rem;
+}
+
+.post-meta {
+  color: #8b949e;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.post-content {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post-content p {
+  margin-bottom: 1rem;
+}
+
+.post-content img {
+  display: block;
+  margin: 2rem auto;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.post-tags {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(48, 54, 61, 0.5);
+  border-radius: 8px;
+}
+
+.tag {
+  color: #7dd3fc;
+  font-weight: 500;
+}
+
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #30363d;
+}
+
+.prev-post,
+.next-post {
+  flex: 1;
+  padding: 1rem;
+  background: rgba(48, 54, 61, 0.5);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.prev-post:hover,
+.next-post:hover {
+  background: rgba(48, 54, 61, 0.8);
+}
+
+.next-post {
+  margin-left: 1rem;
+  text-align: right;
+}
+
+@media screen and (max-width: 640px) {
+  .post-navigation {
+    flex-direction: column;
+  }
+
+  .next-post {
+    margin-left: 0;
+    margin-top: 1rem;
+    text-align: left;
+  }
+}
+</style>
