@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hello Friend NG</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Hello Friend NG</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hello Friend NG</title><link>https://ayoubmah.github.io/ayBlog/posts/</link><description>Recent content in Posts on Hello Friend NG</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ayoubmah.github.io/ayBlog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://ayoubmah.github.io/ayBlog/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ayBlog/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p>
 &lt;h2 id="phase-1-local-setup">Phase 1: Local Setup&lt;/h2>
 &lt;h3 id="step-1-install-required-tools">Step 1: Install Required Tools&lt;/h3>
@@ -358,11 +358,11 @@
 <p>Your blog will be live at <code>https://yourusername.github.io/your-repo-name</code> after the first successful deployment!</p>
 <p><img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
 <p>this is cill</p>
-]]></content></item><item><title/><link>https://ayoubmah.github.io/posts/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/free-ps/</guid><description>&lt;p>hello&lt;/p>
+]]></content></item><item><title/><link>https://ayoubmah.github.io/ayBlog/posts/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ayBlog/posts/free-ps/</guid><description>&lt;p>hello&lt;/p>
 &lt;p>this is the image of kobat sakhra in al kodss
-&lt;img src="https://ayoubmah.github.io/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description">&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description">&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description">&lt;/p></description><content type="html"><![CDATA[<p>hello</p>
+&lt;img src="https://ayoubmah.github.io/ayBlog/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description">&lt;/p>
+&lt;p>&lt;img src="https://ayoubmah.github.io/ayBlog/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description">&lt;/p>
+&lt;p>&lt;img src="https://ayoubmah.github.io/ayBlog/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description">&lt;/p></description><content type="html"><![CDATA[<p>hello</p>
 <p>this is the image of kobat sakhra in al kodss
 <img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
 <p><img src="/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description"></p>
