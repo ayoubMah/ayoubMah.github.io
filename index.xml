@@ -44,8 +44,12 @@
 &lt;/ul>
 &lt;/li>
 &lt;li>
-&lt;p>&lt;strong>Install Obsidian&lt;/strong>&lt;/p></description></item><item><title/><link>https://ayoubmah.github.io/postes/test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/postes/test/</guid><description>&lt;p>hello&lt;/p></description></item><item><title/><link>https://ayoubmah.github.io/posts/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/free-ps/</guid><description>&lt;p>hello&lt;/p>
+&lt;p>&lt;strong>Install Obsidian&lt;/strong>&lt;/p></description></item><item><title/><link>https://ayoubmah.github.io/postes/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/postes/free-ps/</guid><description>&lt;p>hello&lt;/p>
 &lt;p>this is the image of kobat sakhra in al kodss
-&lt;img src="https://ayoubmah.github.io/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description">&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description">&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description">&lt;/p></description></item></channel></rss>
+![[totoro-minimalist-3840x2160-20906.png]]&lt;/p>
+&lt;p>![[pexels-faheem-ahamad-422934800-16732791.jpg]]&lt;/p>
+&lt;p>![[sasuke-uchiha-3840x2160-12165.jpg]]&lt;/p></description></item><item><title/><link>https://ayoubmah.github.io/posts/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/free-ps/</guid><description>&lt;p>hello&lt;/p>
+&lt;p>this is the image of kobat sakhra in al kodss
+!&lt;img src="https://ayoubmah.github.io/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description">&lt;/p>
+&lt;p>!&lt;img src="https://ayoubmah.github.io/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description">&lt;/p>
+&lt;p>!&lt;img src="https://ayoubmah.github.io/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description">&lt;/p></description></item></channel></rss>

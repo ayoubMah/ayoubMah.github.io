@@ -356,15 +356,15 @@
 <li>✅ Mobile editing possible through Obsidian mobile + GitHub</li>
 </ul>
 <p>Your blog will be live at <code>https://yourusername.github.io/your-repo-name</code> after the first successful deployment!</p>
-<p><img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
+<p>!<img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
 <p>this is cill</p>
 ]]></content></item><item><title/><link>https://ayoubmah.github.io/posts/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/free-ps/</guid><description>&lt;p>hello&lt;/p>
 &lt;p>this is the image of kobat sakhra in al kodss
-&lt;img src="https://ayoubmah.github.io/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description">&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description">&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description">&lt;/p></description><content type="html"><![CDATA[<p>hello</p>
+!&lt;img src="https://ayoubmah.github.io/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description">&lt;/p>
+&lt;p>!&lt;img src="https://ayoubmah.github.io/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description">&lt;/p>
+&lt;p>!&lt;img src="https://ayoubmah.github.io/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description">&lt;/p></description><content type="html"><![CDATA[<p>hello</p>
 <p>this is the image of kobat sakhra in al kodss
-<img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
-<p><img src="/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description"></p>
-<p><img src="/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description"></p>
+!<img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
+<p>!<img src="/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description"></p>
+<p>!<img src="/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description"></p>
 ]]></content></item></channel></rss>
