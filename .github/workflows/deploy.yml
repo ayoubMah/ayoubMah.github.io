@@ -3,18 +3,17 @@ name: Deploy Hugo site to GitHub Pages
 on:
   push:
     branches:
-      - master  # change to main if your default branch is 'main'
+      - master  # or main if you use main branch
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
       with:
-        submodules: true  # Fetch Hugo themes if used
-        fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+        submodules: true
+        fetch-depth: 0
 
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
@@ -30,4 +29,5 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
-        publish_branch: gh-pages
+        publish_branch: master    # deploy directly to master branch root
+
