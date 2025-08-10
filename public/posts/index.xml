@@ -1,0 +1,402 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Hello Friend NG</title>
+        <link>localhost/posts/</link>
+        <description>Recent content in Posts on Hello Friend NG</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate>
+        <atom:link href="localhost/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Obsidian &#43; Hugo &#43; GitHub Pages Blog Setup Guide</title>
+            <link>localhost/posts/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</link>
+            <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+            
+            <guid>localhost/posts/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</guid>
+            <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p&gt;
+&lt;h2 id=&#34;phase-1-local-setup&#34;&gt;Phase 1: Local Setup&lt;/h2&gt;
+&lt;h3 id=&#34;step-1-install-required-tools&#34;&gt;Step 1: Install Required Tools&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install Hugo&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Windows (using Chocolatey)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;choco install hugo-extended
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# macOS (using Homebrew)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Linux (using Snap)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo snap install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install Git&lt;/strong&gt; (if not already installed)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download from &lt;a href=&#34;https://git-scm.com/&#34;&gt;git-scm.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<h2 id="overview">Overview</h2>
+<p>This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.</p>
+<h2 id="phase-1-local-setup">Phase 1: Local Setup</h2>
+<h3 id="step-1-install-required-tools">Step 1: Install Required Tools</h3>
+<ol>
+<li>
+<p><strong>Install Hugo</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Windows (using Chocolatey)</span>
+</span></span><span style="display:flex;"><span>choco install hugo-extended
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># macOS (using Homebrew)</span>
+</span></span><span style="display:flex;"><span>brew install hugo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Linux (using Snap)</span>
+</span></span><span style="display:flex;"><span>sudo snap install hugo
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Install Git</strong> (if not already installed)</p>
+<ul>
+<li>Download from <a href="https://git-scm.com/">git-scm.com</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Install Obsidian</strong></p>
+<ul>
+<li>Download from <a href="https://obsidian.md/">obsidian.md</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="step-2-create-your-hugo-site">Step 2: Create Your Hugo Site</h3>
+<ol>
+<li>
+<p><strong>Generate Hugo site</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site my-blog
+</span></span><span style="display:flex;"><span>cd my-blog
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Initialize Git repository</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git init
+</span></span><span style="display:flex;"><span>git branch -m main
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Choose and install a Hugo theme</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Example with PaperMod theme</span>
+</span></span><span style="display:flex;"><span>git submodule add https://github.com/adityatelange/hugo-PaperMod themes/PaperMod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or clone without submodule (simpler for beginners)</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="step-3-configure-hugo">Step 3: Configure Hugo</h3>
+<ol>
+<li>
+<p><strong>Edit <code>hugo.toml</code> (or <code>config.toml</code>)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#39;https://yourusername.github.io/your-repo-name&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#39;en-us&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#39;My Blog&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">theme</span> = <span style="color:#e6db74">&#39;PaperMod&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">params</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">author</span> = <span style="color:#e6db74">&#34;Your Name&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;My awesome blog&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">menu</span>]
+</span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Home&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Posts&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/posts/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Create content structure</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p content/posts
+</span></span><span style="display:flex;"><span>mkdir -p static/images
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="phase-2-obsidian-integration">Phase 2: Obsidian Integration</h2>
+<h3 id="step-4-setup-obsidian-vault">Step 4: Setup Obsidian Vault</h3>
+<ol>
+<li><strong>Create Obsidian vault in Hugo content directory</strong>
+<ul>
+<li>Open Obsidian</li>
+<li>Choose &ldquo;Open folder as vault&rdquo;</li>
+<li>Select your <code>my-blog/content</code> folder</li>
+</ul>
+</li>
+<li><strong>Configure Obsidian settings</strong>
+<ul>
+<li>Go to Settings → Files &amp; Links</li>
+<li>Set &ldquo;Default location for new notes&rdquo; to <code>posts/</code></li>
+<li>Set &ldquo;New link format&rdquo; to &ldquo;Relative path to file&rdquo;</li>
+<li>Enable &ldquo;Use [[Wikilinks]]&rdquo; if you want internal linking</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-5-create-obsidian-templates">Step 5: Create Obsidian Templates</h3>
+<ol>
+<li>
+<p><strong>Create templates folder</strong></p>
+<pre tabindex="0"><code>content/
+├── posts/
+└── templates/
+    └── blog-post.md
+</code></pre></li>
+<li>
+<p><strong>Blog post template (<code>content/templates/blog-post.md</code>)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: &#34;{{title}}&#34;
+</span></span><span style="display:flex;"><span>date: {{date}}
+</span></span><span style="display:flex;"><span>draft: false
+</span></span><span style="display:flex;"><span>tags: []
+</span></span><span style="display:flex;"><span>categories: []
+</span></span><span style="display:flex;"><span>description: &#34;&#34;
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># {{title}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Your content here...
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Configure Obsidian Templates plugin</strong></p>
+<ul>
+<li>Go to Settings → Core plugins → Enable &ldquo;Templates&rdquo;</li>
+<li>Set template folder to <code>templates</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="phase-3-github-setup">Phase 3: GitHub Setup</h2>
+<h3 id="step-6-create-github-repository">Step 6: Create GitHub Repository</h3>
+<ol>
+<li>
+<p><strong>Create new repository on GitHub</strong></p>
+<ul>
+<li>Name: <code>your-blog</code> or <code>yourusername.github.io</code></li>
+<li>Make it public</li>
+<li>Don&rsquo;t initialize with README (you already have local repo)</li>
+</ul>
+</li>
+<li>
+<p><strong>Connect local repo to GitHub</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote add origin https://github.com/yourusername/your-repo-name.git
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="step-7-create-github-actions-workflow">Step 7: Create GitHub Actions Workflow</h3>
+<ol>
+<li>
+<p><strong>Create workflow directory</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p .github/workflows
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Create deployment workflow (<code>.github/workflows/deploy.yml</code>)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo site to Pages</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#e6db74">&#34;main&#34;</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">workflow_dispatch</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">permissions</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">contents</span>: <span style="color:#ae81ff">read</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pages</span>: <span style="color:#ae81ff">write</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">id-token</span>: <span style="color:#ae81ff">write</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">concurrency</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">group</span>: <span style="color:#e6db74">&#34;pages&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cancel-in-progress</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">defaults</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">run</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">build</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">submodules</span>: <span style="color:#ae81ff">recursive</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Hugo</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-hugo@v2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hugo-version</span>: <span style="color:#e6db74">&#39;latest&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">extended</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Pages</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">id</span>: <span style="color:#ae81ff">pages</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/configure-pages@v3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build with Hugo</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">HUGO_ENVIRONMENT</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">HUGO_ENV</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          hugo \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            --gc \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            --minify \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            --baseURL &#34;${{ steps.pages.outputs.base_url }}/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Upload artifact</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/upload-pages-artifact@v2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./public</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">deploy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">github-pages</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">${{ steps.deployment.outputs.page_url }}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">build</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy to GitHub Pages</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">id</span>: <span style="color:#ae81ff">deployment</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/deploy-pages@v2</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="phase-4-github-pages-configuration">Phase 4: GitHub Pages Configuration</h2>
+<h3 id="step-8-enable-github-pages">Step 8: Enable GitHub Pages</h3>
+<ol>
+<li>
+<p><strong>Push your code first</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Initial blog setup&#34;</span>
+</span></span><span style="display:flex;"><span>git push -u origin main
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Configure GitHub Pages</strong></p>
+<ul>
+<li>Go to your repo → Settings → Pages</li>
+<li>Source: &ldquo;GitHub Actions&rdquo;</li>
+<li>The workflow will automatically deploy after the first push</li>
+</ul>
+</li>
+</ol>
+<h2 id="phase-5-content-creation-workflow">Phase 5: Content Creation Workflow</h2>
+<h3 id="step-9-daily-workflow">Step 9: Daily Workflow</h3>
+<ol>
+<li>
+<p><strong>Writing in Obsidian</strong></p>
+<ul>
+<li>Open Obsidian vault (your Hugo content folder)</li>
+<li>Create new note in <code>posts/</code> folder</li>
+<li>Use your blog post template</li>
+<li>Write your content using Markdown</li>
+</ul>
+</li>
+<li>
+<p><strong>Hugo-specific front matter</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: &#34;My First Post&#34;
+</span></span><span style="display:flex;"><span>date: 2024-01-15T10:00:00Z
+</span></span><span style="display:flex;"><span>draft: false
+</span></span><span style="display:flex;"><span>tags: [&#34;technology&#34;, &#34;blogging&#34;]
+</span></span><span style="display:flex;"><span>categories: [&#34;tutorial&#34;]
+</span></span><span style="display:flex;"><span>description: &#34;Learn how to set up a blog with Hugo and Obsidian&#34;
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Publishing workflow</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test locally (optional)</span>
+</span></span><span style="display:flex;"><span>hugo server -D
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Commit and push</span>
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;New post: My First Post&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="phase-6-advanced-configuration">Phase 6: Advanced Configuration</h2>
+<h3 id="step-10-optimize-obsidian-for-hugo">Step 10: Optimize Obsidian for Hugo</h3>
+<ol>
+<li><strong>Install useful Obsidian plugins</strong>
+<ul>
+<li>Templater (advanced templates)</li>
+<li>Obsidian Git (auto-sync)</li>
+<li>Tag Wrangler (manage tags)</li>
+</ul>
+</li>
+<li><strong>Configure Obsidian Git plugin</strong>
+<ul>
+<li>Auto-pull: every 10 minutes</li>
+<li>Auto-backup: every 10 minutes</li>
+<li>This automates the git workflow</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-11-hugo-customizations">Step 11: Hugo Customizations</h3>
+<ol>
+<li>
+<p><strong>Add image handling</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># In your posts, reference images like:
+</span></span><span style="display:flex;"><span>![<span style="color:#f92672">Alt text</span>](<span style="color:#a6e22e">../static/images/my-image.jpg</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Configure Hugo for Obsidian links</strong></p>
+<ul>
+<li>Install Hugo modules or use shortcodes for better wiki-link support</li>
+</ul>
+</li>
+</ol>
+<h2 id="troubleshooting-tips">Troubleshooting Tips</h2>
+<h3 id="common-issues">Common Issues</h3>
+<ol>
+<li><strong>Theme not showing</strong>: Ensure theme is properly installed and referenced in config</li>
+<li><strong>Images not displaying</strong>: Check image paths and Hugo static folder structure</li>
+<li><strong>Build fails</strong>: Check Hugo version compatibility with your theme</li>
+<li><strong>Obsidian links</strong>: Some Obsidian-specific syntax may need conversion for Hugo</li>
+</ol>
+<h3 id="useful-commands">Useful Commands</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test locally</span>
+</span></span><span style="display:flex;"><span>hugo server -D
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build site</span>
+</span></span><span style="display:flex;"><span>hugo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check Hugo version</span>
+</span></span><span style="display:flex;"><span>hugo version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create new post</span>
+</span></span><span style="display:flex;"><span>hugo new posts/my-new-post.md
+</span></span></code></pre></div><h2 id="benefits-of-this-setup">Benefits of This Setup</h2>
+<ul>
+<li>✅ Write naturally in Obsidian with all its features</li>
+<li>✅ Automatic deployment when you push changes</li>
+<li>✅ Version control for all your content</li>
+<li>✅ Fast, static site performance</li>
+<li>✅ Free hosting on GitHub Pages</li>
+<li>✅ Mobile editing possible through Obsidian mobile + GitHub</li>
+</ul>
+<p>Your blog will be live at <code>https://yourusername.github.io/your-repo-name</code> after the first successful deployment!</p>
+<p><img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
+<p>this is cill</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title></title>
+            <link>localhost/posts/free-ps/</link>
+            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+            
+            <guid>localhost/posts/free-ps/</guid>
+            <description>&lt;p&gt;hello&lt;/p&gt;
+&lt;p&gt;this is the image of kobat sakhra in al kodss
+&lt;img src=&#34;localhost/images/totoro-minimalist-3840x2160-20906.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;localhost/images/pexels-faheem-ahamad-422934800-16732791.jpg&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;localhost/images/sasuke-uchiha-3840x2160-12165.jpg&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<p>hello</p>
+<p>this is the image of kobat sakhra in al kodss
+<img src="/images/totoro-minimalist-3840x2160-20906.png" alt="Image Description"></p>
+<p><img src="/images/pexels-faheem-ahamad-422934800-16732791.jpg" alt="Image Description"></p>
+<p><img src="/images/sasuke-uchiha-3840x2160-12165.jpg" alt="Image Description"></p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>
