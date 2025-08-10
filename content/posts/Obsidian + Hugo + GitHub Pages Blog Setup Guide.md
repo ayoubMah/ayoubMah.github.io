@@ -359,9 +359,3 @@ hugo new posts/my-new-post.md
 - ✅ Mobile editing possible through Obsidian mobile + GitHub
 
 Your blog will be live at `https://yourusername.github.io/your-repo-name` after the first successful deployment!
-
-!![Image Description](/images/totoro-minimalist-3840x2160-20906.png)
-
-
-this is cill
-
