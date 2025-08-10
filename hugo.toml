@@ -1,4 +1,5 @@
-baseurl      = "localhost"
+baseurl = "https://ayoubmah.github.io/"
+publishDir = "public"
 title        = "My Blog"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
