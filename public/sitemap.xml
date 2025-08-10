@@ -2,36 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>localhost/tags/blog/</loc>
+    <loc>https://ayoubmah.github.io/tags/blog/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/</loc>
+    <loc>https://ayoubmah.github.io/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/tags/obsidian/</loc>
+    <loc>https://ayoubmah.github.io/tags/obsidian/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/postes/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</loc>
+    <loc>https://ayoubmah.github.io/postes/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/posts/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</loc>
+    <loc>https://ayoubmah.github.io/posts/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/postes/</loc>
+    <loc>https://ayoubmah.github.io/postes/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/posts/</loc>
+    <loc>https://ayoubmah.github.io/posts/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/tags/</loc>
+    <loc>https://ayoubmah.github.io/tags/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/postes/test/</loc>
+    <loc>https://ayoubmah.github.io/postes/free-ps/</loc>
   </url><url>
-    <loc>localhost/posts/free-ps/</loc>
+    <loc>https://ayoubmah.github.io/posts/free-ps/</loc>
   </url><url>
-    <loc>localhost/blog/</loc>
+    <loc>https://ayoubmah.github.io/blog/</loc>
   </url><url>
-    <loc>localhost/series/</loc>
+    <loc>https://ayoubmah.github.io/series/</loc>
   </url>
 </urlset>
