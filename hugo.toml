@@ -1,4 +1,4 @@
-baseurl = "https://ayoubmah.github.io/"
+baseurl = "https://ayoubmah.github.io/ayBlog/"
 publishDir = "public"
 title        = "My Blog"
 languageCode = "en-us"
