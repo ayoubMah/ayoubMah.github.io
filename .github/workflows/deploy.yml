@@ -3,14 +3,15 @@ name: Deploy Hugo site to GitHub Pages
 on:
   push:
     branches:
-      - master  # or main if you use main branch
+      - master  # your source branch
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
       with:
         submodules: true
         fetch-depth: 0
@@ -21,13 +22,13 @@ jobs:
         hugo-version: 'latest'
         extended: true
 
-    - name: Build
+    - name: Build site
       run: hugo --minify
 
-    - name: Deploy
+    - name: Deploy to gh-pages branch
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
-        publish_branch: master    # deploy directly to master branch root
+        publish_branch: gh-pages
 
