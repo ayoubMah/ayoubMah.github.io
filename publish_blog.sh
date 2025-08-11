@@ -1,54 +1,74 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-# ====== CONFIG ======
-OBSIDIAN_BLOG="$HOME/Documents/obsidianDir/ayoubObsidian/BLOG"
-HUGO_CONTENT="$HOME/Documents/ayBlog/content/posts"
-ATTACHMENTS_DIR="$HOME/Documents/obsidianDir/ayoubObsidian/Attachments"
-STATIC_IMAGES_DIR="$HOME/Documents/ayBlog/static/images"
-GITHUB_REPO="git@github.com:ayoubMah/ayoubMah.github.io.git"  # SSH is safer
+# === CONFIG ===
+OBSIDIAN_POSTS="$HOME/Documents/obsidianDir/ayoubObsidian/BLOG"
+OBSIDIAN_ILT="$HOME/Documents/obsidianDir/ayoubObsidian/ILT"
+ATTACHMENTS="$HOME/Documents/obsidianDir/ayoubObsidian/Attachments"
+
+HUGO_POSTS="$HOME/Documents/ayBlog/content/posts"
+HUGO_ILT="$HOME/Documents/ayBlog/content/ilt"
+STATIC_IMAGES="$HOME/Documents/ayBlog/static/images"
+
+HUGO_DIR="$HOME/Documents/ayBlog"
 HUGO_THEME="hello-friend-ng"
-# ====================
+GITHUB_REPO="git@github.com:ayoubMah/ayoubMah.github.io.git"  # SSH form
 
-echo "🔄 Syncing Obsidian → Hugo content..."
-rsync -av --delete "$OBSIDIAN_BLOG/" "$HUGO_CONTENT/"
+mkdir -p "$HUGO_POSTS" "$HUGO_ILT" "$STATIC_IMAGES"
 
-echo "🖼 Processing image links..."
-python3 <<EOF
-import os
-import re
-import shutil
+echo "🔄 Rsync: BLOG -> content/posts"
+rsync -av --delete "$OBSIDIAN_POSTS/" "$HUGO_POSTS/"
 
-posts_dir = "$HUGO_CONTENT"
-attachments_dir = "$ATTACHMENTS_DIR"
-static_images_dir = "$STATIC_IMAGES_DIR"
+echo "🔄 Rsync: ILT  -> content/ilt"
+rsync -av --delete "$OBSIDIAN_ILT/" "$HUGO_ILT/"
 
-for filename in os.listdir(posts_dir):
-    if filename.endswith(".md"):
-        filepath = os.path.join(posts_dir, filename)
+# Export paths for the python block to read safely
+export HUGO_POSTS HUGO_ILT ATTACHMENTS STATIC_IMAGES
 
-        with open(filepath, "r", encoding="utf-8") as file:
-            content = file.read()
+echo "🖼 Converting Obsidian image links and copying images..."
+python3 <<'PY'
+import os, re, shutil
 
-        images = re.findall(r'\[\[([^]]*\.(?:png|jpg|jpeg|gif))\]\]', content, flags=re.IGNORECASE)
+posts_dir = os.environ['HUGO_POSTS']
+ilt_dir = os.environ['HUGO_ILT']
+attachments = os.environ['ATTACHMENTS']
+static_images = os.environ['STATIC_IMAGES']
 
-        for image in images:
-            markdown_image = f"![Image Description](/images/{image.replace(' ', '%20')})"
-            content = content.replace(f"[[{image}]]", markdown_image)
+# matches ![[file.png]] or [[file.png]] or [[file.png|alt]]
+pattern = re.compile(r'!?\[\[([^]\|]*\.(?:png|jpg|jpeg|gif|webp|svg|ico))(?:\|[^\]]*)?\]\]', re.IGNORECASE)
 
-            image_source = os.path.join(attachments_dir, image)
-            if os.path.exists(image_source):
-                shutil.copy(image_source, static_images_dir)
+for root_dir in (posts_dir, ilt_dir):
+    if not os.path.isdir(root_dir):
+        continue
+    for root, _, files in os.walk(root_dir):
+        for fname in files:
+            if not fname.lower().endswith('.md'):
+                continue
+            fpath = os.path.join(root, fname)
+            with open(fpath, 'r', encoding='utf-8') as f:
+                content = f.read()
 
-        with open(filepath, "w", encoding="utf-8") as file:
-            file.write(content)
+            matches = pattern.findall(content)
+            for match in matches:
+                img_name = os.path.basename(match.strip())
+                alt_text = os.path.splitext(img_name)[0]
+                md_img = f'![{alt_text}](/images/{img_name.replace(" ", "%20")})'
+                # Replace occurrences with possible |alt text
+                content = re.sub(r'!?\[\[' + re.escape(match) + r'(?:\|[^\]]*)?\]\]', md_img, content)
+                src = os.path.join(attachments, img_name)
+                if os.path.exists(src):
+                    shutil.copy(src, static_images)
 
-print("✅ Markdown files processed and images copied successfully.")
-EOF
+            with open(fpath, 'w', encoding='utf-8') as f:
+                f.write(content)
+print("✅ Images converted and copied.")
+PY
 
 echo "🏗 Building site with Hugo..."
-cd "$HOME/Documents/ayBlog"
-hugo -t "$HUGO_THEME"
+cd "$HUGO_DIR"
+hugo -t "$HUGO_THEME" --minify
+
+
 
 echo "📤 Deploying to GitHub Pages..."
 git add .

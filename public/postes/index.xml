@@ -1,27 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Postes on Ayoub&#39;s Blog</title>
-    <link>https://ayoubmah.github.io/postes/</link>
-    <description>Recent content in Postes on Ayoub&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ayoubmah.github.io/postes/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Obsidian &#43; Hugo &#43; GitHub Pages Blog Setup Guide</title>
-      <link>https://ayoubmah.github.io/postes/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</link>
-      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://ayoubmah.github.io/postes/obsidian-&#43;-hugo-&#43;-github-pages-blog-setup-guide/</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p&gt;&#xA;&lt;h2 id=&#34;phase-1-local-setup&#34;&gt;Phase 1: Local Setup&lt;/h2&gt;&#xA;&lt;h3 id=&#34;step-1-install-required-tools&#34;&gt;Step 1: Install Required Tools&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Install Hugo&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Windows (using Chocolatey)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;choco install hugo-extended&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# macOS (using Homebrew)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Linux (using Snap)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo snap install hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Install Git&lt;/strong&gt; (if not already installed)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Download from &lt;a href=&#34;https://git-scm.com/&#34;&gt;git-scm.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://ayoubmah.github.io/postes/free-ps/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://ayoubmah.github.io/postes/free-ps/</guid>
-      <description>&lt;p&gt;hello&lt;/p&gt;&#xA;&lt;p&gt;this is the image of kobat sakhra in al kodss&#xA;![[totoro-minimalist-3840x2160-20906.png]]&lt;/p&gt;&#xA;&lt;p&gt;![[pexels-faheem-ahamad-422934800-16732791.jpg]]&lt;/p&gt;&#xA;&lt;p&gt;![[sasuke-uchiha-3840x2160-12165.jpg]]&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Postes on Ayoub's Blog</title><link>https://ayoubmah.github.io/postes/</link><description>Recent content in Postes on Ayoub's Blog</description><generator>Hugo</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ayoubmah.github.io/postes/index.xml" rel="self" type="application/rss+xml"/><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://ayoubmah.github.io/postes/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/postes/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p>
+&lt;h2 id="phase-1-local-setup">Phase 1: Local Setup&lt;/h2>
+&lt;h3 id="step-1-install-required-tools">Step 1: Install Required Tools&lt;/h3>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Install Hugo&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Windows (using Chocolatey)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>choco install hugo-extended
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># macOS (using Homebrew)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install hugo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Linux (using Snap)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo snap install hugo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Install Git&lt;/strong> (if not already installed)&lt;/p>
+&lt;ul>
+&lt;li>Download from &lt;a href="https://git-scm.com/">git-scm.com&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Install Obsidian&lt;/strong>&lt;/p></description></item><item><title/><link>https://ayoubmah.github.io/postes/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/postes/free-ps/</guid><description>&lt;p>hello&lt;/p>
+&lt;p>this is the image of kobat sakhra in al kodss
+![[totoro-minimalist-3840x2160-20906.png]]&lt;/p>
+&lt;p>![[pexels-faheem-ahamad-422934800-16732791.jpg]]&lt;/p>
+&lt;p>![[sasuke-uchiha-3840x2160-12165.jpg]]&lt;/p></description></item></channel></rss>
