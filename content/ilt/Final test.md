@@ -2,7 +2,8 @@
 title: Final test
 date: 2025-08-11T11:11:57+02:00
 draft: false
-tags: 
+tags:
+  - life
 categories:
   - ILT
 ---
