@@ -12,27 +12,20 @@ pagerSize = 10
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04"
 
+  # Subtitle for home
+  homeSubtitle = "Thoughts, notes, projects wa AchyaO Okhra ..."
+  disableReadOtherPosts = false
+  enableSharingButtons = true
+  enableGlobalLanguageMenu = true
+  description = "My new homepage or blog"
+  keywords = "homepage, blog"
+  images = [""]
+
 [params.favicon]
   mask = "/favicon.png"
   msapplication = "/favicon.png"
   shortcut = "/favicon.png"
 
-  # Subtitle for home
-  homeSubtitle = "Thoughts, notes,projects wa AchyaO Okhra ..."
-
-  # Set disableReadOtherPosts to true in order to hide the links to other posts.
-  disableReadOtherPosts = false
-
-  # Enable sharing buttons, if you like
-  enableSharingButtons = true
-  
-  # Show a global language switcher in the navigation bar
-  enableGlobalLanguageMenu = true
-
-  # Metadata mostly used in document's head
-  description = "My new homepage or blog"
-  keywords = "homepage, blog"
-  images = [""]
 
 [taxonomies]
     category = "blog"
