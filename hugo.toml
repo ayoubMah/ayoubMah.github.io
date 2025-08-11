@@ -12,8 +12,13 @@ pagerSize = 10
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04"
 
+[params.favicon]
+  mask = "/favicon.png"
+  msapplication = "/favicon.png"
+  shortcut = "/favicon.png"
+
   # Subtitle for home
-  homeSubtitle = "A simple and beautiful blog"
+  homeSubtitle = "Thoughts, notes,projects wa AchyaO Okhra ..."
 
   # Set disableReadOtherPosts to true in order to hide the links to other posts.
   disableReadOtherPosts = false
