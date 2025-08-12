@@ -1,13 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Mon, 11 Aug 2025 11:02:53 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>The Important of linux on my life</title><link>https://ayoubmah.github.io/posts/test2/</link><pubDate>Mon, 11 Aug 2025 11:02:53 +0200</pubDate><guid>https://ayoubmah.github.io/posts/test2/</guid><description>&lt;h1 id="why-linux">why linux&lt;/h1>
-&lt;p>well, linux it&amp;rsquo;s just linux so don&amp;rsquo;t ask me why ok
-and this is a &lt;a href="https://help.obsidian.md/links">Help on Links&lt;/a>
-&lt;a href="https://ayoubmah.github.io/">help on this&lt;/a>
-so that&amp;rsquo;s it&lt;/p></description><content type="html"><![CDATA[<h1 id="why-linux">why linux</h1>
-<p>well, linux it&rsquo;s just linux so don&rsquo;t ask me why ok
-and this is a <a href="https://help.obsidian.md/links">Help on Links</a>
-<a href="https://ayoubmah.github.io/">help on this</a>
-so that&rsquo;s it</p>
-]]></content></item><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p>
 &lt;h2 id="phase-1-local-setup">Phase 1: Local Setup&lt;/h2>
 &lt;h3 id="step-1-install-required-tools">Step 1: Install Required Tools&lt;/h3>
@@ -189,7 +180,7 @@ so that&rsquo;s it</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#e6db74">&#34;main&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#e6db74">&#34;master&#34;</span>] <span style="color:#75715e">#or main </span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">workflow_dispatch</span>:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">permissions</span>:

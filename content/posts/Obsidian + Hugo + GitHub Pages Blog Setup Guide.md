@@ -180,7 +180,7 @@ This setup creates an automated blog workflow where you write in Obsidian, push 
     
     on:
       push:
-        branches: ["main"]
+        branches: ["master"] #or main 
       workflow_dispatch:
     
     permissions:
