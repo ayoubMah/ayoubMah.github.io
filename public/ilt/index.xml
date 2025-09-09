@@ -1,69 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ilts on Ayoub's Blog</title><link>https://ayoubmah.github.io/ilt/</link><description>Recent content in Ilts on Ayoub's Blog</description><generator>Hugo</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Mon, 08 Sep 2025 23:23:40 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/ilt/index.xml" rel="self" type="application/rss+xml"/><item><title>Doubly Linked Lists</title><link>https://ayoubmah.github.io/ilt/2025/09/08/doubly-linked-lists/</link><pubDate>Mon, 08 Sep 2025 23:23:40 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/08/doubly-linked-lists/</guid><description>&lt;p>In this blog we&amp;rsquo;ll see how we can implementing doubly linked list
-if you don&amp;rsquo;t see Singly Linked List it&amp;rsquo;s better to see it &lt;a href="https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/">here&lt;/a> and back it&amp;rsquo;s the same concept with few changes&lt;/p>
-&lt;p>the changes will apply on the node itself
-cuz this time a node referenced by the &lt;strong>next&lt;/strong> node and the &lt;strong>prev&lt;/strong> node
-as you can see in this image&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/dob.jpeg" alt="dob">&lt;/p>
-&lt;p>let&amp;rsquo;s implemented in java&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> E elm;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> next;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> prev;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>(Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> prev, E elm , Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> next){
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">prev&lt;/span> &lt;span style="color:#f92672">=&lt;/span> prev;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">elm&lt;/span> &lt;span style="color:#f92672">=&lt;/span> elm;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">next&lt;/span> &lt;span style="color:#f92672">=&lt;/span> next;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> E &lt;span style="color:#a6e22e">getElm&lt;/span>() {&lt;span style="color:#66d9ef">return&lt;/span> elm;}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">setElm&lt;/span>(E elm) {&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">elm&lt;/span> &lt;span style="color:#f92672">=&lt;/span> elm;}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">getNext&lt;/span>() {&lt;span style="color:#66d9ef">return&lt;/span> next;}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">setNext&lt;/span>(Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> next) {&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">next&lt;/span> &lt;span style="color:#f92672">=&lt;/span> next;}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">getPrev&lt;/span>() {&lt;span style="color:#66d9ef">return&lt;/span> prev;}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">setPrev&lt;/span>(Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> prev) {&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">prev&lt;/span> &lt;span style="color:#f92672">=&lt;/span> prev;}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>now our node is good we&amp;rsquo;re ready to implement our doubly linked list&lt;/p></description></item><item><title>Leet-Code-Day001</title><link>https://ayoubmah.github.io/ilt/2025/09/04/leet-code-day001/</link><pubDate>Thu, 04 Sep 2025 23:34:00 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/04/leet-code-day001/</guid><description>&lt;p>you can see the problem here
-&lt;a href="https://leetcode.com/problems/merge-two-sorted-lists/">Merge Two Sorted Lists&lt;/a>&lt;/p>
-&lt;p>The idea is that we have &lt;strong>two sorted singly linked lists&lt;/strong>
-and we want &lt;strong>a single merged linked list containing all the elements from the two original lists in sorted order&lt;/strong> like this:&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/WhatsApp%20Image%202025-09-04%20at%2011.50.26%20PM.jpeg" alt="WhatsApp Image 2025-09-04 at 11.50.26 PM">&lt;/p>
-&lt;p>before looking at the steps of the solution, let&amp;rsquo;s see the implementation of the singly linked list with int value (you can see the generic version here &lt;a href="https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/">Singularly Linked List&lt;/a> )&lt;/p></description></item><item><title>Circularly Linked List</title><link>https://ayoubmah.github.io/ilt/2025/09/04/circularly-linked-list/</link><pubDate>Thu, 04 Sep 2025 00:02:05 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/04/circularly-linked-list/</guid><description>&lt;p>Before to read about circularly linked lists i suggest to go to read bit about &lt;a href="https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/">Singly Linked List&lt;/a>, to better understanding circularly linked lists(CLL)&lt;/p>
-&lt;p>so basically a CLL is a Singly linked list and instead of the its tail (last node of the list) point on null its point of the first element of the list (head). like this&lt;/p>
-&lt;p>&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020250904001212.png" alt="Pasted image 20250904001212">&lt;/p></description></item><item><title>Singly Linked List</title><link>https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/</link><pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/</guid><description>&lt;p>Before you read this if you want a deep dive on Singly LinkedList and DSA with java in general please read the &amp;ldquo;Chapter 3. Fundamental Data Structures&amp;rdquo; p.122 by MICHEAL T.GOODRICH&lt;/p>
-&lt;h1 id="1-node">1. Node&lt;/h1>
-&lt;p>First let&amp;rsquo;s define a node, so a node it&amp;rsquo;s a data structure that can store an object and point to another node&lt;/p>
-&lt;p>like this
-&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020250812133629.png" alt="Pasted image 20250812133629">&lt;/p>
-&lt;p>we can define it in java like&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> E data;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> next;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#a6e22e">Node&lt;/span>(E data){
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">data&lt;/span> &lt;span style="color:#f92672">=&lt;/span> data;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">next&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> E &lt;span style="color:#a6e22e">getData&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> data;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">setData&lt;/span>(E data) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">data&lt;/span> &lt;span style="color:#f92672">=&lt;/span> data;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">getNext&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> next;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">setNext&lt;/span>(Node&lt;span style="color:#f92672">&amp;lt;&lt;/span>E&lt;span style="color:#f92672">&amp;gt;&lt;/span> next) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">next&lt;/span> &lt;span style="color:#f92672">=&lt;/span> next;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> String &lt;span style="color:#a6e22e">toString&lt;/span>(){
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;(&amp;#34;&lt;/span>&lt;span style="color:#f92672">+&lt;/span>data&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#e6db74">&amp;#34;) =&amp;gt;(null)&amp;#34;&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>As you can see in the code, the constructor of the Node initializes the next pointer to null, which is what we want.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ilts on Ayoub's Blog</title><link>https://ayoubmah.github.io/ilt/</link><description>Recent content in Ilts on Ayoub's Blog</description><generator>Hugo</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Mon, 08 Sep 2025 23:23:40 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/ilt/index.xml" rel="self" type="application/rss+xml"/><item><title>Doubly Linked Lists</title><link>https://ayoubmah.github.io/ilt/2025/09/08/doubly-linked-lists/</link><pubDate>Mon, 08 Sep 2025 23:23:40 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/08/doubly-linked-lists/</guid><description>&lt;p&gt;In this blog we&amp;rsquo;ll see how we can implementing a doubly linked list
+if you haven’t seen the Singly Linked List yet it&amp;rsquo;s better to check it &lt;a href="https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/"&gt;here&lt;/a&gt; first, because the concept is almost the same with just a few changes.&lt;/p&gt;
+&lt;p&gt;the main difference is in the node itself
+this time a node referenced by the &lt;strong&gt;next&lt;/strong&gt; node and the &lt;strong&gt;prev&lt;/strong&gt; node
+as you can see in this image&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/dob.jpeg" alt="dob"&gt;&lt;/p&gt;
+&lt;p&gt;let&amp;rsquo;s implemented in java&lt;/p&gt;</description></item><item><title>Leet-Code-Day001</title><link>https://ayoubmah.github.io/ilt/2025/09/04/leet-code-day001/</link><pubDate>Thu, 04 Sep 2025 23:34:00 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/04/leet-code-day001/</guid><description>&lt;p&gt;you can see the problem here
+&lt;a href="https://leetcode.com/problems/merge-two-sorted-lists/"&gt;Merge Two Sorted Lists&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The idea is that we have &lt;strong&gt;two sorted singly linked lists&lt;/strong&gt;
+and we want &lt;strong&gt;a single merged linked list containing all the elements from the two original lists in sorted order&lt;/strong&gt; like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/WhatsApp%20Image%202025-09-04%20at%2011.50.26%20PM.jpeg" alt="WhatsApp Image 2025-09-04 at 11.50.26 PM"&gt;&lt;/p&gt;
+&lt;p&gt;before looking at the steps of the solution, let&amp;rsquo;s see the implementation of the singly linked list with int value (you can see the generic version here &lt;a href="https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/"&gt;Singularly Linked List&lt;/a&gt; )&lt;/p&gt;</description></item><item><title>Circularly Linked List</title><link>https://ayoubmah.github.io/ilt/2025/09/04/circularly-linked-list/</link><pubDate>Thu, 04 Sep 2025 00:02:05 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/04/circularly-linked-list/</guid><description>&lt;p&gt;Before to read about circularly linked lists i suggest to go to read bit about &lt;a href="https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/"&gt;Singly Linked List&lt;/a&gt;, to better understanding circularly linked lists(CLL)&lt;/p&gt;
+&lt;p&gt;so basically a CLL is a Singly linked list and instead of the its tail (last node of the list) point on null its point of the first element of the list (head). like this&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020250904001212.png" alt="Pasted image 20250904001212"&gt;&lt;/p&gt;</description></item><item><title>Singly Linked List</title><link>https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/</link><pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/</guid><description>&lt;p&gt;Before you read this if you want a deep dive on Singly LinkedList and DSA with java in general please read the &amp;ldquo;Chapter 3. Fundamental Data Structures&amp;rdquo; p.122 by MICHEAL T.GOODRICH&lt;/p&gt;
+&lt;h1 id="1-node"&gt;1. Node&lt;/h1&gt;
+&lt;p&gt;First let&amp;rsquo;s define a node, so a node it&amp;rsquo;s a data structure that can store an object and point to another node&lt;/p&gt;
+&lt;p&gt;like this
+&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020250812133629.png" alt="Pasted image 20250812133629"&gt;&lt;/p&gt;
+&lt;p&gt;we can define it in java like&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Node&lt;/span&gt;&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;E&lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; E data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; Node&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;E&lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; next;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Node&lt;/span&gt;(E data){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;this&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;data&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;this&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;next&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;null&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; E &lt;span style="color:#a6e22e"&gt;getData&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setData&lt;/span&gt;(E data) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;this&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;data&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; Node&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;E&lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;getNext&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; next;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setNext&lt;/span&gt;(Node&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;E&lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; next) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;this&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;next&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; next;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; String &lt;span style="color:#a6e22e"&gt;toString&lt;/span&gt;(){
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;(&amp;#34;&lt;/span&gt;&lt;span style="color:#f92672"&gt;+&lt;/span&gt;data&lt;span style="color:#f92672"&gt;+&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;) =&amp;gt;(null)&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As you can see in the code, the constructor of the Node initializes the next pointer to null, which is what we want.&lt;/p&gt;</description></item></channel></rss>

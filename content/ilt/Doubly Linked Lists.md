@@ -8,11 +8,11 @@ tags:
 categories:
   - ILT
 ---
-In this blog we'll see how we can implementing doubly linked list 
-if you don't see Singly Linked List it's better to see it [here](https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/) and back it's the same concept with few changes
+In this blog we'll see how we can implementing a doubly linked list 
+if you haven’t seen the Singly Linked List yet it's better to check it [here](https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/) first, because the concept is almost the same with just a few changes.
 
-the changes will apply on the node itself 
-cuz this time a node referenced by the **next** node and the **prev** node
+the main difference is in the node itself 
+this time a node referenced by the **next** node and the **prev** node
 as you can see in this image
 
 ![dob](/images/dob.jpeg)
@@ -40,16 +40,20 @@ public class Node<E> {
 }
 ```
 
-now our node is good we're ready to implement our doubly linked list
+Now that our `Node` is ready, we can implement the **Doubly Linked List**
 
 ```java
 public class DoublyLinkedList<E> {
 
-    private Node<E> head = null;
-    private Node<E> tail = null;
+    private Node<E> head ;
+    private Node<E> tail ;
     private int size = 0;
 
-    public DoublyLinkedList(){}
+    public DoublyLinkedList(){
+        head = new Node(null,null,null);
+        tail = new Node(head,null,null);
+        head.setNext(tail);
+    }
 
     public int size(){
         return size;
@@ -70,79 +74,88 @@ public class DoublyLinkedList<E> {
         Node<E> lastOne = tail.getPrev();
         return lastOne.getElm();
     }
+    
+    public void addBetween(Node<E> precedore , E elm , Node<E> successor){
+        Node<E> newest = new Node<>(precedore, elm , successor);
+        precedore.setNext(newest);
+        successor.setPrev(newest);
 
-    public void addFirst(Node<E> elm){
-        if (isEmpty() == true){
-            head.setNext(elm);
-            elm.setPrev(head);
-            elm.setNext(tail);
-            tail.setPrev(elm);
-        }
-        Node<E> currentFirst = head.getNext();
-        head.setNext(elm);
-        elm.setPrev(head);
-        elm.setNext(currentFirst);
-        currentFirst.setPrev(elm);
-
-        size ++;
+        size++ ;
     }
 
-    public void addLast(Node<E> elm){
-        if (isEmpty() == true){
-            tail.setPrev(elm);
-            elm.setNext(tail);
-            elm.setPrev(head);
-            head.setNext(elm);
-        }
-        Node<E> currentLast = tail.getPrev();
-        tail.setPrev(elm);
-        elm.setNext(tail);
-        elm.setPrev(currentLast);
-        currentLast.setNext(elm);
-        size++ ;
+    public void addFirst(E elm){
+        addBetween(head , elm , head.getNext());
+    }
+
+    public void addLast(E elm){
+        addBetween(tail.getPrev() , elm , tail);
+    }
+
+    // remove method => remove the node and return the elm of this node
+    public E remove(Node<E> node){
+        Node<E> thePrev = node.getPrev();
+        Node<E> theNext = node.getNext();
+        
+        thePrev.setNext(theNext);
+        theNext.setPrev(thePrev);
+
+        // this will help the GC
+        node.setNext(null);
+        node.setPrev(null);
+        
+        size -- ;
+        return node.getElm();
     }
 
     public E removeFirst(){
         if (isEmpty() == true) return null;
-        Node<E> currentFirst = head.getNext();
-        Node<E> nextFirst = currentFirst.getNext();
-        head.setNext(nextFirst);
-        nextFirst.setPrev(head);
-
-        currentFirst.setNext(null);
-        currentFirst.setPrev(null);
-        size -- ;
-        return currentFirst.getElm();
+        E result = remove(head.getNext());
+        return result;
     }
 
     public E removeLast(){
         if (isEmpty() == true) return null;
-        Node<E> currentLast = tail.getPrev();
-        Node<E> nextLast = currentLast.getPrev();
-        tail.setPrev(nextLast);
-        nextLast.setNext(tail);
-
-        currentLast.setNext(null);
-        currentLast.setPrev(null);
-        size -- ;
-        return currentLast.getElm();
+        E result = remove(tail.getPrev());
+        return result;
     }
 
     @Override
     public String toString() {
-        if (isEmpty()) return "[]";
-
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         Node<E> current = head.getNext();
-        while (current != null) {
+        while (current != tail) {
             sb.append(current.getElm());
             current = current.getNext();
-            if (current != null) sb.append(", ");
+            if (current != tail) sb.append(", ");
         }
         sb.append("]");
         return sb.toString();
     }
 }
-
 ```
+
+nice :)
+now let's test this
+
+ ```java
+ public static void main(String[] args) {
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+    System.out.println("Empty: " + list);
+
+    list.addFirst(10);
+    list.addFirst(5);
+    list.addLast(20);
+    list.addLast(25);
+    System.out.println("After adding: " + list); // [5, 10, 20, 25]
+
+    System.out.println("First removed: " + list.removeFirst()); // 5
+    System.out.println("Last removed: " + list.removeLast());   // 25
+    System.out.println("Now: " + list); // [10, 20]
+
+    System.out.println("First element: " + list.first()); // 10
+    System.out.println("Last element: " + list.last());   // 20
+    System.out.println("Size: " + list.size());           // 2
+}
+ ```
