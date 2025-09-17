@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cs on Ayoub's Blog</title><link>https://ayoubmah.github.io/tags/cs/</link><description>Recent content in Cs on Ayoub's Blog</description><generator>Hugo</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Wed, 17 Sep 2025 17:09:33 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml"/><item><title>The OS Manages The Hardware</title><link>https://ayoubmah.github.io/ilt/2025/09/17/the-os-manages-the-hardware/</link><pubDate>Wed, 17 Sep 2025 17:09:33 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/17/the-os-manages-the-hardware/</guid><description>&lt;h2 id="1-layered-view-of-a-computer-system"&gt;1) Layered view of a computer system&lt;/h2&gt;
+&lt;p&gt;the os is a piece of software that is setting between the applications programs and the hardware&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020250917173342.png" alt="Pasted image 20250917173342"&gt;&lt;/p&gt;
+&lt;p&gt;the role of the os is&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Protect the hardware from misuse by runaway the applications&lt;/li&gt;
+&lt;li&gt;provide application with simple and uniform mechanisms&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="2-abstractions-provided-by-an-operating-system"&gt;2) Abstractions provided by an operating system&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;files&lt;/strong&gt; are abstraction for I/O devices
+&lt;strong&gt;virtual memory&lt;/strong&gt; is an abstraction for the main memory + I/O devices
+&lt;strong&gt;Processes&lt;/strong&gt; are abstraction for processor + main memory + I/O devices&lt;/p&gt;</description></item></channel></rss>
