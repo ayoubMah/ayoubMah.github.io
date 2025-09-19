@@ -21,9 +21,14 @@ the role of the os is
 
 ## 2) Abstractions provided by an operating system
 
-
-
 **files** are abstraction for I/O devices
 **virtual memory** is an abstraction for the main memory + I/O devices
 **Processes** are abstraction for processor + main memory + I/O devices
+
+![Pasted image 20250919094652](/images/Pasted%20image%2020250919094652.png)
+
+## 3) Process
+
+Pro
+
 
