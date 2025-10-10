@@ -27,8 +27,5 @@ the role of the os is
 
 ![Pasted image 20250919094652](/images/Pasted%20image%2020250919094652.png)
 
-## 3) Process
-
-Pro
 
 
