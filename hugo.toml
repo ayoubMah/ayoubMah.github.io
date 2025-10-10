@@ -58,12 +58,18 @@ pagerSize = 10
   url        = "/posts"
   weight     = 1
 
+# ADD THIS LINE FOR THE ARROW
+  post       = "<svg class=\"menu-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg>"
+
 # ILT menu item
 [[menu.main]]
   identifier = "ilt"
   name       = "ILT"
   url        = "/ilt/"
   weight     = 5
+
+# ADD THIS LINE FOR THE ARROW
+  post       = "<svg class=\"menu-arrow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg>"
 
 
 [permalinks]
