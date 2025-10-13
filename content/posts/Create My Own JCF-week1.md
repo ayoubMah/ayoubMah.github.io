@@ -6,12 +6,18 @@ tags:
   - java
   - DSA
   - project
+  - basics
 categories:
   - blog
 ---
-# JCF: Java Collection Framework
+### JCF: Java Collection Framework Hierarchy
+
+![Pasted image 20251014010626](/images/Pasted%20image%2020251014010626.png)
+
 
 _Bfore starting implementing JCF should you know the Iterable<E> interface
+
+# 1. Iterable
 
 - Iterable interface is a builtin interface in java it allow us using "for-each" loop thanks to Iterator method
 
@@ -52,4 +58,7 @@ for (int n : arr) {
     System.out.println(n);
 }
 ```
-and boom your class works with forEach loop 
+and boom your class works with forEach loop
+
+## Table of content of the implementation of each component
+[[Collection Interface]]

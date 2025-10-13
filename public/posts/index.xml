@@ -1,13 +1,37 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Sat, 11 Oct 2025 00:59:35 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Create My Own JCF-week1</title><link>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</link><pubDate>Sat, 11 Oct 2025 00:59:35 +0200</pubDate><guid>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</guid><description>&lt;h1 id="jcf-java-collection-framework"&gt;JCF: Java Collection Framework&lt;/h1&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Tue, 14 Oct 2025 01:15:28 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Collection Interfece</title><link>https://ayoubmah.github.io/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://ayoubmah.github.io/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
+we have a method
+&lt;strong&gt;boolean add(E e)&lt;/strong&gt; that return true if the collection changed (the elem e added) and false if not
+&lt;strong&gt;boolean addAdd(Collection &amp;lt; ? extends E&amp;gt; c)&lt;/strong&gt; , that take a collection of type E of subtype of E and return true if the collection changed (all elm added)&lt;/p&gt;
+&lt;p&gt;So if you have a &lt;code&gt;Collection&amp;lt;Animal&amp;gt;&lt;/code&gt; and another &lt;code&gt;Collection&amp;lt;Dog&amp;gt;&lt;/code&gt;,&lt;br&gt;
+you can add the &lt;code&gt;Dog&lt;/code&gt;s into the &lt;code&gt;Animal&lt;/code&gt; collection because &lt;code&gt;Dog&lt;/code&gt; &lt;strong&gt;extends&lt;/strong&gt; &lt;code&gt;Animal&lt;/code&gt;.&lt;/p&gt;</description><content type="html"><![CDATA[<p>the collection interface extends Iterable interface from java.lang
+we have a method
+<strong>boolean add(E e)</strong> that return true if the collection changed (the elem e added) and false if not
+<strong>boolean addAdd(Collection &lt; ? extends E&gt; c)</strong> , that take a collection of type E of subtype of E and return true if the collection changed (all elm added)</p>
+<p>So if you have a <code>Collection&lt;Animal&gt;</code> and another <code>Collection&lt;Dog&gt;</code>,<br>
+you can add the <code>Dog</code>s into the <code>Animal</code> collection because <code>Dog</code> <strong>extends</strong> <code>Animal</code>.</p>
+<p><strong>void clear();</strong> // remove add elms of this collection</p>
+<p><strong>boolean contains(Object o);</strong></p>
+<p><strong>boolean containsAll(Collection &lt;? &gt; c);</strong>  the ? means that i don&rsquo;t care about the type of the collection I can check if i contains those objects
+example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> List.<span style="color:#a6e22e">of</span>(1, 2, 3, 4);
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> other <span style="color:#f92672">=</span> List.<span style="color:#a6e22e">of</span>(2, 3);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> result <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">containsAll</span>(other);
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(result); <span style="color:#75715e">// true</span>
+</span></span></code></pre></div>]]></content></item><item><title>Create My Own JCF-week1</title><link>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</link><pubDate>Sat, 11 Oct 2025 00:59:35 +0200</pubDate><guid>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</guid><description>&lt;h3 id="jcf-java-collection-framework-hierarchy"&gt;JCF: Java Collection Framework Hierarchy&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020251014010626.png" alt="Pasted image 20251014010626"&gt;&lt;/p&gt;
 &lt;p&gt;_Bfore starting implementing JCF should you know the Iterable&lt;!-- raw HTML omitted --&gt; interface&lt;/p&gt;
+&lt;h1 id="1-iterable"&gt;1. Iterable&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Iterable interface is a builtin interface in java it allow us using &amp;ldquo;for-each&amp;rdquo; loop thanks to Iterator method&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;let&amp;rsquo;s take an example
 if you work with arrays in java and suppose you create an new array&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&lt;span style="color:#f92672"&gt;[]&lt;/span&gt; arr &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Interger&lt;span style="color:#f92672"&gt;[]&lt;/span&gt;{1,2,3}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and you want to make the forEach loop like this &lt;code&gt;for(int n : arr)&lt;/code&gt; =&amp;gt; this will give you a compiler error&lt;/p&gt;</description><content type="html"><![CDATA[<h1 id="jcf-java-collection-framework">JCF: Java Collection Framework</h1>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and you want to make the forEach loop like this &lt;code&gt;for(int n : arr)&lt;/code&gt; =&amp;gt; this will give you a compiler error&lt;/p&gt;</description><content type="html"><![CDATA[<h3 id="jcf-java-collection-framework-hierarchy">JCF: Java Collection Framework Hierarchy</h3>
+<p><img src="/images/Pasted%20image%2020251014010626.png" alt="Pasted image 20251014010626"></p>
 <p>_Bfore starting implementing JCF should you know the Iterable<!-- raw HTML omitted --> interface</p>
+<h1 id="1-iterable">1. Iterable</h1>
 <ul>
 <li>Iterable interface is a builtin interface in java it allow us using &ldquo;for-each&rdquo; loop thanks to Iterator method</li>
 </ul>
@@ -40,6 +64,8 @@ if you work with arrays in java and suppose you create an new array</p>
 </span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(n);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>and boom your class works with forEach loop</p>
+<h2 id="table-of-content-of-the-implementation-of-each-component">Table of content of the implementation of each component</h2>
+<p>[[Collection Interface]]</p>
 ]]></content></item><item><title>MicroServices With Go and kuber</title><link>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</link><pubDate>Wed, 08 Oct 2025 08:45:00 +0200</pubDate><guid>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</guid><description>&lt;p&gt;coming soon :)&lt;/p&gt;</description><content type="html">&lt;p>coming soon :)&lt;/p>
 </content></item><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p&gt;
