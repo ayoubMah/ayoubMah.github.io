@@ -31,3 +31,4 @@ boolean result = list.containsAll(other);
 System.out.println(result); // true
 ```
 
+
