@@ -1,4 +1,75 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Tue, 14 Oct 2025 01:15:28 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Collection Interfece</title><link>https://ayoubmah.github.io/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://ayoubmah.github.io/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Thu, 20 Nov 2025 12:19:05 +0100</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Fixing Flyway Database Connection Errors in Docker</title><link>https://ayoubmah.github.io/posts/fixing-flyway-database-connection-errors-in-docker/</link><pubDate>Thu, 20 Nov 2025 12:19:05 +0100</pubDate><guid>https://ayoubmah.github.io/posts/fixing-flyway-database-connection-errors-in-docker/</guid><description>&lt;p&gt;Before reading this blog i suggest you have a quick look at how &lt;em&gt;Docker Compose starts services&lt;/em&gt; especially how databases take time to initialize before they start accepting connections.&lt;/p&gt;
+&lt;p&gt;so basically, when you work with microservices, each service has its own database (in my case: patient-db, doctor-db…). and when Spring Boot starts, Flyway tries to run the migration scripts immediately.&lt;/p&gt;
+&lt;p&gt;But there is a problem:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Flyway is much faster than PostgreSQL.&lt;/em&gt;&lt;br&gt;
+PostgreSQL says: “I’m starting…”&lt;br&gt;
+Flyway says: “I want to connect now.”&lt;br&gt;
+PostgreSQL says: “Wait wait wait hold on…”&lt;br&gt;
+Flyway says: “Connection refused.”&lt;/p&gt;</description><content type="html"><![CDATA[<p>Before reading this blog i suggest you have a quick look at how <em>Docker Compose starts services</em> especially how databases take time to initialize before they start accepting connections.</p>
+<p>so basically, when you work with microservices, each service has its own database (in my case: patient-db, doctor-db…). and when Spring Boot starts, Flyway tries to run the migration scripts immediately.</p>
+<p>But there is a problem:</p>
+<p><em>Flyway is much faster than PostgreSQL.</em><br>
+PostgreSQL says: “I’m starting…”<br>
+Flyway says: “I want to connect now.”<br>
+PostgreSQL says: “Wait wait wait hold on…”<br>
+Flyway says: “Connection refused.”</p>
+<p>And then your whole service crashes.</p>
+<h1 id="the-real-error-exactly-as-i-got-it"><em>The Real Error (exactly as I got it)</em></h1>
+<p>Here is the full Flyway error message I faced during development:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Caused by: org.flywaydb.core.internal.exception.sqlExceptions.FlywaySqlUnableToConnectToDbException: Unable to obtain connection from database: Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections. SQL State  : <span style="color:#ae81ff">08001</span> Error Code : <span style="color:#ae81ff">0</span> Message    : Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections. at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection<span style="color:#f92672">(</span>JdbcUtils.java:70<span style="color:#f92672">)</span>  ... Caused by: org.postgresql.util.PSQLException: Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+</span></span></code></pre></div><p>This is the typical Flyway + Docker startup problem.<br>
+If you see <em>Connection refused</em>, the database hasn’t finished booting yet.</p>
+<h1 id="why-this-happens"><em>Why This Happens</em></h1>
+<p>This is a <em>race condition</em>:</p>
+<ol>
+<li>
+<p>Docker starts my PostgreSQL container</p>
+</li>
+<li>
+<p>PostgreSQL begins initializing (this can take 3–8 seconds, longer if the volume is empty)</p>
+</li>
+<li>
+<p>Docker immediately starts your Spring Boot service</p>
+</li>
+<li>
+<p>Spring Boot runs Flyway migrations</p>
+</li>
+<li>
+<p>Flyway tries to connect to the database <em>too early</em></p>
+</li>
+<li>
+<p>PostgreSQL is still preparing files, users, and permissions</p>
+</li>
+<li>
+<p>Connection refused → Flyway crashes → Spring crashes</p>
+</li>
+</ol>
+<h1 id="quick-fix--just-restart-the-services--">*Quick Fix =&gt; Just Restart the Services :) *</h1>
+<p>If the database is fully initialized now, just restart the services:</p>
+<p>docker compose restart doctor-service patient-service</p>
+<p>This works, but it’s not a clean or professional solution.</p>
+<h1 id="real-fix"><em>Real Fix</em></h1>
+<p>Prevent this problem forever.</p>
+<p>We use <em>healthchecks</em>.</p>
+<h3 id="add-a-healthcheck-to-your-databases">Add a Healthcheck to your databases</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">patient-db</span>: <span style="color:#75715e"># my use case</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:15</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">environment</span>:     
+</span></span><span style="display:flex;"><span>	   <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">patientdb     </span>
+</span></span><span style="display:flex;"><span>	   <span style="color:#f92672">POSTGRES_USER</span>: <span style="color:#ae81ff">postgres     </span>
+</span></span><span style="display:flex;"><span>	   <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">password   </span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">healthcheck</span>:     
+</span></span><span style="display:flex;"><span>	   <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>, <span style="color:#e6db74">&#34;pg_isready -U postgres&#34;</span>]     
+</span></span><span style="display:flex;"><span>	   <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">5s     </span>
+</span></span><span style="display:flex;"><span>	   <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s     </span>
+</span></span><span style="display:flex;"><span>	   <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><h3 id="update-depends_on">Update depends_on</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">patient-service</span>:   
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">depends_on</span>:     
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">patient-db</span>:      
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">condition</span>: <span style="color:#ae81ff">service_healthy</span>
+</span></span></code></pre></div><p>iwa Allah yja3al lbaraka :)</p>
+]]></content></item><item><title>Collection Interfece</title><link>https://ayoubmah.github.io/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://ayoubmah.github.io/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
 we have a method
 &lt;strong&gt;boolean add(E e)&lt;/strong&gt; that return true if the collection changed (the elem e added) and false if not
 &lt;strong&gt;boolean addAdd(Collection &amp;lt; ? extends E&amp;gt; c)&lt;/strong&gt; , that take a collection of type E of subtype of E and return true if the collection changed (all elm added)&lt;/p&gt;
