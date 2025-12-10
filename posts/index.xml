@@ -1,4 +1,176 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Thu, 20 Nov 2025 12:19:05 +0100</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Fixing Flyway Database Connection Errors in Docker</title><link>https://ayoubmah.github.io/posts/fixing-flyway-database-connection-errors-in-docker/</link><pubDate>Thu, 20 Nov 2025 12:19:05 +0100</pubDate><guid>https://ayoubmah.github.io/posts/fixing-flyway-database-connection-errors-in-docker/</guid><description>&lt;p&gt;Before reading this blog i suggest you have a quick look at how &lt;em&gt;Docker Compose starts services&lt;/em&gt; especially how databases take time to initialize before they start accepting connections.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Wed, 10 Dec 2025 23:14:46 +0100</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Part 1 - Building a Mini Spring Framework (v0.1)-Dependency Injection Basics</title><link>https://ayoubmah.github.io/posts/part-1---building-a-mini-spring-framework-v0.1-dependency-injection-basics/</link><pubDate>Wed, 10 Dec 2025 23:14:46 +0100</pubDate><guid>https://ayoubmah.github.io/posts/part-1---building-a-mini-spring-framework-v0.1-dependency-injection-basics/</guid><description>&lt;h1 id="the-problem-spring-solves"&gt;The problem Spring solves&lt;/h1&gt;
+&lt;p&gt;easy right ?
+let&amp;rsquo;s see :)&lt;/p&gt;
+&lt;p&gt;imagine you are building an e-commerce backend, and you have OrderService that needs to process payments&lt;/p&gt;
+&lt;p&gt;the naive approach is: inside the OrderService you write for example&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;PaymentProcess process &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; PaypalService();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;if your boss comes and says &amp;ldquo;we&amp;rsquo;re switching the contract from PayPal to Stripe&amp;rdquo; what do you have to do to your code?&lt;/p&gt;
+&lt;p&gt;The answer is use an interface&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;interface&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;PaymentProcess&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;pay&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;double&lt;/span&gt; amount);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and the OrderService looks like&lt;/p&gt;</description><content type="html"><![CDATA[<h1 id="the-problem-spring-solves">The problem Spring solves</h1>
+<p>easy right ?
+let&rsquo;s see :)</p>
+<p>imagine you are building an e-commerce backend, and you have OrderService that needs to process payments</p>
+<p>the naive approach is: inside the OrderService you write for example</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PaymentProcess process <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
+</span></span></code></pre></div><p>if your boss comes and says &ldquo;we&rsquo;re switching the contract from PayPal to Stripe&rdquo; what do you have to do to your code?</p>
+<p>The answer is use an interface</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PaymentProcess</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pay</span>(<span style="color:#66d9ef">double</span> amount);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>and the OrderService looks like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderService</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> PaymentProcess paymentProcess;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">OrderService</span>(PaymentProcess payment) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">paymentProcess</span> <span style="color:#f92672">=</span> payment;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkout</span>() {
+</span></span><span style="display:flex;"><span>        paymentProcess.<span style="color:#a6e22e">pay</span>(100.<span style="color:#a6e22e">00</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>and PayPal or Stripe services look like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaypalService</span> <span style="color:#66d9ef">implements</span> PaymentService {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pay</span>(<span style="color:#66d9ef">double</span> amount){
+</span></span><span style="display:flex;"><span>		System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Paying &#34;</span> <span style="color:#f92672">+</span> amount <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; € using PayPal&#34;</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>the same for Stripe service</p>
+<h4 id="so-now-in-the-main-class-we-create-a-new-orderservice">so now in the main class we create a new orderservice</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        PaymentProcess paymentProcess <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        OrderService orderService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> OrderService(paymentProcess);
+</span></span><span style="display:flex;"><span>        orderService.<span style="color:#a6e22e">checkout</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="so-spring-containers-job-is-to-eliminate-that-line-of-code">so spring container&rsquo;s job is to eliminate that line of code</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PaymentProcess paymentProcess <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
+</span></span></code></pre></div><p>==&gt; so we want the <em>Container</em> to call that constructor for us automatically</p>
+<h3 id="the-missing-piece-configuration">The Missing Piece: Configuration</h3>
+<p>so the problem here is like we indicated before if your company doesn&rsquo;t support PayPal for any reason like boycott or any other reason you should delete it from the main and from the OrderService</p>
+<p>so the idea is creating a class let&rsquo;s call it BeanDefinition it will act like a configuration file &ldquo;yes i know we should use xml file or annotation&rdquo; but for mini-spring v01 we&rsquo;ll use a class that contains a hashMap; key,value so the constructor of this class BeanDefinition will put as a key the PaymentProcess and as a value PaypalService</p>
+<p>and now it&rsquo;s easy if we want to change the PaypalService to StripeService, we&rsquo;ll change it once =&gt; in this configuration file ok!</p>
+<p>so the config class looks like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BeanDefinition</span> {  
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;</span>, Class<span style="color:#f92672">&lt;?&gt;&gt;</span> beanMapping <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">BeanDefinition</span>(){  
+</span></span><span style="display:flex;"><span>        beanMapping.<span style="color:#a6e22e">put</span>(PaymentProcess.<span style="color:#a6e22e">class</span>, PaypalService.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>good now we did the config file but we&rsquo;re not done yet we should have the <strong>bridge</strong> between the config file (BeanDefinition) and the main method so we call it container: yep it&rsquo;s like the spring container not really but you get the idea ;)</p>
+<p>so the main method asks the container &ldquo;I need a PaymentProcess&rdquo; the container takes the request to the BeanDefinition map it looks up the key <code>PaymentProcess</code> and finds the value <code>PaypalService</code></p>
+<p>So the container creates the PaypalService <strong>magically</strong>! yep it&rsquo;s the <strong>Reflection concept</strong></p>
+<h3 id="ok-but-what-is-java-reflection">OK! but what is java reflection</h3>
+<p>ok so this blog is not to deep dive into java reflection but think about it like the ability to manipulate java classes at runtime so when you do</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Class<span style="color:#f92672">&lt;?&gt;</span> c <span style="color:#f92672">=</span> myClass.<span style="color:#a6e22e">class</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// so c it&#39;s not a copy of myClass or something else</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// it&#39;s a reflection of it</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// like a mirror</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// it&#39;s not like</span>
+</span></span><span style="display:flex;"><span>myClass mc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> myClass();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// but c == mc is true!</span>
+</span></span></code></pre></div><p>read more about java reflection <a href="https://www.oracle.com/technical-resources/articles/java/javareflection.html">here</a></p>
+<hr>
+<p>Nice now when you understand the reflection let&rsquo;s move on to the master piece of our program which is the container or the IOC container like spring ;)</p>
+<p>so the role of the container is the creation of the object in this case we want the paypalService created inside the container not inside the main remember ;)</p>
+<p>before we write code the method that will create the container should:</p>
+<ul>
+<li>get an interfaceClass input of type Class &lt; ? &gt; in our case it&rsquo;s PaymentProcess (why interfaceClass? cuz in the future we&rsquo;ll have not just PaypalService)</li>
+<li>and then we go to our map and get the value and store it in an object class too</li>
+<li>then using reflection like you learned to create an instance from it</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MiniContainer</span> {  
+</span></span><span style="display:flex;"><span>    BeanDefinition config <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BeanDefinition();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">getBean</span>(Class<span style="color:#f92672">&lt;?&gt;</span> interfaceClass) {  
+</span></span><span style="display:flex;"><span>        Class<span style="color:#f92672">&lt;?&gt;</span> myClass <span style="color:#f92672">=</span> config.<span style="color:#a6e22e">beanMapping</span>.<span style="color:#a6e22e">get</span>(interfaceClass); <span style="color:#75715e">// so when we do map.get(key) we get the value: in this case it&#39;s paypal  </span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (myClass <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(<span style="color:#e6db74">&#34;Bean not found!&#34;</span>);  
+</span></span><span style="display:flex;"><span>        }  
+</span></span><span style="display:flex;"><span>        Object object;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {  
+</span></span><span style="display:flex;"><span>            Constructor<span style="color:#f92672">&lt;?&gt;</span> constructor <span style="color:#f92672">=</span> myClass.<span style="color:#a6e22e">getDeclaredConstructor</span>();  
+</span></span><span style="display:flex;"><span>            object <span style="color:#f92672">=</span> constructor.<span style="color:#a6e22e">newInstance</span>();  
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Exception e) {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);  
+</span></span><span style="display:flex;"><span>        }  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> object;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="and-boom-you-now-created-your-own-spring-v01">and boom you now created your own spring v01</h3>
+<p>small test :) &lsquo;malk mkhlo3 HHH&rsquo;</p>
+<p>the result is true or false? and why</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        MiniContainer miniContainer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MiniContainer();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        PaymentProcess p1 <span style="color:#f92672">=</span> (PaymentProcess) miniContainer.<span style="color:#a6e22e">getBean</span>(PaymentProcess.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>        PaymentProcess p2 <span style="color:#f92672">=</span> (PaymentProcess) miniContainer.<span style="color:#a6e22e">getBean</span>(PaymentProcess.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(p1 <span style="color:#f92672">==</span> p2);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>send me a message if you did it :) <a href="mailto:ayoubmahjouby@gmail.com?subject=blog%20answer&amp;body=hello%20ayoub%20this%20is%20the%20answer%3A">message</a></p>
+<p>and of course check the <a href="https://github.com/ayoubMah/Mini-Spring">github-repo</a></p>
+<pre class="mermaid">flowchart TD
+
+%% ===== BEFORE =====
+subgraph BEFORE["Before: Hard-coded dependency"]
+    OS["OrderService"]
+    PS["PaypalService"]
+    OS -->|"new PaypalService()"| PS
+end
+
+%% ===== AFTER =====
+subgraph AFTER["After: BeanDefinition + Container"]
+    A["App starts"]
+
+    BDNEW["Create BeanDefinition"]
+    A --> BDNEW
+
+    BDCONST["BeanDefinition constructor"]
+    BDNEW --> BDCONST
+
+    MAP["Map: PaymentProcess → PaypalService"]
+    BDCONST --> MAP
+
+    CONT["Container"]
+    MAIN["Main asks for PaymentProcess"]
+
+    MAIN --> CONT
+    CONT -->|"lookup PaymentProcess"| MAP
+    MAP -->|"returns PaypalService"| CONT
+
+    REFLECT["Reflection creates object"]
+    CONT --> REFLECT
+
+    PAYOBJ["PaypalService instance\n(as PaymentProcess)"]
+    REFLECT --> PAYOBJ
+
+    OS2["OrderService"]
+    PAYOBJ --> OS2
+end
+</pre>
+]]></content></item><item><title>{{title}}</title><link>https://ayoubmah.github.io/posts/docker/</link><pubDate>Mon, 01 Dec 2025 08:44:05 +0100</pubDate><guid>https://ayoubmah.github.io/posts/docker/</guid><description>&lt;p&gt;What&amp;rsquo;s happen when we run&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker run ...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;it&amp;rsquo;s simple right?
+yes and no&lt;/p&gt;</description><content type="html"><![CDATA[<p>What&rsquo;s happen when we run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run ...
+</span></span></code></pre></div><p>it&rsquo;s simple right?
+yes and no</p>
+]]></content></item><item><title>Fixing Flyway Database Connection Errors in Docker</title><link>https://ayoubmah.github.io/posts/fixing-flyway-database-connection-errors-in-docker/</link><pubDate>Thu, 20 Nov 2025 12:19:05 +0100</pubDate><guid>https://ayoubmah.github.io/posts/fixing-flyway-database-connection-errors-in-docker/</guid><description>&lt;p&gt;Before reading this blog i suggest you have a quick look at how &lt;em&gt;Docker Compose starts services&lt;/em&gt; especially how databases take time to initialize before they start accepting connections.&lt;/p&gt;
 &lt;p&gt;so basically, when you work with microservices, each service has its own database (in my case: patient-db, doctor-db…). and when Spring Boot starts, Flyway tries to run the migration scripts immediately.&lt;/p&gt;
 &lt;p&gt;But there is a problem:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Flyway is much faster than PostgreSQL.&lt;/em&gt;&lt;br&gt;

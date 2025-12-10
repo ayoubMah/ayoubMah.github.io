@@ -3,7 +3,7 @@
 &lt;li&gt;the TCP and IP are the most important protocols in the computer networks that control the sending and receiving of information within the Internet&lt;/li&gt;
 &lt;li&gt;TCP: &lt;strong&gt;T&lt;/strong&gt;ransmission &lt;strong&gt;C&lt;/strong&gt;ontrol &lt;strong&gt;P&lt;/strong&gt;rotocol.&lt;/li&gt;
 &lt;li&gt;IP: &lt;strong&gt;I&lt;/strong&gt;nternet &lt;strong&gt;P&lt;/strong&gt;rotocol.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title/><link>https://ayoubmah.github.io/ilt/2025/09/20/</link><pubDate>Sat, 20 Sep 2025 22:29:42 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/20/</guid><description/></item><item><title>The OS Manages The Hardware</title><link>https://ayoubmah.github.io/ilt/2025/09/17/the-os-manages-the-hardware/</link><pubDate>Wed, 17 Sep 2025 17:09:33 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/17/the-os-manages-the-hardware/</guid><description>&lt;h2 id="1-layered-view-of-a-computer-system"&gt;1) Layered view of a computer system&lt;/h2&gt;
+&lt;/ul&gt;</description></item><item><title>The OS Manages The Hardware</title><link>https://ayoubmah.github.io/ilt/2025/09/17/the-os-manages-the-hardware/</link><pubDate>Wed, 17 Sep 2025 17:09:33 +0200</pubDate><guid>https://ayoubmah.github.io/ilt/2025/09/17/the-os-manages-the-hardware/</guid><description>&lt;h2 id="1-layered-view-of-a-computer-system"&gt;1) Layered view of a computer system&lt;/h2&gt;
 &lt;p&gt;the os is a piece of software that is setting between the applications programs and the hardware&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020250917173342.png" alt="Pasted image 20250917173342"&gt;&lt;/p&gt;
 &lt;p&gt;the role of the os is&lt;/p&gt;
