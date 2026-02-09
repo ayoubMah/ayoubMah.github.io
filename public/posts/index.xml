@@ -1,4 +1,13 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Tue, 13 Jan 2026 19:37:47 +0100</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Crafting My Own Storage Engine-Part 01: Java I/O Fundamentals</title><link>https://ayoubmah.github.io/posts/crafting-my-own-storage-engine-part-01--java-io-fundamentals/</link><pubDate>Tue, 13 Jan 2026 19:37:47 +0100</pubDate><guid>https://ayoubmah.github.io/posts/crafting-my-own-storage-engine-part-01--java-io-fundamentals/</guid><description>&lt;h1 id="the-page-abstraction"&gt;The &amp;ldquo;Page&amp;rdquo; Abstraction&lt;/h1&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Sun, 08 Feb 2026 23:56:04 +0100</lastBuildDate><atom:link href="https://ayoubmah.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Container Filesystem</title><link>https://ayoubmah.github.io/posts/container-filesystem/</link><pubDate>Sun, 08 Feb 2026 23:56:04 +0100</pubDate><guid>https://ayoubmah.github.io/posts/container-filesystem/</guid><description>&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209000710.png" alt="Pasted image 20260209000710"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209000844.png" alt="Pasted image 20260209000844"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209001058.png" alt="Pasted image 20260209001058"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209001254.png" alt="Pasted image 20260209001254"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209001457.png" alt="Pasted image 20260209001457"&gt;&lt;/p&gt;</description><content type="html"><![CDATA[<p><img src="/images/Pasted%20image%2020260209000710.png" alt="Pasted image 20260209000710"></p>
+<p><img src="/images/Pasted%20image%2020260209000844.png" alt="Pasted image 20260209000844"></p>
+<p><img src="/images/Pasted%20image%2020260209001058.png" alt="Pasted image 20260209001058"></p>
+<p><img src="/images/Pasted%20image%2020260209001254.png" alt="Pasted image 20260209001254"></p>
+<p><img src="/images/Pasted%20image%2020260209001457.png" alt="Pasted image 20260209001457"></p>
+]]></content></item><item><title>Crafting My Own Storage Engine-Part 01: Java I/O Fundamentals</title><link>https://ayoubmah.github.io/posts/crafting-my-own-storage-engine-part-01--java-io-fundamentals/</link><pubDate>Tue, 13 Jan 2026 19:37:47 +0100</pubDate><guid>https://ayoubmah.github.io/posts/crafting-my-own-storage-engine-part-01--java-io-fundamentals/</guid><description>&lt;h1 id="the-page-abstraction"&gt;The &amp;ldquo;Page&amp;rdquo; Abstraction&lt;/h1&gt;
 &lt;p&gt;so the &lt;code&gt;ByteBuffer&lt;/code&gt; acts like a staging area where we serialize our Java objects (the &lt;code&gt;Page&lt;/code&gt; object) into raw bytes and keep them in RAM using methods like &lt;code&gt;putInt&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;and after that, we need to persist the data to disk — meaning we write those bytes into a file so the data survives after the program stops&lt;/p&gt;
 &lt;p&gt;so we have one large file, and since all pages have a fixed size, if we want to write the data for &lt;code&gt;pageId = 14&lt;/code&gt;, we simply compute the offset &lt;code&gt;4096 * 14&lt;/code&gt; and write the buffer at that position using the &lt;code&gt;write&lt;/code&gt; method&lt;/p&gt;</description><content type="html"><![CDATA[<h1 id="the-page-abstraction">The &ldquo;Page&rdquo; Abstraction</h1>
@@ -7,7 +16,7 @@
 <p>so we have one large file, and since all pages have a fixed size, if we want to write the data for <code>pageId = 14</code>, we simply compute the offset <code>4096 * 14</code> and write the buffer at that position using the <code>write</code> method</p>
 <p>to imp  concept of fixed-size-pages
 let&rsquo;s create a Page class</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Page</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Page</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> ID;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>1023<span style="color:#f92672">]</span>; <span style="color:#75715e">// 1KB</span>
 </span></span><span style="display:flex;"><span>    
@@ -17,7 +26,7 @@ let&rsquo;s create a Page class</p>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>and another class PageManger that handled the reading and the writhing</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileNotFoundException;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileNotFoundException;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.RandomAccessFile;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.nio.Buffer;
@@ -79,7 +88,7 @@ and if our we read the pageArr 1024 int -&gt; 4094
 so we get 4(ID) + 4096(pageArr) = 4100 !!!</p>
 <p>for that $1023 \times 4 = 4092$ bytes</p>
 <p>now let&rsquo;s test our storage engine :)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Arrays;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
@@ -127,10 +136,10 @@ so we get 4(ID) + 4096(pageArr) = 4100 !!!</p>
 let&amp;rsquo;s see :)&lt;/p&gt;
 &lt;p&gt;imagine you are building an e-commerce backend, and you have OrderService that needs to process payments&lt;/p&gt;
 &lt;p&gt;the naive approach is: inside the OrderService you write for example&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;PaymentProcess process &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; PaypalService();
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;PaymentProcess process &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; PaypalService();
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;if your boss comes and says &amp;ldquo;we&amp;rsquo;re switching the contract from PayPal to Stripe&amp;rdquo; what do you have to do to your code?&lt;/p&gt;
 &lt;p&gt;The answer is use an interface&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;interface&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;PaymentProcess&lt;/span&gt; {
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;interface&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;PaymentProcess&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;pay&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;double&lt;/span&gt; amount);
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and the OrderService looks like&lt;/p&gt;</description><content type="html"><![CDATA[<h1 id="the-problem-spring-solves">The problem Spring solves</h1>
@@ -138,14 +147,14 @@ let&amp;rsquo;s see :)&lt;/p&gt;
 let&rsquo;s see :)</p>
 <p>imagine you are building an e-commerce backend, and you have OrderService that needs to process payments</p>
 <p>the naive approach is: inside the OrderService you write for example</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PaymentProcess process <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PaymentProcess process <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
 </span></span></code></pre></div><p>if your boss comes and says &ldquo;we&rsquo;re switching the contract from PayPal to Stripe&rdquo; what do you have to do to your code?</p>
 <p>The answer is use an interface</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PaymentProcess</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PaymentProcess</span> {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pay</span>(<span style="color:#66d9ef">double</span> amount);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>and the OrderService looks like</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderService</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderService</span> {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> PaymentProcess paymentProcess;
 </span></span><span style="display:flex;"><span>
@@ -158,7 +167,7 @@ let&rsquo;s see :)</p>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>and PayPal or Stripe services look like</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaypalService</span> <span style="color:#66d9ef">implements</span> PaymentService {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaypalService</span> <span style="color:#66d9ef">implements</span> PaymentService {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pay</span>(<span style="color:#66d9ef">double</span> amount){
@@ -167,7 +176,7 @@ let&rsquo;s see :)</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>the same for Stripe service</p>
 <h4 id="so-now-in-the-main-class-we-create-a-new-orderservice">so now in the main class we create a new orderservice</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        PaymentProcess paymentProcess <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
@@ -177,14 +186,14 @@ let&rsquo;s see :)</p>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h4 id="so-spring-containers-job-is-to-eliminate-that-line-of-code">so spring container&rsquo;s job is to eliminate that line of code</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PaymentProcess paymentProcess <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PaymentProcess paymentProcess <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PaypalService();
 </span></span></code></pre></div><p>==&gt; so we want the <em>Container</em> to call that constructor for us automatically</p>
 <h3 id="the-missing-piece-configuration">The Missing Piece: Configuration</h3>
 <p>so the problem here is like we indicated before if your company doesn&rsquo;t support PayPal for any reason like boycott or any other reason you should delete it from the main and from the OrderService</p>
 <p>so the idea is creating a class let&rsquo;s call it BeanDefinition it will act like a configuration file &ldquo;yes i know we should use xml file or annotation&rdquo; but for mini-spring v01 we&rsquo;ll use a class that contains a hashMap; key,value so the constructor of this class BeanDefinition will put as a key the PaymentProcess and as a value PaypalService</p>
 <p>and now it&rsquo;s easy if we want to change the PaypalService to StripeService, we&rsquo;ll change it once =&gt; in this configuration file ok!</p>
 <p>so the config class looks like</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BeanDefinition</span> {  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BeanDefinition</span> {  
 </span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;</span>, Class<span style="color:#f92672">&lt;?&gt;&gt;</span> beanMapping <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">BeanDefinition</span>(){  
@@ -196,7 +205,7 @@ let&rsquo;s see :)</p>
 <p>So the container creates the PaypalService <strong>magically</strong>! yep it&rsquo;s the <strong>Reflection concept</strong></p>
 <h3 id="ok-but-what-is-java-reflection">OK! but what is java reflection</h3>
 <p>ok so this blog is not to deep dive into java reflection but think about it like the ability to manipulate java classes at runtime so when you do</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Class<span style="color:#f92672">&lt;?&gt;</span> c <span style="color:#f92672">=</span> myClass.<span style="color:#a6e22e">class</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Class<span style="color:#f92672">&lt;?&gt;</span> c <span style="color:#f92672">=</span> myClass.<span style="color:#a6e22e">class</span>;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// so c it&#39;s not a copy of myClass or something else</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// it&#39;s a reflection of it</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// like a mirror</span>
@@ -213,7 +222,7 @@ let&rsquo;s see :)</p>
 <li>and then we go to our map and get the value and store it in an object class too</li>
 <li>then using reflection like you learned to create an instance from it</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MiniContainer</span> {  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MiniContainer</span> {  
 </span></span><span style="display:flex;"><span>    BeanDefinition config <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BeanDefinition();  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">getBean</span>(Class<span style="color:#f92672">&lt;?&gt;</span> interfaceClass) {  
@@ -235,7 +244,7 @@ let&rsquo;s see :)</p>
 </span></span></code></pre></div><h3 id="and-boom-you-now-created-your-own-spring-v01">and boom you now created your own spring v01</h3>
 <p>small test :) &lsquo;malk mkhlo3 HHH&rsquo;</p>
 <p>the result is true or false? and why</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        MiniContainer miniContainer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MiniContainer();  
@@ -305,7 +314,7 @@ Flyway says: “Connection refused.”</p>
 <p>And then your whole service crashes.</p>
 <h1 id="the-real-error-exactly-as-i-got-it"><em>The Real Error (exactly as I got it)</em></h1>
 <p>Here is the full Flyway error message I faced during development:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Caused by: org.flywaydb.core.internal.exception.sqlExceptions.FlywaySqlUnableToConnectToDbException: Unable to obtain connection from database: Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections. SQL State  : <span style="color:#ae81ff">08001</span> Error Code : <span style="color:#ae81ff">0</span> Message    : Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections. at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection<span style="color:#f92672">(</span>JdbcUtils.java:70<span style="color:#f92672">)</span>  ... Caused by: org.postgresql.util.PSQLException: Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Caused by: org.flywaydb.core.internal.exception.sqlExceptions.FlywaySqlUnableToConnectToDbException: Unable to obtain connection from database: Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections. SQL State  : <span style="color:#ae81ff">08001</span> Error Code : <span style="color:#ae81ff">0</span> Message    : Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections. at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection<span style="color:#f92672">(</span>JdbcUtils.java:70<span style="color:#f92672">)</span>  ... Caused by: org.postgresql.util.PSQLException: Connection to doctor-db:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
 </span></span></code></pre></div><p>This is the typical Flyway + Docker startup problem.<br>
 If you see <em>Connection refused</em>, the database hasn’t finished booting yet.</p>
 <h1 id="why-this-happens"><em>Why This Happens</em></h1>
@@ -341,7 +350,7 @@ If you see <em>Connection refused</em>, the database hasn’t finished booting y
 <p>Prevent this problem forever.</p>
 <p>We use <em>healthchecks</em>.</p>
 <h3 id="add-a-healthcheck-to-your-databases">Add a Healthcheck to your databases</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">patient-db</span>: <span style="color:#75715e"># my use case</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">patient-db</span>: <span style="color:#75715e"># my use case</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:15</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#f92672">environment</span>:     
 </span></span><span style="display:flex;"><span>	   <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">patientdb     </span>
@@ -353,7 +362,7 @@ If you see <em>Connection refused</em>, the database hasn’t finished booting y
 </span></span><span style="display:flex;"><span>	   <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s     </span>
 </span></span><span style="display:flex;"><span>	   <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">5</span>
 </span></span></code></pre></div><h3 id="update-depends_on">Update depends_on</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">patient-service</span>:   
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">patient-service</span>:   
 </span></span><span style="display:flex;"><span>	<span style="color:#f92672">depends_on</span>:     
 </span></span><span style="display:flex;"><span>		<span style="color:#f92672">patient-db</span>:      
 </span></span><span style="display:flex;"><span>			<span style="color:#f92672">condition</span>: <span style="color:#ae81ff">service_healthy</span>
@@ -373,7 +382,7 @@ you can add the <code>Dog</code>s into the <code>Animal</code> collection becaus
 <p><strong>boolean contains(Object o);</strong></p>
 <p><strong>boolean containsAll(Collection &lt;? &gt; c);</strong>  the ? means that i don&rsquo;t care about the type of the collection I can check if i contains those objects
 example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> List.<span style="color:#a6e22e">of</span>(1, 2, 3, 4);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> List.<span style="color:#a6e22e">of</span>(1, 2, 3, 4);
 </span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> other <span style="color:#f92672">=</span> List.<span style="color:#a6e22e">of</span>(2, 3);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> result <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">containsAll</span>(other);
@@ -387,7 +396,7 @@ example:</p>
 &lt;/ul&gt;
 &lt;p&gt;let&amp;rsquo;s take an example
 if you work with arrays in java and suppose you create an new array&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&lt;span style="color:#f92672"&gt;[]&lt;/span&gt; arr &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Interger&lt;span style="color:#f92672"&gt;[]&lt;/span&gt;{1,2,3}
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&lt;span style="color:#f92672"&gt;[]&lt;/span&gt; arr &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Interger&lt;span style="color:#f92672"&gt;[]&lt;/span&gt;{1,2,3}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and you want to make the forEach loop like this &lt;code&gt;for(int n : arr)&lt;/code&gt; =&amp;gt; this will give you a compiler error&lt;/p&gt;</description><content type="html"><![CDATA[<h3 id="jcf-java-collection-framework-hierarchy">JCF: Java Collection Framework Hierarchy</h3>
 <p><img src="/images/Pasted%20image%2020251014010626.png" alt="Pasted image 20251014010626"></p>
 <p>_Bfore starting implementing JCF should you know the Iterable<!-- raw HTML omitted --> interface</p>
@@ -397,10 +406,10 @@ if you work with arrays in java and suppose you create an new array&lt;/p&gt;
 </ul>
 <p>let&rsquo;s take an example
 if you work with arrays in java and suppose you create an new array</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Interger<span style="color:#f92672">[]</span>{1,2,3}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Interger<span style="color:#f92672">[]</span>{1,2,3}
 </span></span></code></pre></div><p>and you want to make the forEach loop like this <code>for(int n : arr)</code> =&gt; this will give you a compiler error</p>
 <p>you can create a custom one let&rsquo;s say <strong>MyArray</strong> and implement the Iterable interface</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Iterable<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyArray</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Iterable<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> T<span style="color:#f92672">[]</span> data;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> size;
 </span></span><span style="display:flex;"><span>
@@ -419,7 +428,7 @@ if you work with arrays in java and suppose you create an new array</p>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>now you can use:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>MyArray<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyArray<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">[]</span>{1, 2, 3});
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>MyArray<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyArray<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">[]</span>{1, 2, 3});
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> n : arr) {
 </span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(n);
 </span></span><span style="display:flex;"><span>}
@@ -434,7 +443,7 @@ if you work with arrays in java and suppose you create an new array</p>
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Install Hugo&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Windows (using Chocolatey)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Windows (using Chocolatey)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;choco install hugo-extended
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# macOS (using Homebrew)&lt;/span&gt;
@@ -457,7 +466,7 @@ if you work with arrays in java and suppose you create an new array</p>
 <ol>
 <li>
 <p><strong>Install Hugo</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Windows (using Chocolatey)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Windows (using Chocolatey)</span>
 </span></span><span style="display:flex;"><span>choco install hugo-extended
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># macOS (using Homebrew)</span>
@@ -483,17 +492,17 @@ if you work with arrays in java and suppose you create an new array</p>
 <ol>
 <li>
 <p><strong>Generate Hugo site</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site my-blog
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site my-blog
 </span></span><span style="display:flex;"><span>cd my-blog
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Initialize Git repository</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git init
 </span></span><span style="display:flex;"><span>git branch -m main
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Choose and install a Hugo theme</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Example with PaperMod theme</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Example with PaperMod theme</span>
 </span></span><span style="display:flex;"><span>git submodule add https://github.com/adityatelange/hugo-PaperMod themes/PaperMod
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Or clone without submodule (simpler for beginners)</span>
@@ -504,7 +513,7 @@ if you work with arrays in java and suppose you create an new array</p>
 <ol>
 <li>
 <p><strong>Edit <code>hugo.toml</code> (or <code>config.toml</code>)</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#39;https://yourusername.github.io/your-repo-name&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#39;https://yourusername.github.io/your-repo-name&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#39;en-us&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#39;My Blog&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">theme</span> = <span style="color:#e6db74">&#39;PaperMod&#39;</span>
@@ -526,7 +535,7 @@ if you work with arrays in java and suppose you create an new array</p>
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Create content structure</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p content/posts
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p content/posts
 </span></span><span style="display:flex;"><span>mkdir -p static/images
 </span></span></code></pre></div></li>
 </ol>
@@ -560,7 +569,7 @@ if you work with arrays in java and suppose you create an new array</p>
 </code></pre></li>
 <li>
 <p><strong>Blog post template (<code>content/templates/blog-post.md</code>)</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span>title: &#34;{{title}}&#34;
 </span></span><span style="display:flex;"><span>date: {{date}}
 </span></span><span style="display:flex;"><span>draft: false
@@ -594,18 +603,18 @@ if you work with arrays in java and suppose you create an new array</p>
 </li>
 <li>
 <p><strong>Connect local repo to GitHub</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote add origin https://github.com/yourusername/your-repo-name.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote add origin https://github.com/yourusername/your-repo-name.git
 </span></span></code></pre></div></li>
 </ol>
 <h3 id="step-7-create-github-actions-workflow">Step 7: Create GitHub Actions Workflow</h3>
 <ol>
 <li>
 <p><strong>Create workflow directory</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p .github/workflows
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p .github/workflows
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Create deployment workflow (<code>.github/workflows/deploy.yml</code>)</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo site to Pages</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo site to Pages</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
@@ -676,7 +685,7 @@ if you work with arrays in java and suppose you create an new array</p>
 <ol>
 <li>
 <p><strong>Push your code first</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
 </span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Initial blog setup&#34;</span>
 </span></span><span style="display:flex;"><span>git push -u origin main
 </span></span></code></pre></div></li>
@@ -703,7 +712,7 @@ if you work with arrays in java and suppose you create an new array</p>
 </li>
 <li>
 <p><strong>Hugo-specific front matter</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span>title: &#34;My First Post&#34;
 </span></span><span style="display:flex;"><span>date: 2024-01-15T10:00:00Z
 </span></span><span style="display:flex;"><span>draft: false
@@ -714,7 +723,7 @@ if you work with arrays in java and suppose you create an new array</p>
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Publishing workflow</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test locally (optional)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test locally (optional)</span>
 </span></span><span style="display:flex;"><span>hugo server -D
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Commit and push</span>
@@ -745,7 +754,7 @@ if you work with arrays in java and suppose you create an new array</p>
 <ol>
 <li>
 <p><strong>Add image handling</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># In your posts, reference images like:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># In your posts, reference images like:
 </span></span><span style="display:flex;"><span>![<span style="color:#f92672">Alt text</span>](<span style="color:#a6e22e">../static/images/my-image.jpg</span>)
 </span></span></code></pre></div></li>
 <li>
@@ -764,7 +773,7 @@ if you work with arrays in java and suppose you create an new array</p>
 <li><strong>Obsidian links</strong>: Some Obsidian-specific syntax may need conversion for Hugo</li>
 </ol>
 <h3 id="useful-commands">Useful Commands</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test locally</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test locally</span>
 </span></span><span style="display:flex;"><span>hugo server -D
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Build site</span>
