@@ -1,4 +1,4 @@
-<!doctype html><html lang=en><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=author content><meta name=description content="Before reading this blog i suggest you have a quick look at how Docker Compose starts services especially how databases take time to initialize before they start accepting connections.
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=author content="Ayoub"><meta name=description content="Before reading this blog i suggest you have a quick look at how Docker Compose starts services especially how databases take time to initialize before they start accepting connections.
 so basically, when you work with microservices, each service has its own database (in my case: patient-db, doctor-db…). and when Spring Boot starts, Flyway tries to run the migration scripts immediately.
 But there is a problem:
 Flyway is much faster than PostgreSQL.
