@@ -74,3 +74,10 @@ pagerSize = 10
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true 
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
