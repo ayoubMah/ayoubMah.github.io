@@ -76,8 +76,6 @@ pagerSize = 10
       unsafe = true 
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
-  taxonomy = ["HTML", "RSS"]
-  term = ["HTML", "RSS"]
