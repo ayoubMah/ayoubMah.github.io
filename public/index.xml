@@ -75,7 +75,7 @@ we have a method
 &lt;p&gt;So if you have a &lt;code&gt;Collection&amp;lt;Animal&amp;gt;&lt;/code&gt; and another &lt;code&gt;Collection&amp;lt;Dog&amp;gt;&lt;/code&gt;,&lt;br&gt;
 you can add the &lt;code&gt;Dog&lt;/code&gt;s into the &lt;code&gt;Animal&lt;/code&gt; collection because &lt;code&gt;Dog&lt;/code&gt; &lt;strong&gt;extends&lt;/strong&gt; &lt;code&gt;Animal&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Create My Own JCF-week1</title><link>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</link><pubDate>Sat, 11 Oct 2025 00:59:35 +0200</pubDate><guid>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</guid><description>&lt;h3 id="jcf-java-collection-framework-hierarchy"&gt;JCF: Java Collection Framework Hierarchy&lt;/h3&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020251014010626.png" alt="Pasted image 20251014010626"&gt;&lt;/p&gt;
-&lt;p&gt;_Bfore starting implementing JCF should you know the Iterable&lt;!-- raw HTML omitted --&gt; interface&lt;/p&gt;
+&lt;p&gt;_Bfore starting implementing JCF should you know the Iterable&lt;E&gt; interface&lt;/p&gt;
 &lt;h1 id="1-iterable"&gt;1. Iterable&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Iterable interface is a builtin interface in java it allow us using &amp;ldquo;for-each&amp;rdquo; loop thanks to Iterator method&lt;/li&gt;

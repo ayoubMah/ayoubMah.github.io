@@ -69,3 +69,8 @@ pagerSize = 10
 
 [permalinks]
   ilt = "/ilt/:year/:month/:day/:slug/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true 

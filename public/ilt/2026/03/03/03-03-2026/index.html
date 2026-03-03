@@ -1,4 +1,4 @@
-<!doctype html><html lang=en><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=author content><meta name=description content='Docker runtime stack 1- docker cli translate commands to rest api and send it over unix socket
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=author content="Ayoub"><meta name=description content='Docker runtime stack 1- docker cli translate commands to rest api and send it over unix socket
 docker run ngnix ===> POST /container/create {"Image":"nginx:latest", ....} ===> sent to: /var/run/docker.sock so we can talk to dockerd with it
 like
 curl --unix-socket /var/run/docker.sock http://localhost/containers/json 2- dockerd it&rsquo;s an orchestrator

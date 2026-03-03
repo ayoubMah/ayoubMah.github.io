@@ -389,7 +389,7 @@ example:</p>
 </span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(result); <span style="color:#75715e">// true</span>
 </span></span></code></pre></div>]]></content></item><item><title>Create My Own JCF-week1</title><link>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</link><pubDate>Sat, 11 Oct 2025 00:59:35 +0200</pubDate><guid>https://ayoubmah.github.io/posts/create-my-own-jcf-week1/</guid><description>&lt;h3 id="jcf-java-collection-framework-hierarchy"&gt;JCF: Java Collection Framework Hierarchy&lt;/h3&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020251014010626.png" alt="Pasted image 20251014010626"&gt;&lt;/p&gt;
-&lt;p&gt;_Bfore starting implementing JCF should you know the Iterable&lt;!-- raw HTML omitted --&gt; interface&lt;/p&gt;
+&lt;p&gt;_Bfore starting implementing JCF should you know the Iterable&lt;E&gt; interface&lt;/p&gt;
 &lt;h1 id="1-iterable"&gt;1. Iterable&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Iterable interface is a builtin interface in java it allow us using &amp;ldquo;for-each&amp;rdquo; loop thanks to Iterator method&lt;/li&gt;
@@ -399,7 +399,7 @@ if you work with arrays in java and suppose you create an new array&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&lt;span style="color:#f92672"&gt;[]&lt;/span&gt; arr &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Interger&lt;span style="color:#f92672"&gt;[]&lt;/span&gt;{1,2,3}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and you want to make the forEach loop like this &lt;code&gt;for(int n : arr)&lt;/code&gt; =&amp;gt; this will give you a compiler error&lt;/p&gt;</description><content type="html"><![CDATA[<h3 id="jcf-java-collection-framework-hierarchy">JCF: Java Collection Framework Hierarchy</h3>
 <p><img src="/images/Pasted%20image%2020251014010626.png" alt="Pasted image 20251014010626"></p>
-<p>_Bfore starting implementing JCF should you know the Iterable<!-- raw HTML omitted --> interface</p>
+<p>_Bfore starting implementing JCF should you know the Iterable<E> interface</p>
 <h1 id="1-iterable">1. Iterable</h1>
 <ul>
 <li>Iterable interface is a builtin interface in java it allow us using &ldquo;for-each&rdquo; loop thanks to Iterator method</li>
