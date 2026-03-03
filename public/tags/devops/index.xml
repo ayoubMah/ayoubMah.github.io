@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Devops on Ayoub's Blog</title><link>https://ayoubmah.github.io/tags/devops/</link><description>Recent content in Devops on Ayoub's Blog</description><generator>Hugo</generator><language>en-us</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Wed, 08 Oct 2025 08:45:00 +0200</lastBuildDate><atom:link href="https://ayoubmah.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml"/><item><title>MicroServices With Go and kuber</title><link>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</link><pubDate>Wed, 08 Oct 2025 08:45:00 +0200</pubDate><guid>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</guid><description>&lt;p&gt;coming soon :)&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Devops on Ayoub's Blog</title><link>https://ayoubmah.github.io/tags/devops/</link><description>Recent content in Devops on Ayoub's Blog</description><generator>Hugo</generator><language>en-us</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Tue, 03 Mar 2026 23:52:59 +0100</lastBuildDate><atom:link href="https://ayoubmah.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml"/><item><title>03-03-2026</title><link>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</link><pubDate>Tue, 03 Mar 2026 23:52:59 +0100</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</guid><description>&lt;h1 id="docker-runtime-stack"&gt;Docker runtime stack&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260303123027.png" alt="Pasted image 20260303123027"&gt;&lt;/p&gt;
+&lt;h3 id="1--docker-cli"&gt;1- docker cli&lt;/h3&gt;
+&lt;p&gt;translate commands to rest api and send it over unix socket&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker run ngnix &lt;span style="color:#f92672"&gt;===&lt;/span&gt;&amp;gt; POST /container/create &lt;span style="color:#f92672"&gt;{&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;Image&amp;#34;&lt;/span&gt;:&lt;span style="color:#e6db74"&gt;&amp;#34;nginx:latest&amp;#34;&lt;/span&gt;, ....&lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;===&lt;/span&gt;&amp;gt; sent to: /var/run/docker.sock
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;so we can talk to dockerd with it&lt;/p&gt;
+&lt;p&gt;like&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl --unix-socket /var/run/docker.sock http://localhost/containers/json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="2--dockerd"&gt;2- dockerd&lt;/h3&gt;
+&lt;p&gt;it&amp;rsquo;s an orchestrator&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;manage images (pull, build)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;manage volume (create net, mount)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;manage network (bridge creation, port mapping)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;docker run delegated to containerd not here&lt;/strong&gt; !!&lt;/p&gt;</description></item><item><title>MicroServices With Go and kuber</title><link>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</link><pubDate>Wed, 08 Oct 2025 08:45:00 +0200</pubDate><guid>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</guid><description>&lt;p&gt;coming soon :)&lt;/p&gt;</description></item></channel></rss>
