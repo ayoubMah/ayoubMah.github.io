@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Devops on Ayoub's Blog</title><link>https://ayoubmah.github.io/tags/devops/</link><description>Recent content in Devops on Ayoub's Blog</description><generator>Hugo</generator><language>en-us</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Tue, 03 Mar 2026 23:52:59 +0100</lastBuildDate><atom:link href="https://ayoubmah.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml"/><item><title>03-03-2026</title><link>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</link><pubDate>Tue, 03 Mar 2026 23:52:59 +0100</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</guid><description>&lt;h1 id="docker-runtime-stack"&gt;Docker runtime stack&lt;/h1&gt;
-&lt;p&gt;this is a test&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260303123027.png" alt="Pasted image 20260303123027"&gt;&lt;/p&gt;
 &lt;h3 id="1--docker-cli"&gt;1- docker cli&lt;/h3&gt;
 &lt;p&gt;translate commands to rest api and send it over unix socket&lt;/p&gt;
@@ -21,4 +20,7 @@
 &lt;p&gt;manage volume (create net, mount)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;manage network (bridge creation, port mapping)&lt;/p&gt;</description></item><item><title>MicroServices With Go and kuber</title><link>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</link><pubDate>Wed, 08 Oct 2025 08:45:00 +0200</pubDate><guid>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</guid><description>&lt;p&gt;coming soon :)&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;manage network (bridge creation, port mapping)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;docker run delegated to containerd not here&lt;/strong&gt; !!&lt;/p&gt;</description></item><item><title>MicroServices With Go and kuber</title><link>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</link><pubDate>Wed, 08 Oct 2025 08:45:00 +0200</pubDate><guid>https://ayoubmah.github.io/posts/microservices-with-go-and-kuber/</guid><description>&lt;p&gt;coming soon :)&lt;/p&gt;</description></item></channel></rss>
