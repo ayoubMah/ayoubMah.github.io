@@ -2,7 +2,7 @@
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209000844.png" alt="Pasted image 20260209000844"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209001058.png" alt="Pasted image 20260209001058"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209001254.png" alt="Pasted image 20260209001254"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209001457.png" alt="Pasted image 20260209001457"&gt;&lt;/p&gt;</description></item><item><title>Containerd under the hood</title><link>https://ayoubmah.github.io/posts/lab/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/lab/</guid><description>&lt;h1 id="phase-1-runc-raw--zero-tooling"&gt;Phase 1: runc Raw — Zero Tooling&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260209001457.png" alt="Pasted image 20260209001457"&gt;&lt;/p&gt;</description></item><item><title>Containerd under the hood</title><link>https://ayoubmah.github.io/posts/containerd-under-the-hood/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/containerd-under-the-hood/</guid><description>&lt;h1 id="phase-1-runc-raw--zero-tooling"&gt;Phase 1: runc Raw — Zero Tooling&lt;/h1&gt;
 &lt;p&gt;so what we&amp;rsquo;ll do in this phase is exactly what containerd does internally&lt;/p&gt;
 &lt;p&gt;me (manually) vs containerd (automatically) ─────────────────────────────────────────────────────────&lt;/p&gt;
 &lt;ol&gt;
