@@ -1,9 +1,12 @@
 ---
 title: Containerd under the hood
+date: 2026-03-06T00:00:47+01:00
+draft: false
 tags:
   - docker
   - linux
-  - basics
+categories:
+  - blog
 ---
 
 # Phase 1: runc Raw — Zero Tooling
