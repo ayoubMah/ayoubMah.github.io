@@ -1,4 +1,53 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>Ayoub</managingEditor><lastBuildDate>Fri, 06 Mar 2026 00:00:47 +0100</lastBuildDate><item><title>Containerd under the hood</title><link>https://ayoubmah.github.io/posts/containerd-under-the-hood/</link><pubDate>Fri, 06 Mar 2026 00:00:47 +0100</pubDate><guid>https://ayoubmah.github.io/posts/containerd-under-the-hood/</guid><description>&lt;h1 id="phase-1-runc-raw--zero-tooling"&gt;Phase 1: runc Raw — Zero Tooling&lt;/h1&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>Ayoub</managingEditor><lastBuildDate>Thu, 19 Mar 2026 23:33:57 +0100</lastBuildDate><item><title>Day 0 - linux primitives that make k8s possible</title><link>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</link><pubDate>Thu, 19 Mar 2026 23:33:57 +0100</pubDate><guid>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</guid><description>&lt;h2 id="so-what-what-happen-when-we-install-k8s-"&gt;so what what happen when we install k8s ?&lt;/h2&gt;
+&lt;p&gt;when we install k8s actually we get this processes
+we can separate them logically (they are not separated physically like not namespaces or something)
+they are just have a different roles :&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;Our Physical Machine (or VM)
+│
+├── Control plan processes ← just Linux processes
+│ ├── etcd (a process)
+│ ├── kube-apiserver (a process)
+│ ├── kube-scheduler (a process)
+│ └── kube-controller-manager (a process)
+│
+└── Worker Node processes ← also just Linux processes
+├── kubelet (a process)
+├── kube-proxy (a process)
+└── containerd (a process)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="so-what-is-a-node-"&gt;so what is a node ?&lt;/h2&gt;
+&lt;p&gt;a node it&amp;rsquo;s just a machine (VM/ cloud instance) that k8s know about it and can schedule a work onto it&lt;/p&gt;</description></item><item><title>etcd</title><link>https://ayoubmah.github.io/posts/day-1---etcd/</link><pubDate>Thu, 19 Mar 2026 23:31:51 +0100</pubDate><guid>https://ayoubmah.github.io/posts/day-1---etcd/</guid><description>&lt;h1 id="setup"&gt;setup&lt;/h1&gt;
+&lt;p&gt;i have 3 VMs: vm1, vm2 and vm3&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Node&lt;/th&gt;
+&lt;th&gt;IP Address&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;node1&lt;/td&gt;
+&lt;td&gt;172.31.253.147&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;node2&lt;/td&gt;
+&lt;td&gt;172.31.250.205&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;node3&lt;/td&gt;
+&lt;td&gt;172.31.253.194&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319171638.png" alt="Pasted image 20260319171638"&gt;&lt;/p&gt;
+&lt;h1 id="step1-install-etcd-on-all-3-nodes-and-create-the-data-dir"&gt;step1: Install etcd on ALL 3 Nodes and create the data dir&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319171828.png" alt="Pasted image 20260319171828"&gt;&lt;/p&gt;
+&lt;p&gt;let&amp;rsquo;s verify the version and create the data directory
+&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319171932.png" alt="Pasted image 20260319171932"&gt;&lt;/p&gt;
+&lt;h1 id="step2-create-the-etcd-systemd-service"&gt;step2: Create the etcd systemd Service&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319172432.png" alt="Pasted image 20260319172432"&gt;&lt;/p&gt;
+&lt;p&gt;we do the same thing for other VMs changing just the ip add
+for example for node1&lt;/p&gt;</description></item><item><title>Containerd under the hood</title><link>https://ayoubmah.github.io/posts/containerd-under-the-hood/</link><pubDate>Fri, 06 Mar 2026 00:00:47 +0100</pubDate><guid>https://ayoubmah.github.io/posts/containerd-under-the-hood/</guid><description>&lt;h1 id="phase-1-runc-raw--zero-tooling"&gt;Phase 1: runc Raw — Zero Tooling&lt;/h1&gt;
 &lt;p&gt;so what we&amp;rsquo;ll do in this phase is exactly what containerd does internally&lt;/p&gt;
 &lt;p&gt;me (manually) vs containerd (automatically) ─────────────────────────────────────────────────────────&lt;/p&gt;
 &lt;ol&gt;
@@ -72,53 +121,4 @@ if you work with arrays in java and suppose you create an new array&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description></item><item><title/><link>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</guid><description>&lt;h2 id="so-what-what-happen-when-we-install-k8s-"&gt;so what what happen when we install k8s ?&lt;/h2&gt;
-&lt;p&gt;when we install k8s actually we get this processes
-we can separate them logically (they are not separated physically like not namespaces or something)
-they are just have a different roles :&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;Our Physical Machine (or VM)
-│
-├── Control plan processes ← just Linux processes
-│ ├── etcd (a process)
-│ ├── kube-apiserver (a process)
-│ ├── kube-scheduler (a process)
-│ └── kube-controller-manager (a process)
-│
-└── Worker Node processes ← also just Linux processes
-├── kubelet (a process)
-├── kube-proxy (a process)
-└── containerd (a process)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="so-what-is-a-node-"&gt;so what is a node ?&lt;/h2&gt;
-&lt;p&gt;a node it&amp;rsquo;s just a machine (VM/ cloud instance) that k8s know about it and can schedule a work onto it&lt;/p&gt;</description></item><item><title/><link>https://ayoubmah.github.io/posts/day-1---etcd-lab/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/day-1---etcd-lab/</guid><description>&lt;h1 id="setup"&gt;setup&lt;/h1&gt;
-&lt;p&gt;i have 3 VMs: vm1, vm2 and vm3&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Node&lt;/th&gt;
-&lt;th&gt;IP Address&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;node1&lt;/td&gt;
-&lt;td&gt;172.31.253.147&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;node2&lt;/td&gt;
-&lt;td&gt;172.31.250.205&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;node3&lt;/td&gt;
-&lt;td&gt;172.31.253.194&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319171638.png" alt="Pasted image 20260319171638"&gt;&lt;/p&gt;
-&lt;h1 id="step1-install-etcd-on-all-3-nodes-and-create-the-data-dir"&gt;step1: Install etcd on ALL 3 Nodes and create the data dir&lt;/h1&gt;
-&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319171828.png" alt="Pasted image 20260319171828"&gt;&lt;/p&gt;
-&lt;p&gt;let&amp;rsquo;s verify the version and create the data directory
-&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319171932.png" alt="Pasted image 20260319171932"&gt;&lt;/p&gt;
-&lt;h1 id="step2-create-the-etcd-systemd-service"&gt;step2: Create the etcd systemd Service&lt;/h1&gt;
-&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319172432.png" alt="Pasted image 20260319172432"&gt;&lt;/p&gt;
-&lt;p&gt;we do the same thing for other VMs changing just the ip add
-for example for node1&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
