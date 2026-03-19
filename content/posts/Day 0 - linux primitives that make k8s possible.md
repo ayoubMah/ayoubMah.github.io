@@ -1,3 +1,13 @@
+---
+title: Day 0 - linux primitives that make k8s possible
+date: 2026-03-19T23:33:57+01:00
+draft: false
+tags: []
+categories:
+  - blog
+  - k8s
+  - basics
+---
 ## so what what happen when we install k8s ?
 
 when we install k8s actually we get this processes 
