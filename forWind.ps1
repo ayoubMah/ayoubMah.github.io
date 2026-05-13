@@ -47,7 +47,9 @@ Write-Host "=== 2. Removing deleted posts ==="
 $prev.PSObject.Properties | ForEach-Object {
     $rel = $_.Name
     if (-not $vault.ContainsKey($rel)) {
-        $contentPath = Join-Path -Path $HugoRepo -ChildPath "content/$rel"
+        # BLOG files stored without prefix, ILT files stored with "ilt/" prefix
+        $contentRel = if ($rel -match "^ilt/") { "content/$rel" } else { "content/posts/$rel" }
+        $contentPath = Join-Path -Path $HugoRepo -ChildPath $contentRel
         if (Test-Path -Path $contentPath) {
             Remove-Item -Path $contentPath -Force
             Write-Host "  Removed: $rel"
