@@ -21,6 +21,7 @@ pagerSize = 10
   description = "My new homepage or blog"
   keywords = "homepage, blog"
   images = [""]
+  customCSS = ["/css/custom.css"]
 
 [params.favicon]
   mask = "/favicon.png"

@@ -1,0 +1,52 @@
+{{ define "body" }}
+    <body class="{{ if .Site.Params.backgroundImage }} background-image" style="background-image: url('{{ .Site.Params.backgroundImage }}');" {{ else }}"{{ end }}>
+{{ end }}
+
+{{ define "main" }}
+    <main>
+        <div>
+            <h1>{{ .Site.Title }}</h1>
+
+            {{ partial "subtitle.html" . }}
+
+            <div class="home-intro">
+                <p>Welcome! I write about <strong>software engineering, cloud-native tech, and whatever I'm learning.</strong></p>
+                <p>Explore <a href="/posts/">blog posts</a> for deep dives and tutorials, or check the <a href="/ilt/">ILT section</a> for classroom notes and quick references.</p>
+            </div>
+
+            {{- with .Site.Params.social }}
+                <div>
+                    {{ partial "social-icons.html" . }}
+                </div>
+            {{- end }}
+
+            <div class="home-sections">
+                <section>
+                    <h2><a href="/posts/">Latest Blog Posts</a></h2>
+                    <ul>
+                    {{ range first 3 (where .Site.RegularPages "Section" "posts") }}
+                        <li>
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            <time>{{ .Date.Format "Jan 2, 2006" }}</time>
+                        </li>
+                    {{ end }}
+                    </ul>
+                    <p><a href="/posts/">All posts →</a></p>
+                </section>
+
+                <section>
+                    <h2><a href="/ilt/">Latest ILT Notes</a></h2>
+                    <ul>
+                    {{ range first 3 (where .Site.RegularPages "Section" "ilt") }}
+                        <li>
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            <time>{{ .Date.Format "Jan 2, 2006" }}</time>
+                        </li>
+                    {{ end }}
+                    </ul>
+                    <p><a href="/ilt/">All ILT notes →</a></p>
+                </section>
+            </div>
+        </div>
+    </main>
+{{ end }}
