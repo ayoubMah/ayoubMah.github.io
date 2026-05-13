@@ -17,7 +17,7 @@ $HugoTheme     = "hello-friend-ng"
 
 Write-Host "=== Pulling latest blog content ==="
 Set-Location -LiteralPath $HugoRepo
-git pull --rebase
+git pull --rebase --autostash
 if (-not $?) { throw "git pull failed" }
 
 # Ensure target dirs exist
@@ -25,13 +25,29 @@ foreach ($d in $ObsidianBlog, $ObsidianIlt, $HugoPosts, $HugoiLt, $StaticImages)
     New-Item -ItemType Directory -Path $d -Force | Out-Null
 }
 
+function Sync-Delete {
+    param($Source, $Dest)
+    if (-not (Test-Path -Path $Dest)) { return }
+    $destLen = $Dest.Length
+    Get-ChildItem -Path $Dest -Recurse -File | ForEach-Object {
+        $rel = $_.FullName.Substring($destLen).TrimStart('\')
+        $srcFile = Join-Path -Path $Source -ChildPath $rel
+        if (-not (Test-Path -Path $srcFile)) {
+            Remove-Item -Path $_.FullName -Force
+            Write-Host "  Removed: $rel"
+        }
+    }
+}
+
 Write-Host "=== Syncing BLOG -> content/posts ==="
 if (Test-Path -LiteralPath $ObsidianBlog) {
+    Sync-Delete -Source $ObsidianBlog -Dest $HugoPosts
     Copy-Item -Path "$ObsidianBlog\*" -Destination $HugoPosts -Recurse -Force
 }
 
 Write-Host "=== Syncing ILT -> content/ilt ==="
 if (Test-Path -LiteralPath $ObsidianIlt) {
+    Sync-Delete -Source $ObsidianIlt -Dest $HugoiLt
     Copy-Item -Path "$ObsidianIlt\*" -Destination $HugoiLt -Recurse -Force
 }
 
