@@ -21,4 +21,27 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p&gt;
+&lt;h2 id="phase-1-local-setup"&gt;Phase 1: Local Setup&lt;/h2&gt;
+&lt;h3 id="step-1-install-required-tools"&gt;Step 1: Install Required Tools&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install Hugo&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Windows (using Chocolatey)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;choco install hugo-extended
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# macOS (using Homebrew)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;brew install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Linux (using Snap)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo snap install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install Git&lt;/strong&gt; (if not already installed)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download from &lt;a href="https://git-scm.com/"&gt;git-scm.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
