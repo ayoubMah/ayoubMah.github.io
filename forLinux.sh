@@ -15,14 +15,17 @@ HUGO_THEME="hello-friend-ng"
 
 echo "=== Pulling latest blog content ==="
 cd "$HUGO_DIR"
-git pull --rebase
+git pull --rebase --autostash
 
 mkdir -p "$HUGO_POSTS" "$HUGO_ILT" "$STATIC_IMAGES" "$OBSIDIAN_POSTS" "$OBSIDIAN_ILT"
 
-echo "🔄 Rsync: BLOG -> content/posts"
-rsync -av --delete "$OBSIDIAN_POSTS/" "$HUGO_POSTS/"
+# Two-way sync: git -> vault first (new posts from other machine), then vault -> content (with delete)
+echo "🔄 Rsync: git -> vault (no delete)"
+rsync -av "$HUGO_POSTS/" "$OBSIDIAN_POSTS/"
+rsync -av "$HUGO_ILT/" "$OBSIDIAN_ILT/"
 
-echo "🔄 Rsync: ILT  -> content/ilt"
+echo "🔄 Rsync: vault -> content (with delete)"
+rsync -av --delete "$OBSIDIAN_POSTS/" "$HUGO_POSTS/"
 rsync -av --delete "$OBSIDIAN_ILT/" "$HUGO_ILT/"
 
 export HUGO_POSTS HUGO_ILT ATTACHMENTS STATIC_IMAGES

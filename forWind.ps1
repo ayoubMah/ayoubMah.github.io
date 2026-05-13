@@ -25,14 +25,23 @@ foreach ($d in $ObsidianBlog, $ObsidianIlt, $HugoPosts, $HugoiLt, $StaticImages)
     New-Item -ItemType Directory -Path $d -Force | Out-Null
 }
 
-Write-Host "=== Syncing BLOG -> content/posts ==="
-if (Test-Path -Path $ObsidianBlog) {
-    Copy-Item -Path "$ObsidianBlog\*" -Destination $HugoPosts -Recurse -Force
+# --- Two-way sync ---
+# 1. Git -> Vault: copy new/changed files FROM git TO vault (never delete from vault)
+Write-Host "=== Syncing git -> vault ==="
+if (Test-Path -Path $HugoPosts) {
+    Copy-Item -Path "$HugoPosts\*" -Destination $ObsidianBlog -Recurse -Force
+}
+if (Test-Path -Path $HugoiLt) {
+    Copy-Item -Path "$HugoiLt\*" -Destination $ObsidianIlt -Recurse -Force
 }
 
-Write-Host "=== Syncing ILT -> content/ilt ==="
+# 2. Vault -> Content: mirror vault onto content (handles adds, edits, AND deletes)
+Write-Host "=== Syncing vault -> content (with mirror) ==="
+if (Test-Path -Path $ObsidianBlog) {
+    robocopy "$ObsidianBlog" "$HugoPosts" /MIR /NJH /NJS /NDL /NP > $null
+}
 if (Test-Path -Path $ObsidianIlt) {
-    Copy-Item -Path "$ObsidianIlt\*" -Destination $HugoiLt -Recurse -Force
+    robocopy "$ObsidianIlt" "$HugoiLt" /MIR /NJH /NJS /NDL /NP > $null
 }
 
 Write-Host "=== Processing Obsidian image links and copying images ==="
@@ -53,9 +62,9 @@ foreach ($rootDir in @($HugoPosts, $HugoiLt)) {
             $content = $content -replace [regex]::Escape($match.Value), $mdImg
             $modified = $true
 
-            $src = Join-Path -LiteralPath $Attachments -ChildPath $imgName
-            if (Test-Path -LiteralPath $src) {
-                Copy-Item -LiteralPath $src -Destination $StaticImages -Force
+            $src = Join-Path -Path $Attachments -ChildPath $imgName
+            if (Test-Path -Path $src) {
+                Copy-Item -Path $src -Destination $StaticImages -Force
             }
         }
 
