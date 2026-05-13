@@ -83,7 +83,16 @@ Write-Host "=== 4. Copying vault files to content ==="
 Copy-Item -Path "$ObsidianBlog\*" -Destination $HugoPosts -Recurse -Force
 Copy-Item -Path "$ObsidianIlt\*" -Destination $HugoiLt -Recurse -Force
 
-# Save current vault snapshot
+# Save current vault snapshot (re-read after all syncs)
+$vault = @{}
+Get-ChildItem -Path $ObsidianBlog -Recurse -File -Filter *.md | ForEach-Object {
+    $rel = $_.FullName.Substring($ObsidianBlog.Length).TrimStart('\')
+    $vault[$rel] = $true
+}
+Get-ChildItem -Path $ObsidianIlt -Recurse -File -Filter *.md | ForEach-Object {
+    $rel = $_.FullName.Substring($ObsidianIlt.Length).TrimStart('\')
+    $vault["ilt/$rel"] = $true
+}
 $vault | ConvertTo-Json | Set-Content -Path $TrackingFile -Encoding UTF8
 
 Write-Host "=== 5. Processing Obsidian image links ==="
