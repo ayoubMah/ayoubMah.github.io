@@ -14,44 +14,86 @@ $HugoiLt       = "$HugoRepo\content\ilt"
 $StaticImages  = "$HugoRepo\static\images"
 
 $HugoTheme     = "hello-friend-ng"
+$TrackingFile  = "$HugoRepo\.sync-cache.json"
 
-Write-Host "=== Pulling latest blog content ==="
-Set-Location -LiteralPath $HugoRepo
+Write-Host "=== 1. Pulling latest content from git ==="
+Set-Location -Path $HugoRepo
 git pull --rebase --autostash
 if (-not $?) { throw "git pull failed" }
 
-# Ensure target dirs exist
 foreach ($d in $ObsidianBlog, $ObsidianIlt, $HugoPosts, $HugoiLt, $StaticImages) {
     New-Item -ItemType Directory -Path $d -Force | Out-Null
 }
 
-# --- Two-way sync ---
-# 1. Git -> Vault: copy new/changed files FROM git TO vault (never delete from vault)
-Write-Host "=== Syncing git -> vault ==="
-if (Test-Path -Path $HugoPosts) {
-    Copy-Item -Path "$HugoPosts\*" -Destination $ObsidianBlog -Recurse -Force
-}
-if (Test-Path -Path $HugoiLt) {
-    Copy-Item -Path "$HugoiLt\*" -Destination $ObsidianIlt -Recurse -Force
+# Load previous vault snapshot
+$prev = @{}
+if (Test-Path -Path $TrackingFile) {
+    $prev = Get-Content -Path $TrackingFile -Raw -Encoding UTF8 | ConvertFrom-Json
 }
 
-# 2. Vault -> Content: mirror vault onto content (handles adds, edits, AND deletes)
-Write-Host "=== Syncing vault -> content (with mirror) ==="
-if (Test-Path -Path $ObsidianBlog) {
-    robocopy "$ObsidianBlog" "$HugoPosts" /MIR /NJH /NJS /NDL /NP > $null
+# Current vault files
+$vault = @{}
+Get-ChildItem -Path $ObsidianBlog -Recurse -File -Filter *.md | ForEach-Object {
+    $rel = $_.FullName.Substring($ObsidianBlog.Length).TrimStart('\')
+    $vault[$rel] = $true
 }
-if (Test-Path -Path $ObsidianIlt) {
-    robocopy "$ObsidianIlt" "$HugoiLt" /MIR /NJH /NJS /NDL /NP > $null
+Get-ChildItem -Path $ObsidianIlt -Recurse -File -Filter *.md | ForEach-Object {
+    $rel = $_.FullName.Substring($ObsidianIlt.Length).TrimStart('\')
+    $vault["ilt/$rel"] = $true
 }
 
-Write-Host "=== Processing Obsidian image links and copying images ==="
+# Find files deleted from vault since last run and remove from content
+Write-Host "=== 2. Removing deleted posts ==="
+$prev.PSObject.Properties | ForEach-Object {
+    $rel = $_.Name
+    if (-not $vault.ContainsKey($rel)) {
+        $contentPath = Join-Path -Path $HugoRepo -ChildPath "content/$rel"
+        if (Test-Path -Path $contentPath) {
+            Remove-Item -Path $contentPath -Force
+            Write-Host "  Removed: $rel"
+        }
+    }
+}
+
+# Copy new files from git -> vault (so user sees them)
+Write-Host "=== 3. Syncing new git content to vault ==="
+Get-ChildItem -Path $HugoPosts -Recurse -File -Filter *.md | ForEach-Object {
+    $rel = $_.FullName.Substring($HugoPosts.Length).TrimStart('\')
+    $vaultPath = Join-Path -Path $ObsidianBlog -ChildPath $rel
+    if (-not (Test-Path -Path $vaultPath)) {
+        $dir = Split-Path -Parent $vaultPath
+        New-Item -ItemType Directory -Path $dir -Force | Out-Null
+        Copy-Item -Path $_.FullName -Destination $vaultPath
+        Write-Host "  New in vault: posts/$rel"
+    }
+}
+Get-ChildItem -Path $HugoiLt -Recurse -File -Filter *.md | ForEach-Object {
+    $rel = $_.FullName.Substring($HugoiLt.Length).TrimStart('\')
+    $vaultPath = Join-Path -Path $ObsidianIlt -ChildPath $rel
+    if (-not (Test-Path -Path $vaultPath)) {
+        $dir = Split-Path -Parent $vaultPath
+        New-Item -ItemType Directory -Path $dir -Force | Out-Null
+        Copy-Item -Path $_.FullName -Destination $vaultPath
+        Write-Host "  New in vault: ilt/$rel"
+    }
+}
+
+# Copy vault -> content (add/update all vault files)
+Write-Host "=== 4. Copying vault files to content ==="
+Copy-Item -Path "$ObsidianBlog\*" -Destination $HugoPosts -Recurse -Force
+Copy-Item -Path "$ObsidianIlt\*" -Destination $HugoiLt -Recurse -Force
+
+# Save current vault snapshot
+$vault | ConvertTo-Json | Set-Content -Path $TrackingFile -Encoding UTF8
+
+Write-Host "=== 5. Processing Obsidian image links ==="
 $imgPattern = [regex]'!?\[\[([^\]|]*\.(?:png|jpg|jpeg|gif|webp|svg|ico))(?:\|[^\]]*)?\]\]'
 
 foreach ($rootDir in @($HugoPosts, $HugoiLt)) {
-    if (-not (Test-Path -LiteralPath $rootDir)) { continue }
-    Get-ChildItem -LiteralPath $rootDir -Recurse -Filter *.md | ForEach-Object {
+    if (-not (Test-Path -Path $rootDir)) { continue }
+    Get-ChildItem -Path $rootDir -Recurse -Filter *.md | ForEach-Object {
         $fpath = $_.FullName
-        $content = Get-Content -LiteralPath $fpath -Raw -Encoding UTF8
+        $content = Get-Content -Path $fpath -Raw -Encoding UTF8
         $modified = $false
 
         $matches = $imgPattern.Matches($content)
@@ -69,16 +111,16 @@ foreach ($rootDir in @($HugoPosts, $HugoiLt)) {
         }
 
         if ($modified) {
-            Set-Content -LiteralPath $fpath -Value $content -Encoding UTF8 -NoNewline
+            Set-Content -Path $fpath -Value $content -Encoding UTF8 -NoNewline
         }
     }
 }
 
-Write-Host "=== Building site with Hugo ==="
-Set-Location -LiteralPath $HugoRepo
+Write-Host "=== 6. Building with Hugo ==="
+Set-Location -Path $HugoRepo
 hugo -t $HugoTheme --minify
 
-Write-Host "=== Committing and pushing to master ==="
+Write-Host "=== 7. Committing and pushing ==="
 git add .
 $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 $commitOutput = git commit -m "Auto-publish: $date" 2>&1
@@ -88,4 +130,4 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "Nothing to commit - no changes."
 }
 
-Write-Host "=== Blog published successfully! ==="
+Write-Host "=== Done! ==="
