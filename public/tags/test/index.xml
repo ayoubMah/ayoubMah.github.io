@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Test on Ayoub's Blog</title><link>https://ayoubmah.github.io/tags/test/</link><description>Recent content in Test on Ayoub's Blog</description><generator>Hugo</generator><language>en-us</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><lastBuildDate>Wed, 13 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://ayoubmah.github.io/tags/test/index.xml" rel="self" type="application/rss+xml"/><item><title>Test Blog Post</title><link>https://ayoubmah.github.io/posts/test-blog-post/</link><pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/posts/test-blog-post/</guid><description>&lt;h1 id="test-blog-post"&gt;Test Blog Post&lt;/h1&gt;
+&lt;p&gt;This is a test blog post created via the Windows deployment script.&lt;/p&gt;
+&lt;p&gt;Testing the cross-platform workflow:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Written on Windows&lt;/li&gt;
+&lt;li&gt;Synced to Hugo content&lt;/li&gt;
+&lt;li&gt;Built and deployed to GitHub Pages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="steps-tested"&gt;Steps tested&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git pull&lt;/code&gt; to sync&lt;/li&gt;
+&lt;li&gt;Copy from vault &lt;code&gt;BLOG/&lt;/code&gt; to &lt;code&gt;content/posts/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Hugo build&lt;/li&gt;
+&lt;li&gt;Push to master&lt;/li&gt;
+&lt;li&gt;GitHub Actions deploys to gh-pages&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;All good!&lt;/p&gt;</description></item></channel></rss>
