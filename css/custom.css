@@ -129,6 +129,14 @@
   white-space: nowrap;
 }
 
+.feed-sentinel {
+  min-height: 1px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
 @media (max-width: 600px) {
   .feed, .home-intro { padding: 0 12px; }
   .feed-cover { height: 160px; }
