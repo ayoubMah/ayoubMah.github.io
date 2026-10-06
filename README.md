@@ -64,8 +64,8 @@ New notes in `blog/BLOG/` or `blog/ILT/` automatically get the right template vi
 
 | Folder | Template | Frontmatter |
 |---|---|---|
-| `blog/BLOG/` | `Template/Blog.md` | `title, date, draft: true, categories: [tech], tags: [english]` |
-| `blog/ILT/` | `Template/ITL.md` | `title, date, draft: true, categories: [tech], tags: [english]` |
+| `blog/BLOG/` | `Template/Blog.md` | `title, date, draft: true, categories: [tech, life], tags: [english, darija]` (delete the ones that don't apply) |
+| `blog/ILT/` | `Template/ITL.md` | `title, date, draft: true, categories: [tech, life], tags: [english, darija]` (delete the ones that don't apply) |
 
 **Sections** = how finished (Blog = finished pieces, ILT = raw learning notes). **One category** = `tech` or `life`. **Tags** = topics + exactly one language tag, `english` or `darija`.
 
