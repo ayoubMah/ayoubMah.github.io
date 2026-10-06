@@ -30,7 +30,7 @@ pagerSize = 10
 
 
 [taxonomies]
-    category = "blog"
+    category = "categories"
     tag      = "tags"
     series   = "series"
 
