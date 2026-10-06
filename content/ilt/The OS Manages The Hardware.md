@@ -6,8 +6,9 @@ tags:
   - os
   - basics
   - cs
+  - english
 categories:
-  - ILT
+  - tech
 ---
 ## 1) Layered view of a computer system
 

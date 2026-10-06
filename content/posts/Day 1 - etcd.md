@@ -2,11 +2,12 @@
 title: etcd
 date: 2026-03-19T23:31:51+01:00
 draft: false
-tags: []
-categories:
-  - blog
+tags:
   - k8s
   - basics
+  - english
+categories:
+  - tech
 ---
 # setup
 i have 3 VMs: vm1, vm2 and vm3

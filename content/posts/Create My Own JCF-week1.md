@@ -4,11 +4,12 @@ date: 2025-10-11T00:59:35+02:00
 draft: false
 tags:
   - java
-  - DSA
+  - dsa
   - project
   - basics
+  - english
 categories:
-  - blog
+  - tech
 ---
 ### JCF: Java Collection Framework Hierarchy
 

@@ -5,6 +5,9 @@ draft: false
 tags:
   - blog
   - obsidian
+  - english
+categories:
+  - tech
 ---
 
 ## Overview

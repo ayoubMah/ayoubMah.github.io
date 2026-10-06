@@ -4,9 +4,10 @@ date: 2025-08-12
 draft: false
 tags:
   - java
-  - DSA
+  - dsa
+  - english
 categories:
-  - ILT
+  - tech
 ---
 Before you read this if you want a deep dive on Singly LinkedList and DSA with java in general please read the "Chapter 3. Fundamental Data Structures" p.122 by MICHEAL T.GOODRICH
 # 1. Node

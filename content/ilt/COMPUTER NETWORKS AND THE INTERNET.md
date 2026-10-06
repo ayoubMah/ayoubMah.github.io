@@ -5,8 +5,9 @@ draft: false
 tags:
   - network
   - basics
+  - english
 categories:
-  - ILT
+  - tech
 ---
 - Our devices like PC, smartphones ... in the vocab of computer networks  are called "hosts" or "end systems".
 - the TCP and IP are the most important protocols in the computer networks that control the sending and receiving of information within the Internet

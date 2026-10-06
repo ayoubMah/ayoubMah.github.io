@@ -4,10 +4,11 @@ date: 2025-10-14T01:15:28+02:00
 draft: false
 tags:
   - java
-  - DSA
+  - dsa
   - basics
+  - english
 categories:
-  - blog
+  - tech
 ---
 the collection interface extends Iterable interface from java.lang
 we have a method 

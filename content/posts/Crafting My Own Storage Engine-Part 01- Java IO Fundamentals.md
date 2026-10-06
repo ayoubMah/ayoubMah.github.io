@@ -4,11 +4,12 @@ date: 2026-01-13T19:37:47+01:00
 draft: false
 tags:
   - java
-  - DB
-  - DSA
+  - db
+  - dsa
+  - project
+  - english
 categories:
-  - blog
-  - Project
+  - tech
 ---
 # The "Page" Abstraction
 so the `ByteBuffer` acts like a staging area where we serialize our Java objects (the `Page` object) into raw bytes and keep them in RAM using methods like `putInt`

@@ -2,12 +2,13 @@
 title: Fixing Flyway Database Connection Errors in Docker
 date: 2025-11-20T12:19:05+01:00
 draft: false
-tags: []
-categories:
-  - blog
-  - Docker
+tags:
+  - docker
   - java
-  - PostgreSQL
+  - postgresql
+  - english
+categories:
+  - tech
 ---
 
 

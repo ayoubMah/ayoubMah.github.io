@@ -3,10 +3,11 @@ title: Doubly Linked Lists
 date: 2025-09-08T23:23:40+02:00
 draft: false
 tags:
-  - DSA
+  - dsa
   - java
+  - english
 categories:
-  - ILT
+  - tech
 ---
 In this blog we'll see how we can implementing a doubly linked list 
 if you haven’t seen the Singly Linked List yet it's better to check it [here](https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/) first, because the concept is almost the same with just a few changes.

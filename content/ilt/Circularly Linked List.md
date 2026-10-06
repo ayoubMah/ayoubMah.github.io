@@ -4,9 +4,10 @@ date: 2025-09-04T00:02:05+02:00
 draft: false
 tags:
   - java
-  - DSA
+  - dsa
+  - english
 categories:
-  - ILT
+  - tech
 ---
 Before to read about circularly linked lists i suggest to go to read bit about [Singly Linked List](https://ayoubmah.github.io/ilt/2025/08/12/singly-linked-list/), to better understanding circularly linked lists(CLL)
 

@@ -5,8 +5,9 @@ draft: false
 tags:
   - docker
   - linux
+  - english
 categories:
-  - blog
+  - tech
 ---
 
 # Phase 1: runc Raw — Zero Tooling

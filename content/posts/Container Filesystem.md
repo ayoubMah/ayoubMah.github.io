@@ -5,8 +5,9 @@ draft: false
 tags:
   - docker
   - linux
+  - english
 categories:
-  - blog
+  - tech
 ---
 ![Pasted image 20260209000710](/images/Pasted%20image%2020260209000710.png)
 

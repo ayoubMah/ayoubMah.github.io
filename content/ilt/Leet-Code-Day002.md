@@ -2,11 +2,12 @@
 title: Contains Duplicate (LeetCode 217)
 date: 2025-12-11T00:42:08+01:00
 draft: false
-tags: []
-categories:
-  - ILT
-  - DSA
+tags:
+  - dsa
   - java
+  - english
+categories:
+  - tech
 ---
 # Contains Duplicate (LeetCode 217)
 the link of the problem [here](https://leetcode.com/problems/contains-duplicate/description/)

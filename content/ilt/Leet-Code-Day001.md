@@ -5,9 +5,10 @@ draft: false
 tags:
   - java
   - leetcode
-  - DSA
+  - dsa
+  - english
 categories:
-  - ILT
+  - tech
 ---
 you can see the problem here
 [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)

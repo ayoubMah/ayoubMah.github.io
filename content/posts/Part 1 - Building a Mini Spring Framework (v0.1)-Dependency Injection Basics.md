@@ -2,12 +2,13 @@
 title: Part 1 - Building a Mini Spring Framework (v0.1)-Dependency Injection Basics
 date: 2025-12-10T23:14:46+01:00
 draft: false
-tags: []
-categories:
-  - blog
+tags:
   - java
   - spring
   - basics
+  - english
+categories:
+  - tech
 ---
 # The problem Spring solves
 easy right ? 

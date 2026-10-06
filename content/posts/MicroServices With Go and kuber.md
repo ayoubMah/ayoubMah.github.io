@@ -6,7 +6,8 @@ tags:
   - go
   - distributed-system
   - devops
+  - english
 categories:
-  - blog
+  - tech
 ---
 coming soon :)
