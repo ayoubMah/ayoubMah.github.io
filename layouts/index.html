@@ -67,7 +67,52 @@
                 {{ end }}
             </div>
 
+            {{/* Without JS these links still page through the feed; with JS, infinite scroll takes over */}}
             {{ partial "pagination-list.html" . }}
+            <div class="feed-sentinel" aria-hidden="true"></div>
         </div>
     </main>
+
+    <script>
+    (function () {
+        var feed = document.querySelector(".feed");
+        var pager = document.querySelector(".pagination");
+        var sentinel = document.querySelector(".feed-sentinel");
+        var next = pager && pager.querySelector(".button.next a");
+        if (!feed || !next || !("IntersectionObserver" in window) || !window.fetch) return;
+
+        var nextUrl = next.href, loading = false;
+        pager.style.display = "none";
+
+        var io = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting || loading || !nextUrl) return;
+            loading = true;
+            sentinel.textContent = "Loading…";
+            fetch(nextUrl)
+                .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+                .then(function (html) {
+                    var doc = new DOMParser().parseFromString(html, "text/html");
+                    doc.querySelectorAll(".feed > .feed-item").forEach(function (item) {
+                        feed.appendChild(document.importNode(item, true));
+                    });
+                    var more = doc.querySelector(".pagination .button.next a");
+                    nextUrl = more ? new URL(more.getAttribute("href"), nextUrl).href : null;
+                    sentinel.textContent = nextUrl ? "" : "· that's everything ·";
+                    if (!nextUrl) io.disconnect();
+                })
+                .catch(function () {
+                    // Network trouble: give the reader the plain links back
+                    pager.style.display = "";
+                    sentinel.textContent = "";
+                    io.disconnect();
+                })
+                .then(function () {
+                    loading = false;
+                    // Re-arm: if the new items didn't push the sentinel off-screen, load again
+                    if (nextUrl) { io.unobserve(sentinel); io.observe(sentinel); }
+                });
+        }, { rootMargin: "600px 0px" });
+        io.observe(sentinel);
+    })();
+    </script>
 {{ end }}
