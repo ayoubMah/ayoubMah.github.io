@@ -35,6 +35,10 @@ from urllib.parse import unquote
 
 IMG_EXT = r"(?:png|jpe?g|gif|webp|svg|ico)"
 WIKI_IMG = re.compile(r"!?\[\[([^\]|]*\." + IMG_EXT + r")(?:\|[^\]]*)?\]\]", re.IGNORECASE)
+# Front-matter cover written the Obsidian way: cover: "[[pic.png]]" or cover: pic.png
+# (paths starting with / or http are left alone).
+COVER = re.compile(r"^(cover:[ \t]*)[\"']?(?:!?\[\[)?([^\]\"'\s|][^\]\"'\n|]*\." + IMG_EXT
+                   + r")(?:\|[^\]\n]*)?(?:\]\])?[\"']?[ \t]*$", re.IGNORECASE | re.MULTILINE)
 MD_IMG = re.compile(r"!\[([^\]]*)\]\(/images/([^)\s]+\." + IMG_EXT + r")\)", re.IGNORECASE)
 
 
@@ -90,17 +94,33 @@ class Syncer:
 
     # Obsidian ![[img.png]]  ->  Hugo ![img](/images/img.png), copying the image into static/.
     def to_hugo(self, text, copy_images):
+        def cover(m):
+            raw = m.group(2).strip()
+            if raw.startswith("/") or "://" in raw:  # already a site path or a URL
+                return m.group(0)
+            name = os.path.basename(raw)
+            self.copy_image(name, copy_images)
+            return f"{m.group(1)}/images/{name.replace(' ', '%20')}"
+
         def repl(m):
             name = os.path.basename(m.group(1).strip())
-            if copy_images:
-                src = os.path.join(self.attachments, name)
-                if os.path.exists(src):
-                    os.makedirs(self.static_images, exist_ok=True)
-                    shutil.copy2(src, self.static_images)
-                elif not os.path.exists(os.path.join(self.static_images, name)):
-                    self.warnings.append(f"image not found in attachments: {name}")
+            self.copy_image(name, copy_images)
             return f"![{os.path.splitext(name)[0]}](/images/{name.replace(' ', '%20')})"
+
+        fm = re.match(r"---\n.*?\n---\n", text, re.S)
+        if fm:
+            text = COVER.sub(cover, fm.group(0)) + text[fm.end():]
         return WIKI_IMG.sub(repl, text)
+
+    def copy_image(self, name, copy_images):
+        if not copy_images:
+            return
+        src = os.path.join(self.attachments, name)
+        if os.path.exists(src):
+            os.makedirs(self.static_images, exist_ok=True)
+            shutil.copy2(src, self.static_images)
+        elif not os.path.exists(os.path.join(self.static_images, name)):
+            self.warnings.append(f"image not found in attachments: {name}")
 
     # Reverse of to_hugo, so a post pulled from the other machine renders in Obsidian.
     # Only links that to_hugo produced (alt == file stem) are reversed.
@@ -165,8 +185,7 @@ class Syncer:
 
         if vpath and gpath:
             if vh == gh:
-                if WIKI_IMG.search(read_text(vpath)):
-                    self.to_hugo(read_text(vpath), copy_images=True)  # keep images present
+                self.to_hugo(read_text(vpath), copy_images=True)  # keep images present
                 self.state[key] = gh
             elif base is None:
                 self.backup(vpath, f"vault/{key}")

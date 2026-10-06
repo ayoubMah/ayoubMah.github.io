@@ -69,6 +69,8 @@ New notes in `blog/BLOG/` or `blog/ILT/` automatically get the right template vi
 
 **Sections** = how finished (Blog = finished pieces, ILT = raw learning notes). **One category** = `tech` or `life`. **Tags** = topics + exactly one language tag, `english` or `darija`.
 
+**Home page** = one feed: blog posts as gold ★ cards with a cover (`cover: "[[pic.png]]"`, or the post's first image), ILT notes as one-liners. `description:` overrides the feed summary.
+
 Posts are created as `draft: true` — remove or set `draft: false` when ready to publish.
 
 ## Requirements

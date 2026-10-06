@@ -5,48 +5,69 @@
 {{ define "main" }}
     <main>
         <div>
-            <h1>{{ .Site.Title }}</h1>
+            {{ $paginator := .Paginate (where .Site.RegularPages "Section" "in" (slice "posts" "ilt")) }}
 
-            {{ partial "subtitle.html" . }}
+            {{ if eq $paginator.PageNumber 1 }}
+                <h1>{{ .Site.Title }}</h1>
 
-            <div class="home-intro">
-                <p>Welcome! I write about <strong>software engineering</strong>, and about <strong>life</strong>, in English and Darija.</p>
-                <p>Read the <a href="/posts/">blog</a> for finished pieces, or the <a href="/ilt/">ILT section</a> for raw notes on what I'm learning.</p>
-            </div>
+                {{ partial "subtitle.html" . }}
 
-            {{- with .Site.Params.social }}
-                <div>
-                    {{ partial "social-icons.html" . }}
+                <div class="home-intro">
+                    <p>Welcome! I write about <strong>software engineering</strong>, and about <strong>life</strong>, in English and Darija.</p>
+                    <p><span class="feed-badge">★ Blog</span> posts are finished pieces; <span class="feed-badge feed-badge-note">ILT</span> entries are raw notes on what I'm learning.</p>
                 </div>
-            {{- end }}
 
-            <div class="home-sections">
-                <section>
-                    <h2><a href="/posts/">Latest Blog Posts</a></h2>
-                    <ul>
-                    {{ range first 3 (where .Site.RegularPages "Section" "posts") }}
-                        <li>
-                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            <time>{{ .Date.Format "Jan 2, 2006" }}</time>
-                        </li>
-                    {{ end }}
-                    </ul>
-                    <p><a href="/posts/">All posts →</a></p>
-                </section>
+                {{- with .Site.Params.social }}
+                    <div>
+                        {{ partial "social-icons.html" . }}
+                    </div>
+                {{- end }}
+            {{ end }}
 
-                <section>
-                    <h2><a href="/ilt/">Latest ILT Notes</a></h2>
-                    <ul>
-                    {{ range first 3 (where .Site.RegularPages "Section" "ilt") }}
-                        <li>
-                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            <time>{{ .Date.Format "Jan 2, 2006" }}</time>
-                        </li>
+            <div class="feed">
+                {{ range $paginator.Pages }}
+                    {{ if eq .Section "posts" }}
+                        {{/* Cover: front-matter `cover`, else the first image in the post */}}
+                        {{ $cover := .Params.cover }}
+                        {{ if not $cover }}
+                            {{ with findRESubmatch `\]\((/images/[^)\s]+)\)` .RawContent 1 }}
+                                {{ $cover = index (index . 0) 1 }}
+                            {{ end }}
+                        {{ end }}
+                        <article class="feed-item feed-post">
+                            {{ with $cover }}
+                                <a href="{{ $.RelPermalink }}" class="feed-cover-link" tabindex="-1" aria-hidden="true">
+                                    <img class="feed-cover" src="{{ . | absURL }}" alt="" loading="lazy">
+                                </a>
+                            {{ end }}
+                            <div class="feed-body">
+                                <div class="feed-meta">
+                                    <span class="feed-badge">★ Blog</span>
+                                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                                    <span>· {{ .ReadingTime }} min read</span>
+                                    {{ range .Params.categories }}<span>· {{ . }}</span>{{ end }}
+                                </div>
+                                <h2 class="feed-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                                {{ $summary := .Description | default (.Plain | htmlUnescape | truncate 180) }}
+                                {{ with trim $summary " \n" }}<p class="feed-summary">{{ . }}</p>{{ end }}
+                                {{ with .Params.tags }}
+                                    <div class="feed-tags">
+                                        {{ range . }}<a href="{{ (printf "tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>{{ end }}
+                                    </div>
+                                {{ end }}
+                            </div>
+                        </article>
+                    {{ else }}
+                        <article class="feed-item feed-note">
+                            <span class="feed-badge feed-badge-note">ILT</span>
+                            <a class="feed-note-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                        </article>
                     {{ end }}
-                    </ul>
-                    <p><a href="/ilt/">All ILT notes →</a></p>
-                </section>
+                {{ end }}
             </div>
+
+            {{ partial "pagination-list.html" . }}
         </div>
     </main>
 {{ end }}
