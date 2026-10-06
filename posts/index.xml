@@ -1,20 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>Ayoub</managingEditor><lastBuildDate>Tue, 06 Oct 2026 12:38:05 +0200</lastBuildDate><item><title>Messi</title><link>https://ayoubmah.github.io/posts/messi/</link><pubDate>Tue, 06 Oct 2026 12:38:05 +0200</pubDate><guid>https://ayoubmah.github.io/posts/messi/</guid><description>&lt;!-- 🖼 COVER: paste your cover image on the next line (Ctrl+V). The first image in the post is the card picture on the home page. --&gt;
-&lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020261006123850.png" alt="Pasted image 20261006123850"&gt;&lt;/p&gt;
-&lt;h1 id="messi"&gt;Messi&lt;/h1&gt;
-&lt;p&gt;3lash messi ?
-well messi naddi&lt;/p&gt;
-&lt;p&gt;3lash messi ?
-well messi naddi&lt;/p&gt;
-&lt;p&gt;3lash messi ?
-well messi naddi
-3lash messi ?
-well messi naddi&lt;/p&gt;
-&lt;p&gt;3lash messi ?
-well messi naddi&lt;/p&gt;
-&lt;p&gt;3lash messi ?
-well messi naddi
-3lash messi ?
-well messi naddi&lt;/p&gt;</description></item><item><title>Day 0 - linux primitives that make k8s possible</title><link>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</link><pubDate>Thu, 19 Mar 2026 23:33:57 +0100</pubDate><guid>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</guid><description>&lt;h2 id="so-what-what-happen-when-we-install-k8s-"&gt;so what what happen when we install k8s ?&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Ayoub's Blog</title><link>https://ayoubmah.github.io/posts/</link><description>Recent content in Posts on Ayoub's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>Ayoub</managingEditor><lastBuildDate>Thu, 19 Mar 2026 23:33:57 +0100</lastBuildDate><item><title>Day 0 - linux primitives that make k8s possible</title><link>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</link><pubDate>Thu, 19 Mar 2026 23:33:57 +0100</pubDate><guid>https://ayoubmah.github.io/posts/day-0---linux-primitives-that-make-k8s-possible/</guid><description>&lt;h2 id="so-what-what-happen-when-we-install-k8s-"&gt;so what what happen when we install k8s ?&lt;/h2&gt;
 &lt;p&gt;when we install k8s actually we get this processes
 we can separate them logically (they are not separated physically like not namespaces or something)
 they are just have a different roles :&lt;/p&gt;
