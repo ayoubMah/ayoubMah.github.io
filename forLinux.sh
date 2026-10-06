@@ -1,79 +1,35 @@
 #!/usr/bin/env bash
+# Publish the blog from Linux. Same steps as forWind.ps1; the sync logic lives in sync.py.
 set -euo pipefail
 
-# === CONFIG ===
-OBSIDIAN_POSTS="$HOME/Documents/obsidianDir/ayoubObsidian/BLOG"
-OBSIDIAN_ILT="$HOME/Documents/obsidianDir/ayoubObsidian/ILT"
-ATTACHMENTS="$HOME/Documents/obsidianDir/ayoubObsidian/Attachments"
+# === CONFIG === (override any of these with an env var)
+VAULT="${OBSIDIAN_VAULT:-$HOME/Documents/obsidianDir/ayoubObsidian}"
+OBSIDIAN_POSTS="${OBSIDIAN_POSTS:-$VAULT/BLOG}"
+OBSIDIAN_ILT="${OBSIDIAN_ILT:-$VAULT/ILT}"
+ATTACHMENTS="${ATTACHMENTS:-$VAULT/Attachments}"
+HUGO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-HUGO_POSTS="$HOME/Documents/ayBlog/content/posts"
-HUGO_ILT="$HOME/Documents/ayBlog/content/ilt"
-STATIC_IMAGES="$HOME/Documents/ayBlog/static/images"
+trap 'echo "❌ Failed at line $LINENO - nothing was pushed." >&2' ERR
 
-HUGO_DIR="$HOME/Documents/ayBlog"
-HUGO_THEME="hello-friend-ng"
-
-echo "=== Pulling latest blog content ==="
 cd "$HUGO_DIR"
-git pull --rebase --autostash
 
-mkdir -p "$HUGO_POSTS" "$HUGO_ILT" "$STATIC_IMAGES" "$OBSIDIAN_POSTS" "$OBSIDIAN_ILT"
+echo "=== 1. Pulling latest from GitHub (other machine's posts/edits/deletes) ==="
+git pull --rebase --autostash origin master
+git submodule update --init --recursive
 
-# Two-way sync: git -> vault first (new posts from other machine), then vault -> content (with delete)
-echo "🔄 Rsync: git -> vault (no delete)"
-rsync -av "$HUGO_POSTS/" "$OBSIDIAN_POSTS/"
-rsync -av "$HUGO_ILT/" "$OBSIDIAN_ILT/"
+echo "=== 2. Syncing vault <-> content ==="
+python3 "$HUGO_DIR/sync.py" --repo "$HUGO_DIR" --blog "$OBSIDIAN_POSTS" --ilt "$OBSIDIAN_ILT" --attachments "$ATTACHMENTS"
 
-echo "🔄 Rsync: vault -> content (with delete)"
-rsync -av --delete "$OBSIDIAN_POSTS/" "$HUGO_POSTS/"
-rsync -av --delete "$OBSIDIAN_ILT/" "$HUGO_ILT/"
+echo "=== 3. Test build with Hugo (GitHub Actions does the real build) ==="
+hugo --minify
 
-export HUGO_POSTS HUGO_ILT ATTACHMENTS STATIC_IMAGES
+echo "=== 4. Committing and pushing ==="
+git add -A
+if git diff --cached --quiet; then
+    echo "Nothing to publish - no changes."
+else
+    git commit -m "Auto-publish (linux): $(date '+%Y-%m-%d %H:%M:%S')"
+    git push origin master
+fi
 
-echo "🖼 Converting Obsidian image links and copying images..."
-python3 <<'PY'
-import os, re, shutil
-
-posts_dir = os.environ['HUGO_POSTS']
-ilt_dir = os.environ['HUGO_ILT']
-attachments = os.environ['ATTACHMENTS']
-static_images = os.environ['STATIC_IMAGES']
-
-pattern = re.compile(r'!?\[\[([^]\|]*\.(?:png|jpg|jpeg|gif|webp|svg|ico))(?:\|[^\]]*)?\]\]', re.IGNORECASE)
-
-for root_dir in (posts_dir, ilt_dir):
-    if not os.path.isdir(root_dir):
-        continue
-    for root, _, files in os.walk(root_dir):
-        for fname in files:
-            if not fname.lower().endswith('.md'):
-                continue
-            fpath = os.path.join(root, fname)
-            with open(fpath, 'r', encoding='utf-8') as f:
-                content = f.read()
-
-            matches = pattern.findall(content)
-            for match in matches:
-                img_name = os.path.basename(match.strip())
-                alt_text = os.path.splitext(img_name)[0]
-                md_img = f'![{alt_text}](/images/{img_name.replace(" ", "%20")})'
-                content = re.sub(r'!?\[\[' + re.escape(match) + r'(?:\|[^\]]*)?\]\]', md_img, content)
-                src = os.path.join(attachments, img_name)
-                if os.path.exists(src):
-                    shutil.copy(src, static_images)
-
-            with open(fpath, 'w', encoding='utf-8') as f:
-                f.write(content)
-print("✅ Images converted and copied.")
-PY
-
-echo "🏗 Building site with Hugo..."
-cd "$HUGO_DIR"
-hugo -t "$HUGO_THEME" --minify
-
-echo "📤 Deploying to GitHub Pages..."
-git add .
-git commit -m "Auto-publish: $(date '+%Y-%m-%d %H:%M:%S')" || true
-git push origin master
-
-echo "✅ Blog published successfully!"
+echo "✅ Done!"

@@ -1,1 +1,9 @@
+# Built by GitHub Actions from source; committing it only causes merge conflicts between machines
+public/
+resources/_gen/
+.hugo_build.lock
+
+# Per-machine sync state and backups (each machine has its own vault)
+.sync-state.json
 .sync-cache.json
+.sync-backup/

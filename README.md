@@ -43,14 +43,20 @@ Obsidian Vault
   ├── content/ilt/        ← synced from vault ILT/
   ├── static/images/      ← images copied from vault attachments/
   │
-  ▼  (hugo --minify)
-  │
-  public/                  ← static site
-  │
-  ▼  (git push → GitHub Actions)
+  ▼  (git push → GitHub Actions builds with Hugo; public/ is NOT committed)
   │
   gh-pages                 ← live at ayoubmah.github.io
 ```
+
+## Syncing between machines
+
+Each machine has its **own** vault; git is the only link between them. Both scripts
+run the same engine, `sync.py`: pull first, then a three-way sync against
+`.sync-state.json` (per machine, gitignored), which remembers what was published at
+the last run. So a post written, **edited or deleted** on one machine is applied to
+the other machine's vault on its next publish. If the same post was edited on
+both machines, the machine publishing wins and the other version is saved
+in `.sync-backup/<timestamp>/`. Every file the sync overwrites or deletes is backed up there.
 
 ## Templates
 
@@ -69,8 +75,6 @@ Posts are created as `draft: true` — remove or set `draft: false` when ready t
 |---|---|---|
 | Hugo extended | `choco install hugo-extended` | `sudo snap install hugo` |
 | Git | git-scm.com | `apt install git` |
-| PowerShell | Comes with Windows | `apt install pwsh` |
-| rsync | — | `apt install rsync` |
 | Python 3 | python.org | `apt install python3` |
 
 ## License
