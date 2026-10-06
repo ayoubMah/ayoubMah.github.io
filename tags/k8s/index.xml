@@ -47,7 +47,7 @@ they are just have a different roles :&lt;/p&gt;
 &lt;h1 id="step2-create-the-etcd-systemd-service"&gt;step2: Create the etcd systemd Service&lt;/h1&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260319172432.png" alt="Pasted image 20260319172432"&gt;&lt;/p&gt;
 &lt;p&gt;we do the same thing for other VMs changing just the ip add
-for example for node1&lt;/p&gt;</description></item><item><title>04-03-26</title><link>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</link><pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</guid><description>&lt;h1 id="what-is-the-different-between-containerd-and-oci-open-container-initiative"&gt;what is the different between containerd and OCI (open container initiative)&lt;/h1&gt;
+for example for node1&lt;/p&gt;</description></item><item><title>containerd vs OCI, and the k8s architecture</title><link>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</link><pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</guid><description>&lt;h1 id="what-is-the-different-between-containerd-and-oci-open-container-initiative"&gt;what is the different between containerd and OCI (open container initiative)&lt;/h1&gt;
 &lt;p&gt;writing &amp;hellip;&lt;/p&gt;
 &lt;h1 id="k8s-architecture"&gt;k8s architecture&lt;/h1&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260304201507.png" alt="Pasted image 20260304201507"&gt;&lt;/p&gt;

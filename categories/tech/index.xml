@@ -58,12 +58,12 @@ for example for node1&lt;/p&gt;</description></item><item><title>Containerd unde
 &lt;/ol&gt;
 &lt;p&gt;first i installed containerd
 &lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260305002032.png" alt="Pasted image 20260305002032"&gt;
-so it&amp;rsquo;s automatically we can see that we have runc but not crun, (so the default OCI implementation in containerd is runc)&lt;/p&gt;</description></item><item><title>04-03-26</title><link>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</link><pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</guid><description>&lt;h1 id="what-is-the-different-between-containerd-and-oci-open-container-initiative"&gt;what is the different between containerd and OCI (open container initiative)&lt;/h1&gt;
+so it&amp;rsquo;s automatically we can see that we have runc but not crun, (so the default OCI implementation in containerd is runc)&lt;/p&gt;</description></item><item><title>containerd vs OCI, and the k8s architecture</title><link>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</link><pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/04/04-03-26/</guid><description>&lt;h1 id="what-is-the-different-between-containerd-and-oci-open-container-initiative"&gt;what is the different between containerd and OCI (open container initiative)&lt;/h1&gt;
 &lt;p&gt;writing &amp;hellip;&lt;/p&gt;
 &lt;h1 id="k8s-architecture"&gt;k8s architecture&lt;/h1&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260304201507.png" alt="Pasted image 20260304201507"&gt;&lt;/p&gt;
 &lt;p&gt;thanks @djalal for explications &amp;lt;3
-writing &amp;hellip;&lt;/p&gt;</description></item><item><title>03-03-2026</title><link>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</link><pubDate>Tue, 03 Mar 2026 23:52:59 +0100</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</guid><description>&lt;h1 id="docker-runtime-stack"&gt;Docker runtime stack&lt;/h1&gt;
+writing &amp;hellip;&lt;/p&gt;</description></item><item><title>Docker runtime stack, build cache and volumes</title><link>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</link><pubDate>Tue, 03 Mar 2026 23:52:59 +0100</pubDate><guid>https://ayoubmah.github.io/ilt/2026/03/03/03-03-2026/</guid><description>&lt;h1 id="docker-runtime-stack"&gt;Docker runtime stack&lt;/h1&gt;
 &lt;p&gt;&lt;img src="https://ayoubmah.github.io/images/Pasted%20image%2020260303123027.png" alt="Pasted image 20260303123027"&gt;&lt;/p&gt;
 &lt;h3 id="1--docker-cli"&gt;1- docker cli&lt;/h3&gt;
 &lt;p&gt;translate commands to rest api and send it over unix socket&lt;/p&gt;
