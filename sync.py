@@ -115,12 +115,23 @@ class Syncer:
     def copy_image(self, name, copy_images):
         if not copy_images:
             return
-        src = os.path.join(self.attachments, name)
-        if os.path.exists(src):
+        src = self.find_image(name)
+        if src:
             os.makedirs(self.static_images, exist_ok=True)
             shutil.copy2(src, self.static_images)
         elif not os.path.exists(os.path.join(self.static_images, name)):
             self.warnings.append(f"image not found in attachments: {name}")
+
+    # Obsidian may store a pasted image in the global attachments folder OR next to the
+    # note (attachmentFolderPath "./attachments" -> BLOG/attachments/). Look in all of them.
+    def find_image(self, name):
+        if not hasattr(self, "_images"):
+            self._images = {}
+            for root in [self.attachments] + [vault_dir for _, vault_dir, _ in self.sections]:
+                for dirpath, _, files in os.walk(root):
+                    for f in files:
+                        self._images.setdefault(f, os.path.join(dirpath, f))
+        return self._images.get(name)
 
     # Reverse of to_hugo, so a post pulled from the other machine renders in Obsidian.
     # Only links that to_hugo produced (alt == file stem) are reversed.

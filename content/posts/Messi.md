@@ -2,8 +2,8 @@
 title: Messi
 date: 2026-10-06T12:38:05+02:00
 draft: true
-cover: '""'
-description: '""'
+cover:
+description:
 categories:
   - life
 tags:
