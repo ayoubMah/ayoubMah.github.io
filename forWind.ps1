@@ -11,6 +11,9 @@ $ObsidianIlt  = Join-Path $BlogFolder "ILT"
 $Attachments  = Join-Path $VaultRoot "attachments"
 
 function Invoke-Step([string]$What, [scriptblock]$Cmd) {
+    # git/hugo write progress to stderr; with "Stop", PowerShell 5.1 turns that into
+    # an error whenever output is redirected. Judge native commands by exit code only.
+    $ErrorActionPreference = "Continue"
     & $Cmd
     if ($LASTEXITCODE -ne 0) { throw "$What failed (exit $LASTEXITCODE) - nothing was pushed." }
 }
