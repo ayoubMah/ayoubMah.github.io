@@ -105,7 +105,11 @@ pagerSize = 10
   page = ["HTML"]
   section = ["HTML", "RSS"]
 
-# Comments: https://cusdis.com — anonymous, no login, moderated.
-# Paste the App ID from the Cusdis dashboard. Empty = comments hidden.
-[params.cusdis]
-  appId = ""
+# Comments: https://giscus.app, stored in this repo's GitHub Discussions. Category
+# Announcements, so only giscus and the repo owner open threads. Readers sign in with GitHub.
+# Needs the giscus GitHub App installed on this repo. Empty repoId = comments hidden.
+[params.giscus]
+  repo       = "ayoubMah/ayoubMah.github.io"
+  repoId     = "R_kgDOPbrvzA"
+  category   = "Announcements"
+  categoryId = "DIC_kwDOPbrvzM4DMGpz"
