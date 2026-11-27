@@ -67,8 +67,21 @@ pagerSize = 10
   url        = "/ilt/"
   weight     = 5
 
-# Heading of the /ilt/ list page. Set here, not in content/ilt/_index.md, because sync.py
-# would pull an _index.md into the vault's ILT/ folder.
+# About menu item (content/about.md lives outside sync.py's folders: edit it in the repo)
+[[menu.main]]
+  identifier = "about"
+  name       = "About"
+  url        = "/about/"
+  weight     = 10
+
+# Headings of the list pages. Set here, not in content/<section>/_index.md, because sync.py
+# would pull an _index.md into the vault's BLOG/ or ILT/ folder.
+[[cascade]]
+  title = "Blog"
+  [cascade.target]
+    path = "/posts"
+    kind = "section"
+
 [[cascade]]
   title = "Notes"
   [cascade.target]
