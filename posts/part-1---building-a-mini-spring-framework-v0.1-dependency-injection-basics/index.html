@@ -14,7 +14,7 @@ imagine you are building an e-commerce backend, and you have OrderService that n
 the naive approach is: inside the OrderService you write for example
 PaymentProcess process = new PaypalService(); if your boss comes and says “we’re switching the contract from PayPal to Stripe” what do you have to do to your code?
 The answer is use an interface
-public interface PaymentProcess { void pay(double amount); } and the OrderService looks like"><meta property="og:url" content="https://mahroot.dev/posts/part-1---building-a-mini-spring-framework-v0.1-dependency-injection-basics/"><meta property="og:site_name" content="mahroot's blog"><meta property="og:title" content="Part 1 - Building a Mini Spring Framework (v0.1)-Dependency Injection Basics"><meta property="og:description" content="The problem Spring solves easy right ? let’s see :)
+public interface PaymentProcess { void pay(double amount); } and the OrderService looks like"><meta name=twitter:site content="@mahr00t"><meta name=twitter:creator content="@mahr00t"><meta property="og:url" content="https://mahroot.dev/posts/part-1---building-a-mini-spring-framework-v0.1-dependency-injection-basics/"><meta property="og:site_name" content="mahroot's blog"><meta property="og:title" content="Part 1 - Building a Mini Spring Framework (v0.1)-Dependency Injection Basics"><meta property="og:description" content="The problem Spring solves easy right ? let’s see :)
 imagine you are building an e-commerce backend, and you have OrderService that needs to process payments
 the naive approach is: inside the OrderService you write for example
 PaymentProcess process = new PaypalService(); if your boss comes and says “we’re switching the contract from PayPal to Stripe” what do you have to do to your code?

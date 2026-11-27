@@ -20,7 +20,7 @@ curl --unix-socket /var/run/docker.sock http://localhost/containers/json 2- dock
 manage images (pull, build)
 manage volume (create net, mount)
 manage network (bridge creation, port mapping)
-docker run delegated to containerd not here !!'><meta property="og:url" content="https://mahroot.dev/ilt/2026/03/03/03-03-2026/"><meta property="og:site_name" content="mahroot's blog"><meta property="og:title" content="Docker runtime stack, build cache and volumes"><meta property="og:description" content='Docker runtime stack 1- docker cli translate commands to rest api and send it over unix socket
+docker run delegated to containerd not here !!'><meta name=twitter:site content="@mahr00t"><meta name=twitter:creator content="@mahr00t"><meta property="og:url" content="https://mahroot.dev/ilt/2026/03/03/03-03-2026/"><meta property="og:site_name" content="mahroot's blog"><meta property="og:title" content="Docker runtime stack, build cache and volumes"><meta property="og:description" content='Docker runtime stack 1- docker cli translate commands to rest api and send it over unix socket
 docker run ngnix ===> POST /container/create {"Image":"nginx:latest", ....} ===> sent to: /var/run/docker.sock so we can talk to dockerd with it
 like
 curl --unix-socket /var/run/docker.sock http://localhost/containers/json 2- dockerd it’s an orchestrator
