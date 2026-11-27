@@ -33,6 +33,12 @@
 
 {{ template "_internal/schema.html" . }}
 {{ template "_internal/twitter_cards.html" . }}
+{{- /* X credits the card to this account. Not via params.social: the theme uses that key
+       for its home-page icon list, in a different shape. */ -}}
+{{ with .Site.Params.xHandle }}
+<meta name="twitter:site" content="@{{ . }}" />
+<meta name="twitter:creator" content="@{{ . }}" />
+{{ end }}
 
 {{ if isset .Site.Taxonomies "series" }}
     {{ template "_internal/opengraph.html" . }}

@@ -22,6 +22,8 @@ pagerSize = 10
   keywords = "homepage, blog"
   # Share card (X, Discord, LinkedIn…) for any page that has no image of its own. 1200x630.
   images = ["/img/og.png"]
+  # X handle, without the @ (twitter:site / twitter:creator in layouts/partials/head.html)
+  xHandle = "mahr00t"
   customCSS = ["/css/custom.css"]
 
 [params.favicon]
