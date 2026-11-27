@@ -14,7 +14,7 @@
 
                 <div class="home-intro">
                     <p>Welcome! I write about <strong>software engineering</strong>, and about <strong>life</strong>, in English and Darija.</p>
-                    <p><span class="feed-badge">★ Blog</span> posts are finished pieces; <span class="feed-badge feed-badge-note">ILT</span> entries are raw notes on what I'm learning.</p>
+                    <p><span class="feed-badge">★ Blog</span> posts are finished pieces; <span class="feed-badge feed-badge-note">Notes</span> are raw, written while I learn.</p>
                 </div>
 
                 {{- with .Site.Params.social }}
@@ -61,7 +61,7 @@
                         </article>
                     {{ else }}
                         <article class="feed-item feed-note">
-                            <span class="feed-badge feed-badge-note">ILT</span>
+                            <span class="feed-badge feed-badge-note">Notes</span>
                             <a class="feed-note-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
                             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
                         </article>

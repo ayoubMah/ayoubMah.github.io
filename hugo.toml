@@ -1,6 +1,6 @@
 baseURL = "https://mahroot.dev/"
 publishDir = "public"
-title        = "My Blog"
+title        = "mahroot's blog"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 pagerSize = 10
@@ -36,7 +36,7 @@ pagerSize = 10
 
 [languages]
   [languages.en]
-    title = "Ayoub's Blog"
+    title = "mahroot's blog"
     keywords = "tech, personal, blog"
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
     readOtherPosts = "Read other posts"
@@ -45,7 +45,7 @@ pagerSize = 10
     subtitle  = "Thoughts, notes,projects wa AchyaO Okhra ..."
 
     [languages.en.params.logo]
-      logoText = "El-Mahjouby"
+      logoText = "mahroot"
       logoHomeLink = "/"
     # or
     #
@@ -60,12 +60,20 @@ pagerSize = 10
   url        = "/posts"
   weight     = 1
 
-# ILT menu item
+# Notes menu item (the section folder and URLs stay "ilt", so links and the vault's ILT/ folder keep working)
 [[menu.main]]
   identifier = "ilt"
-  name       = "ILT"
+  name       = "Notes"
   url        = "/ilt/"
   weight     = 5
+
+# Heading of the /ilt/ list page. Set here, not in content/ilt/_index.md, because sync.py
+# would pull an _index.md into the vault's ILT/ folder.
+[[cascade]]
+  title = "Notes"
+  [cascade.target]
+    path = "/ilt"
+    kind = "section"
 
 
 [permalinks]
