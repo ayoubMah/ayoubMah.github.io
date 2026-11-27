@@ -63,7 +63,7 @@ let&amp;rsquo;s see :)&lt;/p&gt;
 &lt;li&gt;the TCP and IP are the most important protocols in the computer networks that control the sending and receiving of information within the Internet&lt;/li&gt;
 &lt;li&gt;TCP: &lt;strong&gt;T&lt;/strong&gt;ransmission &lt;strong&gt;C&lt;/strong&gt;ontrol &lt;strong&gt;P&lt;/strong&gt;rotocol.&lt;/li&gt;
 &lt;li&gt;IP: &lt;strong&gt;I&lt;/strong&gt;nternet &lt;strong&gt;P&lt;/strong&gt;rotocol.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Collection Interfece</title><link>https://mahroot.dev/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://mahroot.dev/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
+&lt;/ul&gt;</description></item><item><title>Collection Interface</title><link>https://mahroot.dev/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://mahroot.dev/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
 we have a method
 &lt;strong&gt;boolean add(E e)&lt;/strong&gt; that return true if the collection changed (the elem e added) and false if not
 &lt;strong&gt;boolean addAdd(Collection &amp;lt; ? extends E&amp;gt; c)&lt;/strong&gt; , that take a collection of type E of subtype of E and return true if the collection changed (all elm added)&lt;/p&gt;

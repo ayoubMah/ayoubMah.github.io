@@ -133,7 +133,7 @@ Flyway says: “Connection refused.”&lt;/p&gt;</description></item><item><titl
 &lt;li&gt;the TCP and IP are the most important protocols in the computer networks that control the sending and receiving of information within the Internet&lt;/li&gt;
 &lt;li&gt;TCP: &lt;strong&gt;T&lt;/strong&gt;ransmission &lt;strong&gt;C&lt;/strong&gt;ontrol &lt;strong&gt;P&lt;/strong&gt;rotocol.&lt;/li&gt;
 &lt;li&gt;IP: &lt;strong&gt;I&lt;/strong&gt;nternet &lt;strong&gt;P&lt;/strong&gt;rotocol.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Collection Interfece</title><link>https://mahroot.dev/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://mahroot.dev/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
+&lt;/ul&gt;</description></item><item><title>Collection Interface</title><link>https://mahroot.dev/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://mahroot.dev/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
 we have a method
 &lt;strong&gt;boolean add(E e)&lt;/strong&gt; that return true if the collection changed (the elem e added) and false if not
 &lt;strong&gt;boolean addAdd(Collection &amp;lt; ? extends E&amp;gt; c)&lt;/strong&gt; , that take a collection of type E of subtype of E and return true if the collection changed (all elm added)&lt;/p&gt;
@@ -208,7 +208,7 @@ and we want &lt;strong&gt;a single merged linked list containing all the element
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;(&amp;#34;&lt;/span&gt;&lt;span style="color:#f92672"&gt;+&lt;/span&gt;data&lt;span style="color:#f92672"&gt;+&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;) =&amp;gt;(null)&amp;#34;&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As you can see in the code, the constructor of the Node initializes the next pointer to null, which is what we want.&lt;/p&gt;</description></item><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://mahroot.dev/postes/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://mahroot.dev/postes/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As you can see in the code, the constructor of the Node initializes the next pointer to null, which is what we want.&lt;/p&gt;</description></item><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://mahroot.dev/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://mahroot.dev/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p&gt;
 &lt;h2 id="phase-1-local-setup"&gt;Phase 1: Local Setup&lt;/h2&gt;
 &lt;h3 id="step-1-install-required-tools"&gt;Step 1: Install Required Tools&lt;/h3&gt;
@@ -231,31 +231,4 @@ and we want &lt;strong&gt;a single merged linked list containing all the element
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Obsidian + Hugo + GitHub Pages Blog Setup Guide</title><link>https://mahroot.dev/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</link><pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate><guid>https://mahroot.dev/posts/obsidian-+-hugo-+-github-pages-blog-setup-guide/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This setup creates an automated blog workflow where you write in Obsidian, push to GitHub, and GitHub Actions automatically builds and deploys your Hugo site.&lt;/p&gt;
-&lt;h2 id="phase-1-local-setup"&gt;Phase 1: Local Setup&lt;/h2&gt;
-&lt;h3 id="step-1-install-required-tools"&gt;Step 1: Install Required Tools&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Install Hugo&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Windows (using Chocolatey)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;choco install hugo-extended
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# macOS (using Homebrew)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;brew install hugo
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Linux (using Snap)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo snap install hugo
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Install Git&lt;/strong&gt; (if not already installed)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Download from &lt;a href="https://git-scm.com/"&gt;git-scm.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description></item><item><title/><link>https://mahroot.dev/postes/free-ps/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://mahroot.dev/postes/free-ps/</guid><description>&lt;p&gt;hello&lt;/p&gt;
-&lt;p&gt;this is the image of kobat sakhra in al kodss
-![[totoro-minimalist-3840x2160-20906.png]]&lt;/p&gt;
-&lt;p&gt;![[pexels-faheem-ahamad-422934800-16732791.jpg]]&lt;/p&gt;
-&lt;p&gt;![[sasuke-uchiha-3840x2160-12165.jpg]]&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;&lt;strong&gt;Install Obsidian&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>

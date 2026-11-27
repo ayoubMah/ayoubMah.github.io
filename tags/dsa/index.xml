@@ -16,7 +16,7 @@ The element 1 occurs at the indices 0 and 3.&lt;/p&gt;
 All elements are distinct.
 &lt;strong&gt;Example 3:&lt;/strong&gt;
 &lt;strong&gt;Input:&lt;/strong&gt; nums = [1,1,1,3,3,4,3,2,4,2]
-&lt;strong&gt;Output:&lt;/strong&gt; true&lt;/p&gt;</description></item><item><title>Collection Interfece</title><link>https://mahroot.dev/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://mahroot.dev/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
+&lt;strong&gt;Output:&lt;/strong&gt; true&lt;/p&gt;</description></item><item><title>Collection Interface</title><link>https://mahroot.dev/posts/collection-interface/</link><pubDate>Tue, 14 Oct 2025 01:15:28 +0200</pubDate><guid>https://mahroot.dev/posts/collection-interface/</guid><description>&lt;p&gt;the collection interface extends Iterable interface from java.lang
 we have a method
 &lt;strong&gt;boolean add(E e)&lt;/strong&gt; that return true if the collection changed (the elem e added) and false if not
 &lt;strong&gt;boolean addAdd(Collection &amp;lt; ? extends E&amp;gt; c)&lt;/strong&gt; , that take a collection of type E of subtype of E and return true if the collection changed (all elm added)&lt;/p&gt;
