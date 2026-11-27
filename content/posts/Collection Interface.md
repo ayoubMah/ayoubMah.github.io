@@ -1,5 +1,5 @@
 ---
-title: Collection Interfece
+title: Collection Interface
 date: 2025-10-14T01:15:28+02:00
 draft: false
 tags:

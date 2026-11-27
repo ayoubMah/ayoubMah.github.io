@@ -45,7 +45,7 @@ Obsidian Vault
   │
   ▼  (git push → GitHub Actions builds with Hugo; public/ is NOT committed)
   │
-  gh-pages                 ← live at ayoubmah.github.io
+  gh-pages                 ← live at https://mahroot.dev (custom domain, static/CNAME)
 ```
 
 ## Syncing between machines
