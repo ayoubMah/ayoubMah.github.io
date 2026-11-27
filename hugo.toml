@@ -104,3 +104,8 @@ pagerSize = 10
   home = ["HTML", "RSS"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
+
+# Comments: https://cusdis.com — anonymous, no login, moderated.
+# Paste the App ID from the Cusdis dashboard. Empty = comments hidden.
+[params.cusdis]
+  appId = ""

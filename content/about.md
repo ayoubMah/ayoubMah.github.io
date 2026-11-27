@@ -4,6 +4,8 @@ description: "Ayoub El-Mahjouby, aka mahroot: a Moroccan software engineer who l
 # Reachable from the menu, but kept out of the home feed and the RSS feed.
 build:
   list: local
+# No comment box on this page (see layouts/partials/cusdis.html).
+comments: false
 ---
 
 Hi, I'm **Ayoub El-Mahjouby**, aka **mahroot**.

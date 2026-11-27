@@ -1,0 +1,16 @@
+{{- /* Cusdis comments: no login, name optional, comments held for approval.
+       Set params.cusdis.appId in hugo.toml; disable per page with `comments: false`. */ -}}
+{{- with .Site.Params.cusdis.appId }}
+  {{- if ne (string $.Params.comments) "false" }}
+    <hr />
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="{{ . }}"
+      data-page-id="{{ $.RelPermalink }}"
+      data-page-url="{{ $.Permalink }}"
+      data-page-title="{{ $.Title }}"
+      data-theme="auto"
+    ></div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+  {{- end }}
+{{- end }}
