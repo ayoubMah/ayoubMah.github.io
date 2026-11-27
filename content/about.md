@@ -1,5 +1,6 @@
 ---
 title: "About"
+description: "Ayoub El-Mahjouby, aka mahroot: a Moroccan software engineer who learns by building things from scratch."
 # Reachable from the menu, but kept out of the home feed and the RSS feed.
 build:
   list: local

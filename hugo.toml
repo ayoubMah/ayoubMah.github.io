@@ -18,9 +18,10 @@ pagerSize = 10
   disableReadOtherPosts = false
   enableSharingButtons = true
   enableGlobalLanguageMenu = false
-  description = "My new homepage or blog"
+  description = "I write about software engineering, and about life, in English and Darija."
   keywords = "homepage, blog"
-  images = [""]
+  # Share card (X, Discord, LinkedIn…) for any page that has no image of its own. 1200x630.
+  images = ["/img/og.png"]
   customCSS = ["/css/custom.css"]
 
 [params.favicon]
